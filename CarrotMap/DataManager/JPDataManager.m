@@ -241,9 +241,10 @@
 
 - (void)renren:(Renren *)renren requestDidReturnResponse:(ROResponse *)response
 {
-    NSLog(@"拉取好友成功");
+    
     NSArray *responseArray = (NSArray *)(response.rootObject);
     if ([responseArray count] == 1) {
+        NSLog(@"拉取用户信息");
         ROUserResponseItem *item = [responseArray objectAtIndex:0];
         //取值
         NSMutableDictionary *tmpUserInfo = [[NSMutableDictionary alloc] init];
@@ -259,6 +260,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetUserInfo" object:self];
     }
     else {
+        NSLog(@"拉取好友成功");
         NSMutableArray *tmpFriendsList = [[NSMutableArray alloc] init];
         NSMutableDictionary *tmpIdMapping = [[NSMutableDictionary alloc] init];
         for ( int i = 0; i < [responseArray count]; i++  )

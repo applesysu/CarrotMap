@@ -10,4 +10,13 @@
 
 @interface ACLoginViewController : UIViewController
 
+
+
+@property (strong, nonatomic) UIButton *loginBtn;
+@property (strong, nonatomic) UIButton *touristBtn;
+@property (strong, nonatomic) UILabel *orLabel;
+@property (strong, nonatomic) UIImageView *orImage;
+
+- (void)loginBtnPressed;
+- (void)TouristBtnPressed;
 @end

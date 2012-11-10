@@ -11,8 +11,10 @@
 
 @implementation ACAppDelegate
 
-@synthesize testViewController;
+@synthesize window;
 
+@synthesize testViewController;
+@synthesize rootViewController;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -26,7 +28,7 @@
 
 //    self.testViewController = [[ACTestViewController alloc] init];
 //    [self.window addSubview:self.testViewController.view];
-    
+    self.window.rootViewController=[[ACLoginViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

@@ -16,6 +16,8 @@
 
 @implementation ACTestViewController
 
+@synthesize textView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -112,6 +114,7 @@
 {
     NSLog(@"Button 1 Pressed");
     
+    [[JPDataManager sharedInstance] RenrenLogout];
     //监听特定通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRenrenLogin) name:@"didRenrenLogin" object:nil];
     

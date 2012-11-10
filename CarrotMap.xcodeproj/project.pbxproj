@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187BFCFA164E1BD0007AC7BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187BFCF9164E1BD0007AC7BA /* MapKit.framework */; };
+		187BFD02164E1C04007AC7BA /* SYSUMyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */; };
+		187BFD05164E1C78007AC7BA /* SYSUMyCalloutImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */; };
+		187BFD0C164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD0B164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m */; };
+		187BFD10164E1D33007AC7BA /* SYSUCarrotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD0F164E1D32007AC7BA /* SYSUCarrotCell.m */; };
+		187BFD1C164E21F4007AC7BA /* liulan.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD19164E21F3007AC7BA /* liulan.png */; };
+		187BFD1D164E21F4007AC7BA /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1A164E21F3007AC7BA /* login.png */; };
+		187BFD1E164E21F4007AC7BA /* or.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1B164E21F3007AC7BA /* or.png */; };
 		60B42893164CD49000D5FCD3 /* JPLocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */; };
 		60B6F3141647B96800071E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3131647B96800071E86 /* UIKit.framework */; };
 		60B6F3161647B96800071E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3151647B96800071E86 /* Foundation.framework */; };
@@ -133,6 +141,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187BFCF9164E1BD0007AC7BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		187BFD00164E1C04007AC7BA /* SYSUMyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSUMyAnnotation.h; sourceTree = "<group>"; };
+		187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSUMyAnnotation.m; sourceTree = "<group>"; };
+		187BFD03164E1C78007AC7BA /* SYSUMyCalloutImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSUMyCalloutImageView.h; sourceTree = "<group>"; };
+		187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSUMyCalloutImageView.m; sourceTree = "<group>"; };
+		187BFD0A164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSUMyAnnoCalloutView.h; sourceTree = "<group>"; };
+		187BFD0B164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSUMyAnnoCalloutView.m; sourceTree = "<group>"; };
+		187BFD0E164E1D32007AC7BA /* SYSUCarrotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSUCarrotCell.h; sourceTree = "<group>"; };
+		187BFD0F164E1D32007AC7BA /* SYSUCarrotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSUCarrotCell.m; sourceTree = "<group>"; };
+		187BFD19164E21F3007AC7BA /* liulan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liulan.png; sourceTree = "<group>"; };
+		187BFD1A164E21F3007AC7BA /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		187BFD1B164E21F3007AC7BA /* or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = or.png; sourceTree = "<group>"; };
 		60B42891164CD49000D5FCD3 /* JPLocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalDataManager.h; sourceTree = "<group>"; };
 		60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalDataManager.m; sourceTree = "<group>"; };
 		60B6F30F1647B96800071E86 /* CarrotMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrotMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -326,6 +346,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187BFCFA164E1BD0007AC7BA /* MapKit.framework in Frameworks */,
 				60BA894A164882380043AC75 /* SystemConfiguration.framework in Frameworks */,
 				60BA89481648822F0043AC75 /* StoreKit.framework in Frameworks */,
 				60BA8946164882210043AC75 /* Security.framework in Frameworks */,
@@ -359,6 +380,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		187BFD1F164E21FD007AC7BA /* Login Images */ = {
+			isa = PBXGroup;
+			children = (
+				187BFD19164E21F3007AC7BA /* liulan.png */,
+				187BFD1A164E21F3007AC7BA /* login.png */,
+				187BFD1B164E21F3007AC7BA /* or.png */,
+			);
+			name = "Login Images";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		60B42895164CDCC100D5FCD3 /* LocalModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +428,7 @@
 		60B6F3121647B96800071E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				187BFCF9164E1BD0007AC7BA /* MapKit.framework */,
 				60BA8949164882380043AC75 /* SystemConfiguration.framework */,
 				60BA89471648822F0043AC75 /* StoreKit.framework */,
 				60BA8945164882210043AC75 /* Security.framework */,
@@ -433,6 +466,7 @@
 		60B6F31C1647B96800071E86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				187BFD1F164E21FD007AC7BA /* Login Images */,
 				60B6F31D1647B96800071E86 /* CarrotMap-Info.plist */,
 				60B6F31E1647B96800071E86 /* InfoPlist.strings */,
 				60B6F3211647B96800071E86 /* main.m */,
@@ -486,6 +520,14 @@
 		60BA8854164880A50043AC75 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				187BFD00164E1C04007AC7BA /* SYSUMyAnnotation.h */,
+				187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */,
+				187BFD03164E1C78007AC7BA /* SYSUMyCalloutImageView.h */,
+				187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */,
+				187BFD0A164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.h */,
+				187BFD0B164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m */,
+				187BFD0E164E1D32007AC7BA /* SYSUCarrotCell.h */,
+				187BFD0F164E1D32007AC7BA /* SYSUCarrotCell.m */,
 				60BA8855164880A50043AC75 /* JPCarrot.h */,
 				60BA8856164880A50043AC75 /* JPCarrot.m */,
 				60BA8857164880A50043AC75 /* JPDataManager.h */,
@@ -853,6 +895,9 @@
 				60BA890E164880A50043AC75 /* small-button-normal.png in Resources */,
 				60BA890F164880A50043AC75 /* small-button-normal@2x.png in Resources */,
 				60BA8929164880A50043AC75 /* ROCheckOrderCell.xib in Resources */,
+				187BFD1C164E21F4007AC7BA /* liulan.png in Resources */,
+				187BFD1D164E21F4007AC7BA /* login.png in Resources */,
+				187BFD1E164E21F4007AC7BA /* or.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,6 +1001,10 @@
 				60BB3FBC164D004400919070 /* SawPublicCarrots.m in Sources */,
 				60BB3FBF164D005600919070 /* SendedCarrots.m in Sources */,
 				60CE2F5A164D51B600DA998F /* Test.m in Sources */,
+				187BFD02164E1C04007AC7BA /* SYSUMyAnnotation.m in Sources */,
+				187BFD05164E1C78007AC7BA /* SYSUMyCalloutImageView.m in Sources */,
+				187BFD0C164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m in Sources */,
+				187BFD10164E1D33007AC7BA /* SYSUCarrotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
