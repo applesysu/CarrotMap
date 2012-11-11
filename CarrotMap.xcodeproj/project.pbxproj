@@ -16,6 +16,7 @@
 		187BFD1D164E21F4007AC7BA /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1A164E21F3007AC7BA /* login.png */; };
 		187BFD1E164E21F4007AC7BA /* or.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1B164E21F3007AC7BA /* or.png */; };
 		5FAEF65B164F76770057D4ED /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAEF65A164F76770057D4ED /* Icon.png */; };
+		5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */; };
 		60B42893164CD49000D5FCD3 /* JPLocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */; };
 		60B6F3141647B96800071E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3131647B96800071E86 /* UIKit.framework */; };
 		60B6F3161647B96800071E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3151647B96800071E86 /* Foundation.framework */; };
@@ -155,6 +156,8 @@
 		187BFD1A164E21F3007AC7BA /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		187BFD1B164E21F3007AC7BA /* or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = or.png; sourceTree = "<group>"; };
 		5FAEF65A164F76770057D4ED /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		5FAEF6B7164FC7840057D4ED /* SDFriendItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDFriendItems.h; path = ../SDFriendItems.h; sourceTree = "<group>"; };
+		5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFriendItems.m; path = ../SDFriendItems.m; sourceTree = "<group>"; };
 		60B42891164CD49000D5FCD3 /* JPLocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalDataManager.h; sourceTree = "<group>"; };
 		60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalDataManager.m; sourceTree = "<group>"; };
 		60B6F30F1647B96800071E86 /* CarrotMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrotMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -533,6 +536,8 @@
 				60B6F35F1647BB2500071E86 /* ACMyCarrotsListViewController.m */,
 				60BA884E16487FF40043AC75 /* ACCarrotDetialViewController.h */,
 				60BA884F16487FF40043AC75 /* ACCarrotDetialViewController.m */,
+				5FAEF6B7164FC7840057D4ED /* SDFriendItems.h */,
+				5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1018,6 +1023,7 @@
 				187BFD05164E1C78007AC7BA /* SYSUMyCalloutImageView.m in Sources */,
 				187BFD0C164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m in Sources */,
 				187BFD10164E1D33007AC7BA /* SYSUCarrotCell.m in Sources */,
+				5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,8 @@
 //  Copyright (c) 2012年 sysuAppleClub. All rights reserved.
 //
 #import "ACAddCarrotViewController.h"
-
+#import "JPCarrot.h"
+#import "JPDataManager.h"
 @interface ACAddCarrotViewController ()
 
 @end
@@ -266,11 +267,16 @@
     //    JPFriendsListViewController *aFriendsListViewController=[[JPFriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
     //    [self presentModalViewController:aFriendsListViewController animated:YES];
     
-    friendsListViewController=[[ACFriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
+    friendsListViewController=[[ACFriendsListViewController alloc] init];
     [self presentModalViewController:friendsListViewController animated:YES];
 }
 
 -(void)senderCarrot:(UIButton *)paramSender{
+    NSArray *receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
+     NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
+    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:@"Hello 初阳" withSenderID:@"273999927" withReceiversID:receviers withSendedTime:@"2002年5月20日"];
+    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
     
 }
 @end
