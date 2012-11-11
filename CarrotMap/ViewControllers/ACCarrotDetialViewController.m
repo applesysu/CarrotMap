@@ -7,7 +7,6 @@
 //
 
 #import "ACCarrotDetialViewController.h"
-
 @interface ACCarrotDetialViewController ()
 
 @end

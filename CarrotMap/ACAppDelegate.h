@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ACTestViewController.h"
 #import "ACLoginViewController.h"
+#import <CoreData/CoreData.h>
 @interface ACAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

@@ -8,9 +8,40 @@
 
 #import <UIKit/UIKit.h>
 #import "ACFriendsListViewController.h"
+#import <CoreData/CoreData.h>
+@interface ACAddCarrotViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    float laitutude;
+    float longtitude;
+    
+    
+    NSMutableArray *friendNames;
+    UITextField *selectField;
+    NSMutableArray *temparray;
+    NSMutableArray * firstWord;
+    NSMutableArray * firstTwoWords;
+    UITableView *tipsTableView;
+    UIButton *buttonToFriend;
+    UITextView *testRestrict;
+    
+}
 
-@interface ACAddCarrotViewController : UIViewController
+
 
 @property (nonatomic, strong) ACFriendsListViewController *friendsListViewController;
+//@property (nonatomic,assign) float latitude;
 
+
+@property (strong, nonatomic) NSManagedObjectContext *manageedObjectContext;
+@property (strong, nonatomic) NSMutableArray *friendNames;
+@property (strong, nonatomic) UITextField *selectField;
+@property (strong, nonatomic) NSMutableArray *temparray;
+@property (strong, nonatomic) UITableView *tipsTableView;
+@property (strong, nonatomic) NSMutableArray *firstWord;
+@property (strong, nonatomic) NSMutableArray *firstTwoWords;
+@property (strong, nonatomic) UIButton *buttonToFriend;
+@property (strong, nonatomic) UITextView *testRestrict;
+
+
+-(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude;
 @end

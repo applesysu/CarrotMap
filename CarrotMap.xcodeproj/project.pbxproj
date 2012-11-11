@@ -15,6 +15,7 @@
 		187BFD1C164E21F4007AC7BA /* liulan.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD19164E21F3007AC7BA /* liulan.png */; };
 		187BFD1D164E21F4007AC7BA /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1A164E21F3007AC7BA /* login.png */; };
 		187BFD1E164E21F4007AC7BA /* or.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1B164E21F3007AC7BA /* or.png */; };
+		5FAEF65B164F76770057D4ED /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAEF65A164F76770057D4ED /* Icon.png */; };
 		60B42893164CD49000D5FCD3 /* JPLocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */; };
 		60B6F3141647B96800071E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3131647B96800071E86 /* UIKit.framework */; };
 		60B6F3161647B96800071E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3151647B96800071E86 /* Foundation.framework */; };
@@ -153,6 +154,7 @@
 		187BFD19164E21F3007AC7BA /* liulan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liulan.png; sourceTree = "<group>"; };
 		187BFD1A164E21F3007AC7BA /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		187BFD1B164E21F3007AC7BA /* or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = or.png; sourceTree = "<group>"; };
+		5FAEF65A164F76770057D4ED /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		60B42891164CD49000D5FCD3 /* JPLocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalDataManager.h; sourceTree = "<group>"; };
 		60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalDataManager.m; sourceTree = "<group>"; };
 		60B6F30F1647B96800071E86 /* CarrotMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrotMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -466,6 +468,7 @@
 		60B6F31C1647B96800071E86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5FAEF65A164F76770057D4ED /* Icon.png */,
 				187BFD1F164E21FD007AC7BA /* Login Images */,
 				60B6F31D1647B96800071E86 /* CarrotMap-Info.plist */,
 				60B6F31E1647B96800071E86 /* InfoPlist.strings */,
@@ -898,6 +901,7 @@
 				187BFD1C164E21F4007AC7BA /* liulan.png in Resources */,
 				187BFD1D164E21F4007AC7BA /* login.png in Resources */,
 				187BFD1E164E21F4007AC7BA /* or.png in Resources */,
+				5FAEF65B164F76770057D4ED /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@
 #import "SYSUCarrotCell.h"
 #import "JPCarrot.h"
 #import "JPDataManager.h"
-
+#import "ACAddCarrotViewController.h"
 @interface ACMapViewController ()
 
 @end
@@ -434,15 +434,18 @@
         CLLocation *location=usrLocation.location;
         CLLocationCoordinate2D location2D=CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         NSLog(@"%f : %f",location2D.latitude,location2D.longitude);
-        SYSUMyAnnotation *tapAnnotation=[[SYSUMyAnnotation alloc] initWithCoordinate:location2D title:@"兔子军团" subtitle:@"萝卜世界"];
-        
-        
-        //在这个地方把新加的Pin加入虚构的数据库
-        [self.theCarrotsISend addObject:tapAnnotation];
-        
-        
-        
-        [self.myMapView addAnnotation:tapAnnotation];
+//        SYSUMyAnnotation *tapAnnotation=[[SYSUMyAnnotation alloc] initWithCoordinate:location2D title:@"兔子军团" subtitle:@"萝卜世界"];
+//        
+//        
+//        //在这个地方把新加的Pin加入虚构的数据库
+//        [self.theCarrotsISend addObject:tapAnnotation];
+//        
+//        
+//        
+//        [self.myMapView addAnnotation:tapAnnotation];
+        ACAddCarrotViewController *addCarrotViewController=[[ACAddCarrotViewController alloc] initWithLatitude:location2D.latitude withLongtitude:location2D.longitude];
+        [self presentModalViewController:addCarrotViewController animated:YES];
+    
     }
     
     /*Pin下降最终定下的Core Animation
