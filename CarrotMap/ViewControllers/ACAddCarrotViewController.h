@@ -32,7 +32,7 @@
 @property (nonatomic, strong) ACFriendsListViewController *friendsListViewController;
 //@property (nonatomic,assign) float latitude;
 
-
+//thth
 @property (strong, nonatomic) NSManagedObjectContext *manageedObjectContext;
 @property (strong, nonatomic) NSMutableArray *friendNames;
 @property (strong, nonatomic) UITextField *selectField;
