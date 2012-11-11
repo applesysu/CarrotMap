@@ -106,11 +106,13 @@
 
 - (void)loginBtnPressed;
 {
-    [[JPDataManager sharedInstance] RenrenLogin];
-   [[JPDataManager sharedInstance] getFriendsList]  ;
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRenrenLogin) name:@"didRenrenLogin" object:nil];
     
-    ACMapViewController *mapViewController=[[ACMapViewController alloc] init];
-    [self presentModalViewController:mapViewController animated:YES];
+    [[JPDataManager sharedInstance] RenrenLogin];
+//   [[JPDataManager sharedInstance] getFriendsList]  ;
+    
+//    ACMapViewController *mapViewController=[[ACMapViewController alloc] init];
+//    [self presentModalViewController:mapViewController animated:YES];
 }
 
 - (void)TouristBtnPressed
@@ -125,4 +127,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+-(void)didRenrenLogin{
+    ACMapViewController *mapViewController=[[ACMapViewController alloc] init];
+       [self presentModalViewController:mapViewController animated:YES];
+}
 @end

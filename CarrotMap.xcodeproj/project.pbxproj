@@ -393,6 +393,22 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		5FAEF665164F7DB20057D4ED /* Map views */ = {
+			isa = PBXGroup;
+			children = (
+				187BFD00164E1C04007AC7BA /* SYSUMyAnnotation.h */,
+				187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */,
+				187BFD03164E1C78007AC7BA /* SYSUMyCalloutImageView.h */,
+				187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */,
+				187BFD0A164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.h */,
+				187BFD0B164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m */,
+				187BFD0E164E1D32007AC7BA /* SYSUCarrotCell.h */,
+				187BFD0F164E1D32007AC7BA /* SYSUCarrotCell.m */,
+			);
+			name = "Map views";
+			path = ../DataManager;
+			sourceTree = "<group>";
+		};
 		60B42895164CDCC100D5FCD3 /* LocalModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +516,7 @@
 		60B6F3481647B9B900071E86 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5FAEF665164F7DB20057D4ED /* Map views */,
 				60B6F3551647BAAE00071E86 /* ACLoginViewController.h */,
 				60B6F3561647BAAF00071E86 /* ACLoginViewController.m */,
 				60B6F34C1647BA4700071E86 /* ACMapViewController.h */,
@@ -523,14 +540,6 @@
 		60BA8854164880A50043AC75 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				187BFD00164E1C04007AC7BA /* SYSUMyAnnotation.h */,
-				187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */,
-				187BFD03164E1C78007AC7BA /* SYSUMyCalloutImageView.h */,
-				187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */,
-				187BFD0A164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.h */,
-				187BFD0B164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m */,
-				187BFD0E164E1D32007AC7BA /* SYSUCarrotCell.h */,
-				187BFD0F164E1D32007AC7BA /* SYSUCarrotCell.m */,
 				60BA8855164880A50043AC75 /* JPCarrot.h */,
 				60BA8856164880A50043AC75 /* JPCarrot.m */,
 				60BA8857164880A50043AC75 /* JPDataManager.h */,
@@ -1109,6 +1118,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarrotMap/CarrotMap-Prefix.pch";
 				INFOPLIST_FILE = "CarrotMap/CarrotMap-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1124,6 +1134,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarrotMap/CarrotMap-Prefix.pch";
 				INFOPLIST_FILE = "CarrotMap/CarrotMap-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

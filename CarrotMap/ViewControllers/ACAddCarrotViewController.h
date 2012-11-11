@@ -22,6 +22,7 @@
     NSMutableArray * firstTwoWords;
     UITableView *tipsTableView;
     UIButton *buttonToFriend;
+    UIButton *buttonToPushCarrot;
     UITextView *testRestrict;
     
 }
@@ -41,7 +42,7 @@
 @property (strong, nonatomic) NSMutableArray *firstTwoWords;
 @property (strong, nonatomic) UIButton *buttonToFriend;
 @property (strong, nonatomic) UITextView *testRestrict;
-
+//@property (strong, nonatomic)
 
 -(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude;
 @end
