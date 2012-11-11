@@ -14,6 +14,18 @@
 @implementation ACAddCarrotViewController
 
 @synthesize friendsListViewController;
+@synthesize buttonToFriend;
+@synthesize buttonToPushCarrot;
+@synthesize selectField;
+@synthesize temparray;
+@synthesize testRestrict;
+@synthesize tipsTableView;
+@synthesize firstTwoWords;
+@synthesize firstWord;
+@synthesize friendNames;
+@synthesize theSelectedFriends;
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,6 +78,14 @@
     self.testRestrict.font=[UIFont fontWithName:@"KaiTi_GB2312" size:18];
     self.testRestrict.backgroundColor=[UIColor blueColor];
     [self.view addSubview:self.testRestrict];
+    
+    self.buttonToPushCarrot=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.buttonToPushCarrot.frame=CGRectMake(270, 10, 30, 30);
+    
+    [self.buttonToPushCarrot addTarget:self action:@selector(senderCarrot:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.buttonToPushCarrot];
+    
+    
     
     
 //    NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
@@ -248,5 +268,9 @@
     
     friendsListViewController=[[ACFriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
     [self presentModalViewController:friendsListViewController animated:YES];
+}
+
+-(void)senderCarrot:(UIButton *)paramSender{
+    
 }
 @end
