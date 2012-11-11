@@ -60,6 +60,8 @@
     JPCarrot *carrot4 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"10" withLatitude:@"10" withMessage:@"carrot4" withSenderID:@"0004" withSendedTime:@"00:04"];
     JPCarrot *carrot5 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"22.6" withLatitude:@"36.1" withMessage:@"carrot5" withSenderID:@"0005" withSendedTime:@"00:05"];
     
+    
+    //昨晚没有sync成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSendACarrotToServer) name:@"didSendACarrotToServer" object:nil];
     [[JPDataManager sharedInstance] sendACarrotToServer:carrot1];
     
