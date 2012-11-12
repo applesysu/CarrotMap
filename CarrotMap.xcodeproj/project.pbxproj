@@ -401,6 +401,17 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		5F8B9BCA1650F4D40074CC46 /* FriendImage */ = {
+			isa = PBXGroup;
+			children = (
+				5F8B9B8F1650E9330074CC46 /* SDRecentFriendList.h */,
+				5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */,
+				5FAEF6B7164FC7840057D4ED /* SDFriendItems.h */,
+				5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */,
+			);
+			name = FriendImage;
+			sourceTree = "<group>";
+		};
 		5FAEF665164F7DB20057D4ED /* Map views */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +536,7 @@
 		60B6F3481647B9B900071E86 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5F8B9BCA1650F4D40074CC46 /* FriendImage */,
 				5FAEF665164F7DB20057D4ED /* Map views */,
 				60B6F3551647BAAE00071E86 /* ACLoginViewController.h */,
 				60B6F3561647BAAF00071E86 /* ACLoginViewController.m */,
@@ -534,8 +546,6 @@
 				60B6F3501647BA5A00071E86 /* ACAddCarrotViewController.m */,
 				60B6F3521647BA9300071E86 /* ACFriendsListViewController.h */,
 				60B6F3531647BA9300071E86 /* ACFriendsListViewController.m */,
-				5F8B9B8F1650E9330074CC46 /* SDRecentFriendList.h */,
-				5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */,
 				60B6F3581647BADF00071E86 /* ACNewCarrotsListViewController.h */,
 				60B6F3591647BADF00071E86 /* ACNewCarrotsListViewController.m */,
 				60B6F35B1647BB1000071E86 /* ACMyViewViewController.h */,
@@ -544,8 +554,6 @@
 				60B6F35F1647BB2500071E86 /* ACMyCarrotsListViewController.m */,
 				60BA884E16487FF40043AC75 /* ACCarrotDetialViewController.h */,
 				60BA884F16487FF40043AC75 /* ACCarrotDetialViewController.m */,
-				5FAEF6B7164FC7840057D4ED /* SDFriendItems.h */,
-				5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
