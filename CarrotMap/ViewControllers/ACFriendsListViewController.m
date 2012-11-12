@@ -10,6 +10,7 @@
 #import "SDFriendItems.h"
 #import "JPDataManager.h"
 #import "ACAddCarrotViewController.h"
+#import "SDRecentFriendList.h"
 @interface ACFriendsListViewController ()
 
 @end
@@ -64,30 +65,34 @@
 //    self.friendLineListView.delegate=self;
 //    self.friendLineListView.alwaysBounceVertical=YES;
 //    [self.view addSubview:friendLineListView];
-//
+
     
-    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 52, 320, 68)];
+    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 320, 90)];
     recentScollViewBackground.userInteractionEnabled=YES;
     recentScollViewBackground.backgroundColor=[UIColor orangeColor];
     [self.view addSubview:recentScollViewBackground];
-    
-    
-    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(30, 28, 280, 40)];
+//    
+//    
+    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,40, 280,40 )];
     self.theRecentScollView.scrollEnabled=YES;
 //    self.theRecentScollView.pagingEnabled=YES;
     self.theRecentScollView.delegate=self;
     self.theRecentScollView.alwaysBounceHorizontal=YES;
-    self.theRecentScollView.backgroundColor=[UIColor blueColor];
+//    self.theRecentScollView.backgroundColor=[UIColor blueColor];
     for (int i=0;i<friendList.count;i++) {
 //        NSDictionary *single=[friendList objectAtIndex:i];
 //        NSString *imageString=[single objectForKey:@"tinyurl"];
 //        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
-        UIImage *image=[[UIImage alloc] initWithData:imageData];
-        UIImageView *recentFriend=[[UIImageView alloc] initWithFrame:CGRectMake(5+i*40, 0, 35, 35)];
-        recentFriend.image=[UIImage imageNamed:@"Icon.png"];
-        [self.theRecentScollView addSubview:recentFriend];
+//        UIImage *image=[[UIImage alloc] initWithData:imageData];
+//        UIImageView *recentFriend=[[UIImageView alloc] initWithFrame:CGRectMake(i*48, 0, 40, 40)];
+//        recentFriend.image=[UIImage imageNamed:@"Icon.png"];
+//        [self.theRecentScollView addSubview:recentFriend];
+//
+        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*48, 0, 40, 40)];
+        recentFriendItem.backgroundColor=[UIColor clearColor];
+        [self.theRecentScollView addSubview:recentFriendItem];
     }
-    self.theRecentScollView.contentSize=CGSizeMake(40*friendList.count, 30);
+    self.theRecentScollView.contentSize=CGSizeMake(48*friendList.count-8, 40);
     [recentScollViewBackground addSubview:self.theRecentScollView];
 //    NSString *name=@"wangrui";
 //    UIImage *friendImage=[UIImage imageNamed:@"Icon.png"];

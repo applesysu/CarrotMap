@@ -16,6 +16,7 @@
 		187BFD1D164E21F4007AC7BA /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1A164E21F3007AC7BA /* login.png */; };
 		187BFD1E164E21F4007AC7BA /* or.png in Resources */ = {isa = PBXBuildFile; fileRef = 187BFD1B164E21F3007AC7BA /* or.png */; };
 		5F8B9B7D1650CA2D0074CC46 /* notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8B9B7C1650CA2D0074CC46 /* notepad.png */; };
+		5F8B9B911650E9330074CC46 /* SDRecentFriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */; };
 		5FAEF65B164F76770057D4ED /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAEF65A164F76770057D4ED /* Icon.png */; };
 		5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */; };
 		60B42893164CD49000D5FCD3 /* JPLocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */; };
@@ -157,6 +158,8 @@
 		187BFD1A164E21F3007AC7BA /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		187BFD1B164E21F3007AC7BA /* or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = or.png; sourceTree = "<group>"; };
 		5F8B9B7C1650CA2D0074CC46 /* notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = notepad.png; path = ../notepad.png; sourceTree = "<group>"; };
+		5F8B9B8F1650E9330074CC46 /* SDRecentFriendList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRecentFriendList.h; sourceTree = "<group>"; };
+		5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRecentFriendList.m; sourceTree = "<group>"; };
 		5FAEF65A164F76770057D4ED /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		5FAEF6B7164FC7840057D4ED /* SDFriendItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDFriendItems.h; path = ../SDFriendItems.h; sourceTree = "<group>"; };
 		5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFriendItems.m; path = ../SDFriendItems.m; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				60B6F3501647BA5A00071E86 /* ACAddCarrotViewController.m */,
 				60B6F3521647BA9300071E86 /* ACFriendsListViewController.h */,
 				60B6F3531647BA9300071E86 /* ACFriendsListViewController.m */,
+				5F8B9B8F1650E9330074CC46 /* SDRecentFriendList.h */,
+				5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */,
 				60B6F3581647BADF00071E86 /* ACNewCarrotsListViewController.h */,
 				60B6F3591647BADF00071E86 /* ACNewCarrotsListViewController.m */,
 				60B6F35B1647BB1000071E86 /* ACMyViewViewController.h */,
@@ -1028,6 +1033,7 @@
 				187BFD0C164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m in Sources */,
 				187BFD10164E1D33007AC7BA /* SYSUCarrotCell.m in Sources */,
 				5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */,
+				5F8B9B911650E9330074CC46 /* SDRecentFriendList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
