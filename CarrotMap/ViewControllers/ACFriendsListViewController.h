@@ -27,6 +27,8 @@
 @property (strong, nonatomic) UIScrollView *friendLineListView;
 @property (strong, nonatomic) NSArray *friendList;
 @property (strong, nonatomic) NSMutableArray *receiverIDList;
+
+@property (strong, nonatomic) NSArray *imageData;
 - (id)initWithFriendsList:(NSArray*)friendsList;
 //- (id)initWithStyle:(UITableViewStyle)style;
 

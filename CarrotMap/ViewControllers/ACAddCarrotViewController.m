@@ -27,6 +27,7 @@
 @synthesize theSelectedFriends;
 @synthesize friendList;
 @synthesize receviers;
+@synthesize wantSay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,24 +61,32 @@
     self.view.backgroundColor=[UIColor clearColor];
     
     
-    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(10, 10, 200, 30)];
+    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(60, 15, 170, 30)];
     self.selectField.placeholder=@"@:你的好友";
     
-    self.selectField.borderStyle=UITextBorderStyleRoundedRect;
+    self.selectField.borderStyle=UITextBorderStyleNone;
     self.selectField.delegate=self;
     self.selectField.backgroundColor=[UIColor orangeColor];
-    [self.view addSubview:self.selectField];
+    self.selectField.layer.cornerRadius=15.0;
     
     self.buttonToFriend=[UIButton buttonWithType:UIButtonTypeContactAdd];
     //    self.buttonToFriend.backgroundColor=[UIColor orangeColor];
-    self.buttonToFriend.frame=CGRectMake(230,10, 30, 30);
+    self.buttonToFriend.frame=CGRectMake(245,15, 30, 30);
     [self.buttonToFriend addTarget:self action:@selector(ToFriendList:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.buttonToFriend];
 
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"notepad.png"]] ;
+    imageView.userInteractionEnabled = YES;
+    imageView.frame=CGRectMake(10, 50, 300, 350);
+    imageView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:imageView];
+
+        
     self.testRestrict=[[UITextView alloc] initWithFrame:CGRectMake(10, 60, 300, 300)];
     self.testRestrict.delegate=self;
     self.testRestrict.font=[UIFont fontWithName:@"KaiTi_GB2312" size:18];
-    self.testRestrict.backgroundColor=[UIColor blueColor];
+    self.testRestrict.backgroundColor=[UIColor clearColor];
     self.testRestrict.scrollEnabled=YES;
     self.testRestrict.autocapitalizationType=UIViewAutoresizingFlexibleHeight;
    
@@ -88,17 +97,21 @@
 //    textView.backgroundColor = [UIColor blueColor];
 //    [self.view addSubview:textView];
     
-    [self.view addSubview:self.testRestrict];
+    [imageView addSubview:self.testRestrict];
     
     self.buttonToPushCarrot=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.buttonToPushCarrot.frame=CGRectMake(270, 10, 30, 30);
+    self.buttonToPushCarrot.frame=CGRectMake(280, 15, 30, 30);
     
     [self.buttonToPushCarrot addTarget:self action:@selector(senderCarrot:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.buttonToPushCarrot];
     
+    self.wantSay=[[UILabel alloc] initWithFrame:CGRectMake(10, 15, 50, 30)];
+    self.wantSay.text=@"想对";
+    self.wantSay.textColor=[UIColor blackColor];
+    self.wantSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
+    [self.view addSubview:self.wantSay];
     
-    
-    
+     [self.view addSubview:self.selectField];
 //    NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
 //    
 //    NSEntityDescription *entity=[NSEntityDescription entityForName:@"Friend" inManagedObjectContext:self.manageedObjectContext];
@@ -159,7 +172,15 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
+-(void)viewWillAppear:(BOOL)animated{
+//    NSString *names=[[NSString alloc] init];
+//    
+//    for (NSDictionary *single in receviers) {
+//      [  names stringByAppendingFormat:@"%@ ",[single objectForKey:@"name"] ] ;
+//        NSLog(@"%@",names);
+//    }
+//    self.selectField.text=names;    
+}
 
 //
 //#pragma mark- UITextField Delegate
@@ -287,11 +308,15 @@
 -(void)senderCarrot:(UIButton *)paramSender{
     NSLog(@"%@",receviers);
     
+    NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
+    for (NSDictionary *single in receviers) {
+        [ids addObject:[single objectForKey:@"id"]];
+    }
     
    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
     NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
      NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
-    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:@"273999927" withReceiversID:receviers withSendedTime:@"2002年5月20日"];
+    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:@"273999927" withReceiversID:ids withSendedTime:@"2002年5月20日"];
     [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
     
 }

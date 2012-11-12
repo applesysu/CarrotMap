@@ -21,7 +21,7 @@
 @synthesize tableView;
 @synthesize friendList;
 @synthesize receiverIDList;
-
+@synthesize imageData;
 
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
@@ -57,30 +57,51 @@
     
     
     self.receiverIDList=[[NSMutableArray alloc] initWithCapacity:[friendList count]];
-    
+//    
 //    self.friendLineListView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 120, 320, 360)];
 //    self.friendLineListView.scrollEnabled=YES;
 //    self.friendLineListView.pagingEnabled=YES;
 //    self.friendLineListView.delegate=self;
 //    self.friendLineListView.alwaysBounceVertical=YES;
 //    [self.view addSubview:friendLineListView];
-//    
-//    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 52, 320, 68)];
-//    self.theRecentScollView.scrollEnabled=YES;
+//
+    
+    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 52, 320, 68)];
+    recentScollViewBackground.userInteractionEnabled=YES;
+    recentScollViewBackground.backgroundColor=[UIColor orangeColor];
+    [self.view addSubview:recentScollViewBackground];
+    
+    
+    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(30, 28, 280, 40)];
+    self.theRecentScollView.scrollEnabled=YES;
 //    self.theRecentScollView.pagingEnabled=YES;
-//    self.theRecentScollView.delegate=self;
-//    self.theRecentScollView.alwaysBounceHorizontal=YES;
-//    [self.view addSubview:self.theRecentScollView];
+    self.theRecentScollView.delegate=self;
+    self.theRecentScollView.alwaysBounceHorizontal=YES;
+    self.theRecentScollView.backgroundColor=[UIColor blueColor];
+    for (int i=0;i<friendList.count;i++) {
+//        NSDictionary *single=[friendList objectAtIndex:i];
+//        NSString *imageString=[single objectForKey:@"tinyurl"];
+//        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
+        UIImage *image=[[UIImage alloc] initWithData:imageData];
+        UIImageView *recentFriend=[[UIImageView alloc] initWithFrame:CGRectMake(5+i*40, 0, 35, 35)];
+        recentFriend.image=[UIImage imageNamed:@"Icon.png"];
+        [self.theRecentScollView addSubview:recentFriend];
+    }
+    self.theRecentScollView.contentSize=CGSizeMake(40*friendList.count, 30);
+    [recentScollViewBackground addSubview:self.theRecentScollView];
 //    NSString *name=@"wangrui";
 //    UIImage *friendImage=[UIImage imageNamed:@"Icon.png"];
-//    
+//
 //    SDFriendItems *firendItem=[[SDFriendItems alloc]  initWithFrame:CGRectMake(10,130 ,70, 70) withImage:friendImage withLabel:name];
 //    [self.friendLineListView addSubview:firendItem];
 //    firendItem.backgroundColor=[UIColor orangeColor];
-    self.tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 52, 320, 428) style:UITableViewStyleGrouped];
-    self.tableView.delegate=self;
-    self.tableView.dataSource=self;
-    [self.view addSubview:self.tableView];
+    
+    
+    //tradiction table view
+//    self.tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 52, 320, 428) style:UITableViewStyleGrouped];
+//    self.tableView.delegate=self;
+//    self.tableView.dataSource=self;
+//    [self.view addSubview:self.tableView];
     
     NSLog(@"%@",[friendList objectAtIndex:0]);
     
@@ -147,10 +168,10 @@
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     if ([cell.textLabel.textColor  isEqual:[UIColor orangeColor]]) {
         cell.textLabel.textColor=[UIColor blackColor];
-        [self.receiverIDList removeObject:[[friendList objectAtIndex:indexPath.row]  objectForKey:@"id"]];
+        [self.receiverIDList removeObject:[friendList objectAtIndex:indexPath.row]];
     }else{
     cell.textLabel.textColor=[UIColor orangeColor];
-    [self.receiverIDList addObject:[[friendList objectAtIndex:indexPath.row]  objectForKey:@"id"]];
+    [self.receiverIDList addObject:[friendList objectAtIndex:indexPath.row]];
     }
     
 }
