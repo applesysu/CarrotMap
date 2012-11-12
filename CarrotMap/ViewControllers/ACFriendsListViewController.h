@@ -17,6 +17,7 @@
     NSMutableArray *friendNames;
     UIScrollView *friendLineListView;
     NSArray *friendList;
+    NSMutableArray *receiverIDList;
     
 };
 //@property (strong, nonatomic) NSManagedObjectContext *manageedObjectContext;
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) NSMutableArray *friendNames;
 @property (strong, nonatomic) UIScrollView *friendLineListView;
 @property (strong, nonatomic) NSArray *friendList;
+@property (strong, nonatomic) NSMutableArray *receiverIDList;
 - (id)initWithFriendsList:(NSArray*)friendsList;
 //- (id)initWithStyle:(UITableViewStyle)style;
 

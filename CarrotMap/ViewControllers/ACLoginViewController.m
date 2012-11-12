@@ -109,6 +109,7 @@
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRenrenLogin) name:@"didRenrenLogin" object:nil];
     
     [[JPDataManager sharedInstance] RenrenLogin];
+//    [[JPDataManager sharedInstance] RenrenLogout];
 //   [[JPDataManager sharedInstance] getFriendsList]  ;
     
 //    ACMapViewController *mapViewController=[[ACMapViewController alloc] init];

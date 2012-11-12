@@ -26,7 +26,7 @@
 @synthesize friendNames;
 @synthesize theSelectedFriends;
 @synthesize friendList;
-
+@synthesize receviers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,11 +73,21 @@
     self.buttonToFriend.frame=CGRectMake(230,10, 30, 30);
     [self.buttonToFriend addTarget:self action:@selector(ToFriendList:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.buttonToFriend];
-    
+
     self.testRestrict=[[UITextView alloc] initWithFrame:CGRectMake(10, 60, 300, 300)];
     self.testRestrict.delegate=self;
     self.testRestrict.font=[UIFont fontWithName:@"KaiTi_GB2312" size:18];
     self.testRestrict.backgroundColor=[UIColor blueColor];
+    self.testRestrict.scrollEnabled=YES;
+    self.testRestrict.autocapitalizationType=UIViewAutoresizingFlexibleHeight;
+   
+//   UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(10, 60, 300, 300)];
+//    textView.delegate = self;
+//    textView.tag = 500;
+//    textView.font = [UIFont fontWithName:@"KaiTi_GB2312" size:21];
+//    textView.backgroundColor = [UIColor blueColor];
+//    [self.view addSubview:textView];
+    
     [self.view addSubview:self.testRestrict];
     
     self.buttonToPushCarrot=[UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -138,6 +148,7 @@
     self.firstWord=nil;
     self.friendNames=nil;
     self.friendsListViewController=nil;
+    self.receviers=nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 
@@ -274,10 +285,13 @@
 }
 
 -(void)senderCarrot:(UIButton *)paramSender{
-    NSArray *receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+    NSLog(@"%@",receviers);
+    
+    
+   self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
     NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
      NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
-    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:@"Hello 初阳" withSenderID:@"273999927" withReceiversID:receviers withSendedTime:@"2002年5月20日"];
+    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:@"273999927" withReceiversID:receviers withSendedTime:@"2002年5月20日"];
     [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
     
 }
@@ -285,9 +299,10 @@
 -(void)getFriendList{
     
     friendList=[[NSArray alloc] initWithArray:[JPDataManager sharedInstance].friendsList];
-    for (NSDictionary *singleFriend in friendList) {
-        NSLog(@"%@",singleFriend);
-    }
+//    NSLog(@"#########################");
+//    for (NSDictionary *singleFriend in friendList) {
+//        NSLog(@"%@",singleFriend);
+//    }
     friendsListViewController=[[ACFriendsListViewController alloc] initWithFriendsList:friendList];
         [self presentModalViewController:friendsListViewController animated:YES];
 }

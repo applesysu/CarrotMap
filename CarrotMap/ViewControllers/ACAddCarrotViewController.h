@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ACFriendsListViewController.h"
 #import <CoreData/CoreData.h>
-@interface ACAddCarrotViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ACAddCarrotViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
     float laitutude;
     float longtitude;
@@ -26,13 +26,14 @@
     UITextView *testRestrict;
     NSArray *theSelectedFriends;
     NSArray *friendList;
+    NSArray *receviers;
 }
 
 
 
 @property (nonatomic, strong) ACFriendsListViewController *friendsListViewController;
 //@property (nonatomic,assign) float latitude;
-
+@property (strong, nonatomic) NSArray *receviers;
 @property (strong, nonatomic) NSArray *friendList;
 @property (strong, nonatomic) NSManagedObjectContext *manageedObjectContext;
 @property (strong, nonatomic) NSMutableArray *friendNames;
