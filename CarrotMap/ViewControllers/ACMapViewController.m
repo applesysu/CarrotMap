@@ -34,6 +34,7 @@
 @synthesize leftCornerPan;
 @synthesize bunnyUpperRight;
 @synthesize dragBunny;
+@synthesize userID;
 
 //虚构数据
 @synthesize database;
@@ -62,7 +63,8 @@
     
     
     
-    /*self.generalPublicCarrots = [[NSMutableArray alloc] init];*/
+    self.generalPublicCarrots = [[NSMutableArray alloc] init];
+    self.generalPrivateCarrots = [[NSMutableArray alloc] init];
     
     //乱发5个公有的萝卜
     /*JPCarrot *carrot1 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"38.1" withLatitude:@"22.2" withMessage:@"carrot1" withSenderID:@"0001" withSendedTime:@"00:01"];
@@ -583,6 +585,7 @@
 }
 
 #pragma mark - TableView DataSource
+//多少个section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     int result = 0;
@@ -592,14 +595,24 @@
     return result;
 }
 
+//每个section里面有多少个row
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int result = 0;
     if ([tableView isEqual:self.leftCornerTableView]){
-        return ([self.generalPublicCarrots count] + [self.generalPrivateCarrots count]);
+//        NSLog(@"Numbers of row in section %u", ([self.generalPublicCarrots count] + [self.generalPrivateCarrots count]));
+//        return ([self.generalPublicCarrots count] + [self.generalPrivateCarrots count]);
+        if (section == 0){
+            return [self.generalPrivateCarrots count];
+        }
+        else if (section == 1){
+            return [self.generalPublicCarrots count];
+        }
     }
     return result;
 }
+
+//定制每一个Cell
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -682,6 +695,10 @@
     //把拉到的私有萝卜存储在ViewController里面的数组里面
     NSLog(@"didGetGeneralPrivateCarrots");
     [self.generalPrivateCarrots addObjectsFromArray:[JPDataManager sharedInstance].GeneralprivateCarrots];
+    NSLog(@"Numbers of Carrots in the View's general private carrots %u", [self.generalPrivateCarrots count]);
+    NSLog(@"Numbers of Carrots in the DataManager's general private carrots %u", [[JPDataManager sharedInstance].GeneralprivateCarrots count]);
+    NSLog(@"%@", [JPDataManager sharedInstance].GeneralprivateCarrots );
+    
     
     //拉完私有萝卜以后就可以开始拉公有的萝卜
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrots) name:@"didGetGeneralPublicCarrots" object:nil];
@@ -693,13 +710,15 @@
     NSLog(@"didGetGeneralPublicCarrots");
     //把拉到的公有萝卜存储在ViewController里面的数组里面
     [self.generalPublicCarrots addObjectsFromArray:[JPDataManager sharedInstance].GeneralpublicCarrots];
-    NSLog(@"Get GeneralPublicCarrots");
+    NSLog(@"Numbers of Carrots in the View's general public carrots %u", [self.generalPublicCarrots count]);
+    NSLog(@"Numbers of Carrots in the DataManager's general public carrots %u", [[JPDataManager sharedInstance].GeneralpublicCarrots count]);
     NSLog(@"%@", [JPDataManager sharedInstance].GeneralpublicCarrots );
     
     
     //拉到数据以后重新reload一下 TableView(包括它的Cells)
     [self.leftCornerTableView reloadData];
     [self.myMapView addAnnotations:self.generalPublicCarrots];
+    [self.myMapView addAnnotations:self.generalPrivateCarrots];
     
     
 
