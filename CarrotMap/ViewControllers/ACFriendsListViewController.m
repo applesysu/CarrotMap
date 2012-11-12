@@ -73,7 +73,7 @@
     [self.view addSubview:recentScollViewBackground];
 //    
 //    
-    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,40, 280,40 )];
+    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,30, 280,50)];
     self.theRecentScollView.scrollEnabled=YES;
 //    self.theRecentScollView.pagingEnabled=YES;
     self.theRecentScollView.delegate=self;
@@ -88,8 +88,8 @@
 //        recentFriend.image=[UIImage imageNamed:@"Icon.png"];
 //        [self.theRecentScollView addSubview:recentFriend];
 //
-        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*48, 0, 40, 40)];
-        recentFriendItem.backgroundColor=[UIColor clearColor];
+        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*56, 0, 50, 50)];
+        recentFriendItem.backgroundColor=[UIColor whiteColor];
         [self.theRecentScollView addSubview:recentFriendItem];
     }
     self.theRecentScollView.contentSize=CGSizeMake(48*friendList.count-8, 40);

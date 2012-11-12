@@ -14,9 +14,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.cornerRadius=12.0;
+        self.layer.cornerRadius=5.0;
         
-        keyImage=[[UIImageView alloc ] initWithFrame:CGRectMake(3, 3, 34,34)];
+        keyImage=[[UIImageView alloc ] initWithFrame:CGRectMake(2.5, 2, 46,46)];
         
         
         keyImage.image=[UIImage imageNamed:@"Icon.png"];
