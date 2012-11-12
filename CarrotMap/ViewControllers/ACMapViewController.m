@@ -648,6 +648,21 @@
     return cell;
 }
 
+//设置每一个section的title
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *result = nil;
+    if ([tableView isEqual:self.leftCornerTableView]) {
+        if (section == 0) {
+            return @"私有萝卜";
+        }
+        else {
+            return @"公有萝卜";
+        }
+    }
+    return result;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float result = 0.0f;
@@ -713,7 +728,7 @@
     [self.generalPublicCarrots addObjectsFromArray:[JPDataManager sharedInstance].GeneralpublicCarrots];
     NSLog(@"Numbers of Carrots in the View's general public carrots %u", [self.generalPublicCarrots count]);
     NSLog(@"Numbers of Carrots in the DataManager's general public carrots %u", [[JPDataManager sharedInstance].GeneralpublicCarrots count]);
-    NSLog(@"%@", [JPDataManager sharedInstance].GeneralpublicCarrots );
+    NSLog(@"%@", [JPDataManager sharedInstance].GeneralpublicCarrots);
     
     
     //拉到数据以后重新reload一下 TableView(包括它的Cells)
