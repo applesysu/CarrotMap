@@ -67,28 +67,30 @@
 //    [self.view addSubview:friendLineListView];
 
     
-    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 320, 90)];
+    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 90)];
     recentScollViewBackground.userInteractionEnabled=YES;
     recentScollViewBackground.backgroundColor=[UIColor orangeColor];
     [self.view addSubview:recentScollViewBackground];
 //    
 //    
-    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,30, 280,50)];
+    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,30,280,50)];
     self.theRecentScollView.scrollEnabled=YES;
 //    self.theRecentScollView.pagingEnabled=YES;
     self.theRecentScollView.delegate=self;
     self.theRecentScollView.alwaysBounceHorizontal=YES;
 //    self.theRecentScollView.backgroundColor=[UIColor blueColor];
     for (int i=0;i<friendList.count;i++) {
-//        NSDictionary *single=[friendList objectAtIndex:i];
-//        NSString *imageString=[single objectForKey:@"tinyurl"];
-//        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
-//        UIImage *image=[[UIImage alloc] initWithData:imageData];
+        NSDictionary *single=[friendList objectAtIndex:i];
+        NSString *imageString=[single objectForKey:@"tinyurl"];
+        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
+        UIImage *image=[[UIImage alloc] initWithData:imageData];
 //        UIImageView *recentFriend=[[UIImageView alloc] initWithFrame:CGRectMake(i*48, 0, 40, 40)];
 //        recentFriend.image=[UIImage imageNamed:@"Icon.png"];
 //        [self.theRecentScollView addSubview:recentFriend];
 //
-        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*56, 0, 50, 50)];
+        
+        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*56, 0, 50, 50) withUIImage:image];
+//        SDRecentFriendList *recentFriendItem=[[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*56, 0, 50, 50)] withUIImage:[UIImage imageNamed:@"Icon.png"]];
         recentFriendItem.backgroundColor=[UIColor whiteColor];
         [self.theRecentScollView addSubview:recentFriendItem];
     }

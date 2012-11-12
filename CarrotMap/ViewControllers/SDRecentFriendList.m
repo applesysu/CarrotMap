@@ -10,7 +10,15 @@
 
 @implementation SDRecentFriendList
 @synthesize keyImage;
-- (id)initWithFrame:(CGRect)frame
+-(id)initWithFrame:(CGRect)frame{
+    self=[super initWithFrame:frame];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame withUIImage:(UIImage *)image
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -19,7 +27,7 @@
         keyImage=[[UIImageView alloc ] initWithFrame:CGRectMake(2.5, 2, 46,46)];
         
         
-        keyImage.image=[UIImage imageNamed:@"Icon.png"];
+        keyImage.image=image;
         [self addSubview:keyImage];
     }
     return self;

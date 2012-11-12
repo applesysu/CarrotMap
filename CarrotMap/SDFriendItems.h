@@ -16,4 +16,5 @@
 
 
 -(id)initWithFrame:(CGRect)frame withImage:(UIImage *)image withLabel:(NSString *)name;
+
 @end

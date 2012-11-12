@@ -11,4 +11,5 @@
 @interface SDRecentFriendList : UIView
 
 @property (strong, nonatomic) UIImageView *keyImage;
+- (id)initWithFrame:(CGRect)frame withUIImage:(UIImage *)image;
 @end

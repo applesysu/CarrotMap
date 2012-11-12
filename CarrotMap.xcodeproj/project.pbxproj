@@ -503,9 +503,9 @@
 		60B6F31C1647B96800071E86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				187BFD1F164E21FD007AC7BA /* Login Images */,
 				5F8B9B7C1650CA2D0074CC46 /* notepad.png */,
 				5FAEF65A164F76770057D4ED /* Icon.png */,
-				187BFD1F164E21FD007AC7BA /* Login Images */,
 				60B6F31D1647B96800071E86 /* CarrotMap-Info.plist */,
 				60B6F31E1647B96800071E86 /* InfoPlist.strings */,
 				60B6F3211647B96800071E86 /* main.m */,
@@ -561,6 +561,8 @@
 		60BA8854164880A50043AC75 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				60B42895164CDCC100D5FCD3 /* LocalModel */,
+				60BA885C164880A50043AC75 /* RenrenSDK */,
 				60BA8855164880A50043AC75 /* JPCarrot.h */,
 				60BA8856164880A50043AC75 /* JPCarrot.m */,
 				60BA8857164880A50043AC75 /* JPDataManager.h */,
@@ -569,8 +571,6 @@
 				60BA885A164880A50043AC75 /* JPParseServer.m */,
 				60B42891164CD49000D5FCD3 /* JPLocalDataManager.h */,
 				60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */,
-				60B42895164CDCC100D5FCD3 /* LocalModel */,
-				60BA885C164880A50043AC75 /* RenrenSDK */,
 				60C01D44164CB1E400778758 /* ACTestViewController.h */,
 				60C01D45164CB1E500778758 /* ACTestViewController.m */,
 			);
