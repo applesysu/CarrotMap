@@ -140,6 +140,7 @@
     
     //用generalPublicCarrots在地图上setup一堆annotation
     /*int i;
+    
     self.carrotOnMap = [[NSMutableArray alloc] init];
     for (i = 0; i < [self.generalPublicCarrots count]; i++){
         JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
@@ -717,11 +718,30 @@
     
     //拉到数据以后重新reload一下 TableView(包括它的Cells)
     [self.leftCornerTableView reloadData];
-    [self.myMapView addAnnotations:self.generalPublicCarrots];
-    [self.myMapView addAnnotations:self.generalPrivateCarrots];
+//    [self.myMapView addAnnotations:self.generalPublicCarrots];
+//    [self.myMapView addAnnotations:self.generalPrivateCarrots];
+ 
     
-    
-
+    //把所有的公有萝卜转化成Annotation然后加到mapView里面
+    self.carrotOnMap = [[NSMutableArray alloc] init];
+    int i;
+    for (i = 0; i < [self.generalPublicCarrots count]; i++){
+        JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
+        CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message];
+        
+        [self.carrotOnMap addObject:tmpAnno];
+        [self.myMapView addAnnotation:tmpAnno];
+    }
+    //把所有的私有萝卜转化成Annotation然后加到mapView里面
+    for (i = 0; i < [self.generalPrivateCarrots count]; i++){
+        JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:i];
+        CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message];
+        
+        [self.carrotOnMap addObject:tmpAnno];
+        [self.myMapView addAnnotation:tmpAnno];
+    }
     
     //在这个异步结束的地方，最后最后把view 的interaction改成YES
     self.view.userInteractionEnabled = YES; 

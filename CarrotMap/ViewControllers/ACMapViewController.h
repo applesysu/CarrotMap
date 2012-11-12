@@ -41,8 +41,7 @@
 //数组储存的是Annotation（正确的应该是萝卜）
 @property (nonatomic, strong) NSMutableArray *theCarrotsISend;
 
-//储存在地图上的Annotation
-@property (nonatomic, strong) NSMutableArray *carrotOnMap;
+
 
 
 //一下的property用于储存DataManager从数据库中拉到的信息／数据
@@ -56,6 +55,10 @@
 
 //储存用户的info
 @property (nonatomic, strong) NSString *userID;
+
+//储存Pin所需要的Annotation信息
+//需要把“萝卜”转换成Annotation
+@property (nonatomic, strong) NSMutableArray *carrotOnMap;
 
 
 @end
