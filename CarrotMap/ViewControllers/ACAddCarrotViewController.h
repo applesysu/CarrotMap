@@ -25,7 +25,7 @@
     UIButton *buttonToPushCarrot;
     UITextView *testRestrict;
     NSArray *theSelectedFriends;
-    
+    NSArray *friendList;
 }
 
 
@@ -33,7 +33,7 @@
 @property (nonatomic, strong) ACFriendsListViewController *friendsListViewController;
 //@property (nonatomic,assign) float latitude;
 
-
+@property (strong, nonatomic) NSArray *friendList;
 @property (strong, nonatomic) NSManagedObjectContext *manageedObjectContext;
 @property (strong, nonatomic) NSMutableArray *friendNames;
 @property (strong, nonatomic) UITextField *selectField;

@@ -12,7 +12,7 @@
 {
     NSArray *friends;
     UIToolbar *toolBar;
-    //    UITableView *tableView;
+    UITableView *tableView;
     UIScrollView *theRecentScollView;
     NSMutableArray *friendNames;
     UIScrollView *friendLineListView;
@@ -20,11 +20,12 @@
     
 };
 //@property (strong, nonatomic) NSManagedObjectContext *manageedObjectContext;
-//@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIScrollView *theRecentScollView;
 @property (strong, nonatomic) NSMutableArray *friendNames;
 @property (strong, nonatomic) UIScrollView *friendLineListView;
 @property (strong, nonatomic) NSArray *friendList;
-- initWithFriendsList:(NSArray*)friendsList;
-- (id)initWithStyle:(UITableViewStyle)style;
+- (id)initWithFriendsList:(NSArray*)friendsList;
+//- (id)initWithStyle:(UITableViewStyle)style;
+
 @end

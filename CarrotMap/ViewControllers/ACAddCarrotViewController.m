@@ -25,7 +25,7 @@
 @synthesize firstWord;
 @synthesize friendNames;
 @synthesize theSelectedFriends;
-
+@synthesize friendList;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -266,9 +266,11 @@
 -(void)ToFriendList:(UIButton *)paramSender{
     //    JPFriendsListViewController *aFriendsListViewController=[[JPFriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
     //    [self presentModalViewController:aFriendsListViewController animated:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFriendList) name:@"didGetFriendsList" object:nil];
+    [[JPDataManager sharedInstance] getFriendsList];
     
-    friendsListViewController=[[ACFriendsListViewController alloc] init];
-    [self presentModalViewController:friendsListViewController animated:YES];
+//    friendsListViewController=[[ACFriendsListViewController alloc] init];
+//    [self presentModalViewController:friendsListViewController animated:YES];
 }
 
 -(void)senderCarrot:(UIButton *)paramSender{
@@ -278,5 +280,15 @@
     JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:@"Hello 初阳" withSenderID:@"273999927" withReceiversID:receviers withSendedTime:@"2002年5月20日"];
     [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
     
+}
+
+-(void)getFriendList{
+    
+    friendList=[[NSArray alloc] initWithArray:[JPDataManager sharedInstance].friendsList];
+    for (NSDictionary *singleFriend in friendList) {
+        NSLog(@"%@",singleFriend);
+    }
+    friendsListViewController=[[ACFriendsListViewController alloc] initWithFriendsList:friendList];
+        [self presentModalViewController:friendsListViewController animated:YES];
 }
 @end
