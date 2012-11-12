@@ -45,12 +45,17 @@
 @property (nonatomic, strong) NSMutableArray *carrotOnMap;
 
 
+//一下的property用于储存DataManager从数据库中拉到的信息／数据
 
 
 
+//储存拉到的萝卜
 @property (nonatomic, strong) NSMutableArray *generalPublicCarrots;
 @property (nonatomic, strong) NSMutableArray *generalPrivateCarrots;
 
+
+//储存用户的info
+@property (nonatomic, strong) NSString *userID;
 
 
 @end

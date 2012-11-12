@@ -47,41 +47,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
     self.view.backgroundColor=[UIColor whiteColor];
+    // Do any additional setup after loading the view.
+    
+    
+    
+    
+    //先把interaction设置为NO，等待usersInfo的数据被拉了下来以后
+    self.view.userInteractionEnabled=NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo) name:@"didGetUserInfo" object:nil];
+    [[JPDataManager sharedInstance] getUserInfo];
+
+    
+    
+    
     
     /*self.generalPublicCarrots = [[NSMutableArray alloc] init];*/
     
     //乱发5个公有的萝卜
-    JPCarrot *carrot1 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"38.1" withLatitude:@"22.2" withMessage:@"carrot1" withSenderID:@"0001" withSendedTime:@"00:01"];
+    /*JPCarrot *carrot1 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"38.1" withLatitude:@"22.2" withMessage:@"carrot1" withSenderID:@"0001" withSendedTime:@"00:01"];
     JPCarrot *carrot2 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"35.1" withLatitude:@"23.2" withMessage:@"carrot2" withSenderID:@"0002" withSendedTime:@"00:02"];
     JPCarrot *carrot3 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"36.1" withLatitude:@"25.2" withMessage:@"carrot3" withSenderID:@"0003" withSendedTime:@"00:03"];
     JPCarrot *carrot4 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"10" withLatitude:@"10" withMessage:@"carrot4" withSenderID:@"0004" withSendedTime:@"00:04"];
-    JPCarrot *carrot5 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"22.6" withLatitude:@"36.1" withMessage:@"carrot5" withSenderID:@"0005" withSendedTime:@"00:05"];
+    JPCarrot *carrot5 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"22.6" withLatitude:@"36.1" withMessage:@"carrot5" withSenderID:@"0005" withSendedTime:@"00:05"];*/
     
-    
-    //昨晚没有sync成功
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSendACarrotToServer) name:@"didSendACarrotToServer" object:nil];
-    [[JPDataManager sharedInstance] sendACarrotToServer:carrot1];
-    
-//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot2];
 //    
-//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot3];
-//   
-//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot4];
-//   
-//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot5];
+//    //昨晚没有sync成功
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSendACarrotToServer) name:@"didSendACarrotToServer" object:nil];
+////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot1];
 //    
-    
-    //拿到公有的萝卜，存入一个数组里面
-    
-    
-    
-    //拿到私有的萝卜，存入一个数组里面
-    
-    
-    
+////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot2];
+////    
+////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot3];
+////   
+////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot4];
+////   
+////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot5];
+////    
     
     //初始化虚拟数据
     
@@ -90,11 +92,10 @@
     
     
     
-    //我靠adsfasd
     
     
     
-    //纯代码添加 mapview
+//纯代码添加 mapview
     self.myMapView=[[MKMapView alloc] initWithFrame:self.view.bounds];
     self.myMapView.mapType=MKMapTypeStandard;
     self.myMapView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -121,24 +122,22 @@
         NSLog(@"Service are not available");
     }
     
-    /* A Sample location*/
+/* A Sample location*/
     CLLocationCoordinate2D location=CLLocationCoordinate2DMake(23.01, 113.33);
-    
     CLLocation *GLocation=[[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
     
     //创建SYSUAnnotation, 这是我们自定义的Annotation
     SYSUMyAnnotation *annotation=[[SYSUMyAnnotation alloc] initWithCoordinate:location title:@"MyAnnotation" subtitle:@"SubTitle"];
-    
     annotation.pinColor=MKPinAnnotationColorPurple;
-    
     [self.myMapView addAnnotation:annotation];
     
     
     
     
     
+    
     //用generalPublicCarrots在地图上setup一堆annotation
-    int i;
+    /*int i;
     self.carrotOnMap = [[NSMutableArray alloc] init];
     for (i = 0; i < [self.generalPublicCarrots count]; i++){
         JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
@@ -147,7 +146,7 @@
         [self.carrotOnMap addObject:[[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message]];
         
         [self.myMapView addAnnotation:[[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message]];
-    }
+    }*/
     
     
     //获取具体地址，并赋值给我们的Pin
@@ -165,23 +164,24 @@
             NSLog(@"Error=%@",error);
         }
     }];
+
     
-    //1. 目的是放置一键插萝卜功能
+    
+//1. 目的是放置一键插萝卜功能
     UIImage *rightCorner=[UIImage imageNamed:@"Icon.png"];
     rightCornerView=[[UIImageView alloc] initWithImage:rightCorner];
     self.rightCornerView.center=CGPointMake(290, 430);
     self.rightCornerView.userInteractionEnabled=YES;
     [self.view addSubview:self.rightCornerView];
     
-    //插萝卜函数
-    
+    //插萝卜函数    
     self.insertCarrot=[[UITapGestureRecognizer  alloc] initWithTarget:self action:@selector(PushCarrot:)];
     self.insertCarrot.numberOfTapsRequired=1;
     self.insertCarrot.delegate=self;
     
     [self.rightCornerView addGestureRecognizer:self.insertCarrot];
     
-    //2. 定位图标，用来提供给用户，用以回到自己位置并开始实时定位
+//2. 定位图标，用来提供给用户，用以回到自己位置并开始实时定位
     UIImage *locationTracking=[UIImage  imageNamed:@"Icon.png"];
     LocationTrackingView=[[UIImageView alloc] initWithImage:locationTracking];
     self.LocationTrackingView.center=CGPointMake(230, 430);
@@ -197,7 +197,7 @@
     
     
     
-    //3. 拉兔兔喽
+//3. 拉兔兔喽
     self.leftCornerView=[[UIView alloc] init];
     //WithImage:image];
     self.leftCornerView.userInteractionEnabled=YES;
@@ -239,8 +239,10 @@
     leftCornerPan.maximumNumberOfTouches=1;
     leftCornerPan.minimumNumberOfTouches=1;
     [self.leftCornerView addGestureRecognizer:leftCornerPan];
+
     
-    //4. 右上角拉动兔子出来
+    
+//4. 右上角拉动兔子出来
     self.bunnyUpperRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Icon.png"]];
     [self.bunnyUpperRight setFrame:CGRectMake(250, 0, 60, 60)];
     [self.bunnyUpperRight sizeToFit];
@@ -585,7 +587,7 @@
 {
     int result = 0;
     if ([tableView isEqual:self.leftCornerTableView]){
-        return 1;
+        return 2;
     }
     return result;
 }
@@ -594,7 +596,7 @@
 {
     int result = 0;
     if ([tableView isEqual:self.leftCornerTableView]){
-        return 12;
+        return ([self.generalPublicCarrots count] + [self.generalPrivateCarrots count]);
     }
     return result;
 }
@@ -607,10 +609,25 @@
         cell = (SYSUCarrotCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {
             cell = [[SYSUCarrotCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
-            cell.title.text = tmp.carrotID;
-            cell.subtitle.text = tmp.message;
             
+            
+            
+            
+            //第一个section：私有的萝卜
+            //第二个section:公有的萝卜
+            
+            if (indexPath.section == 0){
+                JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
+                cell.title.text = tmp.carrotID;
+                cell.subtitle.text = tmp.message;
+            }
+            else {
+                JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
+                cell.title.text = tmp.carrotID;
+                cell.subtitle.text = tmp.message;
+            }
+            
+    
             return cell;
         }
     }
@@ -630,27 +647,74 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
-    CLLocationCoordinate2D tmpLocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-    [self.myMapView setCenterCoordinate:tmpLocation animated:YES];
+    if (indexPath.section == 0){
+        JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
+        CLLocationCoordinate2D tmpLocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
+        [self.myMapView setCenterCoordinate:tmpLocation animated:YES];
+    }
+    else {
+        JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
+        CLLocationCoordinate2D tmpLocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
+        [self.myMapView setCenterCoordinate:tmpLocation animated:YES];
+    }
 }
 
-#pragma mark - 发萝卜拉萝卜数据有关的函数
+#pragma mark - 异步的函数，实现和拉用户数据，拉萝卜有关的函数
+
+- (void)didGetUserInfo
+{
+    NSLog(@"didGetUserInfo");
+    //拿到用户的信息数据
+    NSDictionary *dict=[[NSDictionary alloc] initWithDictionary:[[JPDataManager sharedInstance] userInfo]];
+    self.userID = [dict objectForKey:@"uid"];
+    [dict objectForKey:@"name"];
+    [dict objectForKey:@"tinyurl"];
+    
+
+    
+    //进入页面以后开始拉私有的萝卜
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPrivateCarrots) name:@"didGetGeneralPrivateCarrots" object:nil];
+    [[JPDataManager sharedInstance] getGeneralPrivateCarrotsWithUid:self.userID];
+}
+
+- (void)didGetGeneralPrivateCarrots
+{
+    //把拉到的私有萝卜存储在ViewController里面的数组里面
+    NSLog(@"didGetGeneralPrivateCarrots");
+    [self.generalPrivateCarrots addObjectsFromArray:[JPDataManager sharedInstance].GeneralprivateCarrots];
+    
+    //拉完私有萝卜以后就可以开始拉公有的萝卜
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrots) name:@"didGetGeneralPublicCarrots" object:nil];
+    [[JPDataManager sharedInstance] getGeneralPublicCarrotsWithUid:self.userID withNumber:5];
+}
+
 - (void)didGetGeneralPublicCarrots
 {
+    NSLog(@"didGetGeneralPublicCarrots");
+    //把拉到的公有萝卜存储在ViewController里面的数组里面
     [self.generalPublicCarrots addObjectsFromArray:[JPDataManager sharedInstance].GeneralpublicCarrots];
     NSLog(@"Get GeneralPublicCarrots");
     NSLog(@"%@", [JPDataManager sharedInstance].GeneralpublicCarrots );
-        
+    
+    
+    //拉到数据以后重新reload一下 TableView(包括它的Cells)
+    [self.leftCornerTableView reloadData];
+    [self.myMapView addAnnotations:self.generalPublicCarrots];
+    
+    
+
+    
+    //在这个异步结束的地方，最后最后把view 的interaction改成YES
+    self.view.userInteractionEnabled = YES; 
 }
 
-- (void) didSendACarrotToServer
+/*- (void) didSendACarrotToServer
 {
     NSLog(@"Send a carrot");
     NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrots) name:@"didGetGeneralPublicCarrots" object:nil];
     [[JPDataManager sharedInstance] getGeneralPublicCarrotsWithUid:@"311260621" withNumber:5];
-}
+}*/
 
 @end
