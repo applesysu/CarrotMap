@@ -27,15 +27,22 @@
     self=[super initWithFrame:frame];
     
     if (self) {
-        self.friendHeader.image=image;
-        self.friendName.text=name;
-        
-        self.friendHeader.frame=CGRectMake(10, 0, 50, 50);
-        self.friendName.frame=CGRectMake(10, 55, 50, 10);
-        self.friendName.textAlignment=UITextAlignmentCenter;
-        self.friendName.font=[UIFont fontWithName:@"KaiTi_GB2312" size:20];
+        self.backgroundColor=[UIColor whiteColor];
+        self.layer.cornerRadius=5.0;
+            self.friendHeader=[[UIImageView alloc] initWithFrame:CGRectMake(3.5, 3.5, 73, 73)];
+            self.friendHeader.image=image;
+        self.friendHeader.layer.cornerRadius=5.0;
+        self.friendHeader.layer.masksToBounds=YES;
+//        self.friendHeader.backgroundColor=[UIColor blackColor];
+//        self.friendName.text=name;
+//        
+//       
+//    
+//        self.friendName.frame=CGRectMake(10, 55, 50, 10);
+//        self.friendName.textAlignment=UITextAlignmentCenter;
+//        self.friendName.font=[UIFont fontWithName:@"KaiTi_GB2312" size:20];
         [self addSubview:friendHeader];
-        [self addSubview:friendName];
+//        [self addSubview:friendName];
         
     }
     
