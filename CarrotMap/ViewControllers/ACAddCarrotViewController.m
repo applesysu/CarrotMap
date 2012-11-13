@@ -179,7 +179,8 @@
 //      [  names stringByAppendingFormat:@"%@ ",[single objectForKey:@"name"] ] ;
 //        NSLog(@"%@",names);
 //    }
-//    self.selectField.text=names;    
+//    self.selectField.text=names;
+    NSLog(@"%d",receviers.count);
 }
 
 //

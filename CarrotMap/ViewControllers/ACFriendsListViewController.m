@@ -23,13 +23,13 @@
 @synthesize tableView;
 @synthesize friendList;
 @synthesize receiverIDList;
-@synthesize imageData;
+//@synthesize imageData;
 
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
     self = [super init];
     if (self) {
-        friends = argFriends;
+//        friends = argFriends;
         
         
     }
@@ -146,6 +146,7 @@
             [imageDataArray addObject:imageData];
             UIImage *image=[[UIImage alloc] initWithData:imageData];
         SDFriendItems *item=[[SDFriendItems alloc] initWithFrame:CGRectMake(20+ 100*(i%3), 16+96*counter, 80,80) withImage:image withLabel:@""];
+            item.tag=i;
             UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
             [item addGestureRecognizer:tap];
         [self.friendLineListView addSubview:item];
@@ -237,8 +238,13 @@
     if (paramSender.state==UIGestureRecognizerStateEnded) {
         if ([paramSender.view.backgroundColor isEqual:[UIColor blueColor]]) {
             paramSender.view.backgroundColor=[UIColor whiteColor];
+            [receiverIDList removeObject:[friendList objectAtIndex:paramSender.view.tag]];
         }else {
-            paramSender.view.backgroundColor=[UIColor blueColor];}
+            paramSender.view.backgroundColor=[UIColor blueColor];
+            [receiverIDList addObject: [friendList objectAtIndex:paramSender.view.tag]];
+        
+        }
+        
     }
 }
 @end

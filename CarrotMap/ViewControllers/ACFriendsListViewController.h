@@ -10,11 +10,11 @@
 #import <CoreData/CoreData.h>
 @interface ACFriendsListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
-    NSArray *friends;
+//    NSArray *friends;
     UIToolbar *toolBar;
     UITableView *tableView;
     UIScrollView *theRecentScollView;
-    NSMutableArray *friendNames;
+//    NSMutableArray *friendNames;
     UIScrollView *friendLineListView;
     NSArray *friendList;
     NSMutableArray *receiverIDList;
@@ -28,7 +28,7 @@
 @property (strong, nonatomic) NSArray *friendList;
 @property (strong, nonatomic) NSMutableArray *receiverIDList;
 
-@property (strong, nonatomic) NSArray *imageData;
+//@property (strong, nonatomic) NSArray *imageData;
 - (id)initWithFriendsList:(NSArray*)friendsList;
 //- (id)initWithStyle:(UITableViewStyle)style;
 
