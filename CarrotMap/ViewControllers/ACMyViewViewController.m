@@ -18,9 +18,11 @@
 @synthesize myReceivedListController;
 @synthesize myPublicListController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize userInfo;
+
+- (id)initWithUserInfo:(NSDictionary*)userInfo withSendeds:(int)sendeds withReceiveds:(int)receiveds
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
