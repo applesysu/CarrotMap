@@ -13,6 +13,7 @@
 #import "JPCarrot.h"
 #import "JPDataManager.h"
 #import "ACAddCarrotViewController.h"
+#import "ACMyViewViewController.h"
 @interface ACMapViewController ()
 
 @end
@@ -47,6 +48,9 @@
 
 @synthesize userType;
 
+//navController
+@synthesize navController;
+
 - (id)initWithUserType:(NSString *)userLoginType
 {
     self = [super init];
@@ -70,8 +74,6 @@
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     // Do any additional setup after loading the view.
-    
-    
     
     
     //先把interaction设置为NO，等待usersInfo的数据被拉了下来以后
@@ -596,6 +598,9 @@
              
              [paramSender.view.layer addAnimation:group forKey:nil];*/
             
+            ACMyViewViewController *myViewViewController = [[ACMyViewViewController alloc]initWithUserInfo:[JPDataManager sharedInstance].userInfo];
+            [self presentModalViewController:myViewViewController animated:YES];
+            
             didBecomeBigger = NO;//设成已经移动过了就不可以再移动了
         }
     }
@@ -779,6 +784,7 @@
     
     if ([self.userType isEqualToString:@"Tourist"]){
         self.rightCornerView.userInteractionEnabled = NO;
+        self.bunnyUpperRight.userInteractionEnabled = NO;
     }
 }
 

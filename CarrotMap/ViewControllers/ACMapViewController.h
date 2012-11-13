@@ -62,6 +62,10 @@
 
 @property (nonatomic, strong) NSString *userType;
 
+
+//添加一个navigationController;
+@property (nonatomic, strong) UINavigationController *navController;
+
 - (id)initWithUserType:(NSString *)userLoginType;
 
 @end

@@ -11,8 +11,11 @@
 
 @interface ACMyViewViewController : UIViewController
 
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *headImage;
 @property (nonatomic, strong) UILabel *usernameLabel;
 @property (nonatomic, strong) UILabel *accountLabel;
 
@@ -25,9 +28,11 @@
 @property (nonatomic, strong) ACMyCarrotsListViewController *myPublicListController;
 
 //初始化接收到的用户信息
-@property (nonatomic, strong) NSDictionary *userInfo;
+@property (nonatomic, strong) NSDictionary *userInformation;
+/*@property (nonatomic) int numbersOfCarrotsSended;
+@property (nonatomic) int numbersOfCarrotsReceived;*/
 
 
-- (id)initWithUserInfo:(NSDictionary*)userInfo withSendeds:(int)sendeds withReceiveds:(int)receiveds;
+- (id)initWithUserInfo:(NSDictionary*)userInfo;
 
 @end
