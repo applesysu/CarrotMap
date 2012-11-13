@@ -297,13 +297,10 @@
 //#pragma mark- @select
 
 -(void)ToFriendList:(UIButton *)paramSender{
-    //    JPFriendsListViewController *aFriendsListViewController=[[JPFriendsListViewController alloc] initWithStyle:UITableViewStylePlain];
-    //    [self presentModalViewController:aFriendsListViewController animated:YES];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFriendList) name:@"didGetFriendsList" object:nil];
     [[JPDataManager sharedInstance] getFriendsList];
-    
-//    friendsListViewController=[[ACFriendsListViewController alloc] init];
-//    [self presentModalViewController:friendsListViewController animated:YES];
+
 }
 
 -(void)senderCarrot:(UIButton *)paramSender{
@@ -314,9 +311,9 @@
         [ids addObject:[single objectForKey:@"id"]];
     }
     
-   self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
     NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
-     NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
+    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
     JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:@"273999927" withReceiversID:ids withSendedTime:@"2002年5月20日"];
     [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
     
@@ -325,11 +322,7 @@
 -(void)getFriendList{
     
     friendList=[[NSArray alloc] initWithArray:[JPDataManager sharedInstance].friendsList];
-//    NSLog(@"#########################");
-//    for (NSDictionary *singleFriend in friendList) {
-//        NSLog(@"%@",singleFriend);
-//    }
     friendsListViewController=[[ACFriendsListViewController alloc] initWithFriendsList:friendList];
-        [self presentModalViewController:friendsListViewController animated:YES];
+    [self presentModalViewController:friendsListViewController animated:YES];
 }
 @end

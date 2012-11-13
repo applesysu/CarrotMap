@@ -12,7 +12,7 @@
 
 
 @property(strong, nonatomic) UIImageView *friendHeader;
-@property(strong, nonatomic) UILabel *friendName;
+
 
 
 -(id)initWithFrame:(CGRect)frame withImage:(UIImage *)image withLabel:(NSString *)name;
