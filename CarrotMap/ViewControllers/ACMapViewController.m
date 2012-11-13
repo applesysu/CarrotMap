@@ -45,6 +45,26 @@
 @synthesize generalPublicCarrots;
 @synthesize generalPrivateCarrots;
 
+@synthesize userType;
+
+- (id)initWithUserType:(NSString *)userLoginType
+{
+    self = [super init];
+    if (self) {
+        if ([userLoginType isEqualToString:@"Tourist"]){
+            self.userType = userLoginType;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrots) name:@"didGetGeneralPublicCarrots" object:nil];
+            [[JPDataManager sharedInstance] getGeneralPublicCarrotsWithUid:@"000000000"];
+        }
+        else if ([userLoginType isEqualToString:@"RenRenUser"]){
+            self.userType = userLoginType;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo) name:@"didGetUserInfo" object:nil];
+            [[JPDataManager sharedInstance] getUserInfo];
+        }
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,10 +76,6 @@
     
     //先把interaction设置为NO，等待usersInfo的数据被拉了下来以后
     self.view.userInteractionEnabled=NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo) name:@"didGetUserInfo" object:nil];
-    [[JPDataManager sharedInstance] getUserInfo];
-
-    
     
     
     
@@ -760,6 +776,10 @@
     
     //在这个异步结束的地方，最后最后把view 的interaction改成YES
     self.view.userInteractionEnabled = YES; 
+    
+    if ([self.userType isEqualToString:@"Tourist"]){
+        self.rightCornerView.userInteractionEnabled = NO;
+    }
 }
 
 /*- (void) didSendACarrotToServer

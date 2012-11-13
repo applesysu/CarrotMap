@@ -114,7 +114,7 @@
 
 - (void)TouristBtnPressed
 {
-    ACMapViewController *mapViewController=[[ACMapViewController alloc] init];
+    ACMapViewController *mapViewController=[[ACMapViewController alloc] initWithUserType:@"Tourist"];
     [self presentModalViewController:mapViewController animated:YES];
         
 }
@@ -126,7 +126,7 @@
 
 
 -(void)didRenrenLogin{
-    ACMapViewController *mapViewController=[[ACMapViewController alloc] init];
+    ACMapViewController *mapViewController=[[ACMapViewController alloc] initWithUserType:@"RenRenUser"];
        [self presentModalViewController:mapViewController animated:YES];
 }
 @end

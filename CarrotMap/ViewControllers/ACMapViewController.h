@@ -60,5 +60,8 @@
 //需要把“萝卜”转换成Annotation
 @property (nonatomic, strong) NSMutableArray *carrotOnMap;
 
+@property (nonatomic, strong) NSString *userType;
+
+- (id)initWithUserType:(NSString *)userLoginType;
 
 @end
