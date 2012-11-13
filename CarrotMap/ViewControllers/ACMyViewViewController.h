@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "ACMyCarrotsListViewController.h"
+#import "RNExpandingButtonBar.h"
 
-@interface ACMyViewViewController : UIViewController
+@class RNExpandingButtonBar;
+
+@interface ACMyViewViewController : UIViewController<RNExpandingButtonBarDelegate>{
+    RNExpandingButtonBar *_bar;
+}
+
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageUpperView;
 @property (nonatomic, strong) UIImageView *headImageView;
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *imageUpper;
 @property (nonatomic, strong) UIImage *headImage;
 @property (nonatomic, strong) UILabel *usernameLabel;
 @property (nonatomic, strong) UILabel *accountLabel;
@@ -31,6 +37,8 @@
 @property (nonatomic, strong) NSDictionary *userInformation;
 /*@property (nonatomic) int numbersOfCarrotsSended;
 @property (nonatomic) int numbersOfCarrotsReceived;*/
+
+@property (nonatomic, strong) RNExpandingButtonBar *bar;
 
 
 - (id)initWithUserInfo:(NSDictionary*)userInfo;
