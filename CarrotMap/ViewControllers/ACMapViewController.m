@@ -690,7 +690,7 @@
 {
     float result = 0.0f;
     if ([tableView isEqual:self.leftCornerTableView]){
-        return 60.0f;
+        return 44.0f;
     }
     
     return result;
