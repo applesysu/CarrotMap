@@ -180,7 +180,7 @@
 //        NSLog(@"%@",names);
 //    }
 //    self.selectField.text=names;
-    NSLog(@"%d",receviers.count);
+//    NSLog(@"%d",receviers.count);
 }
 
 //
