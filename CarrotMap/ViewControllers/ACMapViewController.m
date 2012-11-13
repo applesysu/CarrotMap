@@ -222,8 +222,8 @@
     self.leftCornerView=[[UIView alloc] init];
     //WithImage:image];
     self.leftCornerView.userInteractionEnabled=YES;
-    self.leftCornerView.frame=CGRectMake(0, 460, 120, 480);
-    self.leftCornerView.center=CGPointMake(60, 600);
+    self.leftCornerView.frame=CGRectMake(0, 460, 150, 480);
+    self.leftCornerView.center=CGPointMake(75, 600);
     
     //弄一个Bar出来，以识别拉动的是tableView还是Bar
     
@@ -243,6 +243,7 @@
     self.leftCornerTableView.separatorColor = [UIColor colorWithWhite:0 alpha:.2];
     self.leftCornerTableView.delegate = self;
     self.leftCornerTableView.dataSource = self;
+    
     
     [self.leftCornerView addSubview:self.leftCornerTableView];
     
@@ -510,10 +511,10 @@
             
             //CG上拉路径设置
             CGMutablePathRef thePath=CGPathCreateMutable();
-            CGPathMoveToPoint(thePath, NULL, 60.0f, 600.0f);
-            CGPathAddLineToPoint(thePath, NULL, 60.0f, 160.0f);
-            CGPathAddCurveToPoint(thePath, NULL, 60.0f, 145.0f, 60.0f, 170.0f, 60.0f, 154.0f);
-            CGPathAddLineToPoint(thePath, NULL, 60.0f, 160.0f);
+            CGPathMoveToPoint(thePath, NULL, 75.0f, 600.0f);
+            CGPathAddLineToPoint(thePath, NULL, 75.0f, 160.0f);
+            CGPathAddCurveToPoint(thePath, NULL, 75.0f, 145.0f, 75.0f, 170.0f, 75.0f, 154.0f);
+            CGPathAddLineToPoint(thePath, NULL, 75.0f, 160.0f);
             CAKeyframeAnimation *theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
             
             //CA path设置
@@ -526,17 +527,17 @@
             
             CFRelease(thePath);
             [self.leftCornerView.layer addAnimation:theGroup forKey:@"positon"];
-            paramSender.view.center=CGPointMake(60.0f, 160.0f);
+            paramSender.view.center=CGPointMake(75.0f, 160.0f);
             
             
         }
         
         else if(paramSender.view.center.y==160){
             CGMutablePathRef thePath=CGPathCreateMutable();
-            CGPathMoveToPoint(thePath, NULL, 60.0f, 160.0f);
-            CGPathAddLineToPoint(thePath, NULL, 60.0f, 600.0f);
-            CGPathAddCurveToPoint(thePath, NULL, 60.0f, 610.0f, 60.0f, 595.0f, 60.0f,597.0f);
-            CGPathAddLineToPoint(thePath, NULL, 60.0f, 600.0f);
+            CGPathMoveToPoint(thePath, NULL, 75.0f, 160.0f);
+            CGPathAddLineToPoint(thePath, NULL, 75.0f, 600.0f);
+            CGPathAddCurveToPoint(thePath, NULL, 75.0f, 610.0f, 75.0f, 595.0f, 75.0f,597.0f);
+            CGPathAddLineToPoint(thePath, NULL, 75.0f, 600.0f);
             CAKeyframeAnimation *theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
             
             theAnimation.path=thePath;
@@ -548,7 +549,7 @@
             
             CFRelease(thePath);
             [self.leftCornerView.layer addAnimation:theGroup forKey:@"position"];
-            paramSender.view.center=CGPointMake(60.0f, 600.0f);
+            paramSender.view.center=CGPointMake(75.0f, 600.0f);
             
         }
     }
@@ -640,6 +641,7 @@
 {
     SYSUCarrotCell *cell = nil;
     NSString *identifier = @"Carrot";
+    
     if ([tableView isEqual:self.leftCornerTableView]){
         cell = (SYSUCarrotCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {

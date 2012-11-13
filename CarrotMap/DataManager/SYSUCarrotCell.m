@@ -16,14 +16,16 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        //定制各种property
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
+                //定制各种property
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
         self.imageView.image = [UIImage imageNamed:@"Icon.png"];
-        self.title = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, 100, 20)];
-        self.subtitle = [[UILabel alloc] initWithFrame:CGRectMake(70, 30, 100, 20)];
+        self.title = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 70, 20)];
+        self.title.backgroundColor=[UIColor clearColor];
+
+//        self.subtitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 30, 100, 20)];
         [self addSubview:imageView];
         [self addSubview:self.title];
-        [self addSubview:self.subtitle];
+//        [self addSubview:self.subtitle];
     }
     return self;
 }
