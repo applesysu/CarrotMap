@@ -28,6 +28,7 @@
     NSArray *friendList;
     NSArray *receviers;
     UILabel *wantSay;
+    UILabel *wantSubSay;
 }
 
 
@@ -35,6 +36,7 @@
 @property (nonatomic, strong) ACFriendsListViewController *friendsListViewController;
 //@property (nonatomic,assign) float latitude;
 @property (strong, nonatomic) UILabel *wantSay;
+@property (strong, nonatomic) UILabel *wantSubSay;
 @property (strong, nonatomic) NSArray *receviers;
 @property (strong, nonatomic) NSArray *friendList;
 @property (strong, nonatomic) NSManagedObjectContext *manageedObjectContext;

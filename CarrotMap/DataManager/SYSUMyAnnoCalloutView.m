@@ -38,7 +38,7 @@
     //1.0版本需要根据ann的距离信息，然后定制View的内容，到时需要把UIImageView改成UIView，UIView里面包含一个label，然后根据距离的不同显示不同的信息
     
     
-    SYSUMyAnnotation *ann = self.annotation;
+//    SYSUMyAnnotation *ann = self.annotation;
     
     //定制每个Pin callout的View
     if (selected){

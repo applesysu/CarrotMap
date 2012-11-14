@@ -28,6 +28,7 @@
 @synthesize friendList;
 @synthesize receviers;
 @synthesize wantSay;
+@synthesize wantSubSay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,9 +61,20 @@
     [temparray removeAllObjects];
     self.view.backgroundColor=[UIColor clearColor];
     
+    self.wantSay=[[UILabel alloc] initWithFrame:CGRectMake(10, 15, 50, 30)];
+    self.wantSay.text=@"想对:";
+    self.wantSay.textColor=[UIColor blackColor];
+    self.wantSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
+    [self.view addSubview:self.wantSay];
     
-    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(60, 15, 170, 30)];
-    self.selectField.placeholder=@"@:你的好友";
+    self.wantSubSay=[[UILabel alloc] initWithFrame:CGRectMake(225, 15, 25, 30)];
+    self.wantSubSay.text=@"说";
+    self.wantSubSay.textColor=[UIColor blackColor];
+    self.wantSubSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
+    [self.view addSubview:self.wantSubSay];
+    
+    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(50, 15, 170, 30)];
+//    self.selectField.placeholder=@"";
     
     self.selectField.borderStyle=UITextBorderStyleNone;
     self.selectField.delegate=self;
@@ -99,19 +111,17 @@
     
     [imageView addSubview:self.testRestrict];
     
-    self.buttonToPushCarrot=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.buttonToPushCarrot=[UIButton buttonWithType:UIButtonTypeCustom];
     self.buttonToPushCarrot.frame=CGRectMake(280, 15, 30, 30);
-    
+    self.buttonToPushCarrot.backgroundColor=[UIColor greenColor];
+    self.buttonToPushCarrot.layer.cornerRadius=10.0f;
     [self.buttonToPushCarrot addTarget:self action:@selector(senderCarrot:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.buttonToPushCarrot];
     
-    self.wantSay=[[UILabel alloc] initWithFrame:CGRectMake(10, 15, 50, 30)];
-    self.wantSay.text=@"想对";
-    self.wantSay.textColor=[UIColor blackColor];
-    self.wantSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
-    [self.view addSubview:self.wantSay];
+    
+   
     
      [self.view addSubview:self.selectField];
+    [self.view addSubview:self.buttonToPushCarrot];
 //    NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
 //    
 //    NSEntityDescription *entity=[NSEntityDescription entityForName:@"Friend" inManagedObjectContext:self.manageedObjectContext];
@@ -304,19 +314,19 @@
 }
 
 -(void)senderCarrot:(UIButton *)paramSender{
-    NSLog(@"%@",receviers);
-    
-    NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
-    for (NSDictionary *single in receviers) {
-        [ids addObject:[single objectForKey:@"id"]];
-    }
-    
-    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
-    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
-    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
-    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:@"273999927" withReceiversID:ids withSendedTime:@"2002年5月20日"];
-    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
-    
+//    NSLog(@"%@",receviers);
+//    
+//    NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
+//    for (NSDictionary *single in receviers) {
+//        [ids addObject:[single objectForKey:@"id"]];
+//    }
+//    
+//    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+//    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
+//    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
+//    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:@"273999927" withReceiversID:ids withSendedTime:@"2002年5月20日"];
+//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
+//    
 }
 
 -(void)getFriendList{

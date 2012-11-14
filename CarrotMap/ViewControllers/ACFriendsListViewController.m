@@ -20,10 +20,10 @@
 @synthesize theRecentScollView;
 @synthesize friendNames;
 @synthesize friendLineListView;
-@synthesize tableView;
+@synthesize atableView;
 @synthesize friendList;
 @synthesize receiverIDList;
-//@synthesize imageData;
+
 
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
@@ -128,6 +128,8 @@
 
 - (void)viewDidUnload
 {
+    
+    
     [super viewDidUnload];
 
 }
@@ -152,7 +154,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
     {
