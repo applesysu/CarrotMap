@@ -585,14 +585,14 @@
             paramSender.view.layer.transform=transfromMakeLayerScale;
             
             //把bunny移到屏幕中间
-            CGMutablePathRef moveToMiddle=CGPathCreateMutable();
-            CGPathMoveToPoint(moveToMiddle, NULL, judge.x, judge.y);
-            CGPathAddLineToPoint(moveToMiddle, NULL, 160, 240);//目标地址是MapView中点
-            CAKeyframeAnimation *moveAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
-            
-            moveAnimation.path=moveToMiddle;
-            [paramSender.view.layer addAnimation:moveAnimation forKey:@"moveAnimation"];
-            
+//            CGMutablePathRef moveToMiddle=CGPathCreateMutable();
+//            CGPathMoveToPoint(moveToMiddle, NULL, judge.x, judge.y);
+//            CGPathAddLineToPoint(moveToMiddle, NULL, 160, 240);//目标地址是MapView中点
+//            CAKeyframeAnimation *moveAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
+//            
+//            moveAnimation.path=moveToMiddle;
+//            [paramSender.view.layer addAnimation:moveAnimation forKey:@"moveAnimation"];
+//            
             //设置Group来共同执行Animation
             /*CAAnimationGroup *group=[CAAnimationGroup animation];
              group.animations=[NSArray arrayWithObjects:pulseAnimation, moveToMiddle, nil];
