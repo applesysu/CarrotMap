@@ -70,7 +70,7 @@
 
     
     NSMutableArray *imageDataArray=[[NSMutableArray alloc] initWithCapacity:15];
-    for (int i=0;i<15;i++) {
+    for (int i=0;i<friendList.count;i++) {
         NSDictionary *single=[friendList objectAtIndex:i];
         NSString *imageString=[single objectForKey:@"tinyurl"];
         NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
@@ -105,7 +105,7 @@
     
 
     int counter=-1;
-    for (int i=0;i<15;i++) {
+    for (int i=0;i<friendList.count;i++) {
             if (i%3==0)
             {
                 counter++;
@@ -122,7 +122,7 @@
         [self.friendLineListView addSubview:item];
     }
     
-    self.friendLineListView.contentSize=CGSizeMake(320, 16+96*15);
+    self.friendLineListView.contentSize=CGSizeMake(320, 16+96*friendList.count);
     
 }
 
