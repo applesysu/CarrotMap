@@ -724,7 +724,7 @@
     self.userID = [dict objectForKey:@"uid"];
     [dict objectForKey:@"name"];
     [dict objectForKey:@"tinyurl"];
-    
+    NSLog(@"%@", self.userID);
 
     
     //进入页面以后开始拉私有的萝卜

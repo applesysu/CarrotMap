@@ -200,6 +200,8 @@
    
     ACAddCarrotViewController *add=(ACAddCarrotViewController *)self.presentingViewController;
     add.receviers=self.receiverIDList;
+    NSLog(@"%@",self.receiverIDList);
+    NSLog(@"%@",add.receviers);
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -211,7 +213,8 @@
         }else {
             paramSender.view.backgroundColor=[UIColor blueColor];
             [receiverIDList addObject: [friendList objectAtIndex:paramSender.view.tag]];
-        
+            NSLog(@"%@",[friendList objectAtIndex:paramSender.view.tag]);
+         
         }
         
     }

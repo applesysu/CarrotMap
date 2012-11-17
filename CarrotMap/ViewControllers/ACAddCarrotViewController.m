@@ -47,6 +47,7 @@
         laitutude=alatitude;
         longtitude=alongtitude;
         
+        
 //        id delegate = [[UIApplication sharedApplication] delegate];
 //        self.manageedObjectContext=[delegate managedObjectContext];
     }
@@ -194,11 +195,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     NSMutableString *names=[NSMutableString stringWithCapacity:receviers.count*5];
-    
+    NSLog(@"%@",receviers);
     for (NSDictionary *single in receviers) {
-      [  names appendFormat:@"%@,",[single objectForKey:@"name"] ] ;
-        NSLog(@"%@",[single objectForKey:@"name"]);
-        NSLog(@"%d",(int)[single objectForKey:@"id"]);
+      [ names appendFormat:@"%@,",[single objectForKey:@"name"] ] ;
+   
 //        NSLog(@"%@",[single objectForKey:@"name"]);
 //        NSLog(@"%@",names);
     }
@@ -329,14 +329,15 @@
 }
 
 -(void)senderCarrot:(UIButton *)paramSender{
-//    NSLog(@"%@",receviers);
+    NSLog(@"%@",receviers);
     
     NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
     for (NSDictionary *single in receviers) {
         
         [ids addObject: [NSString stringWithFormat:@"%d", (int)[single objectForKey:@"id"]]];
-        NSLog(@"%@",[single objectForKey:@"name"]);
-        NSLog(@"%d",(int)[single objectForKey:@"id"]);
+//        NSLog(@"%@",[single objectForKey:@"name"]);
+        NSLog(@"%@",ids);
+        NSLog(@"%@",single);
     }
     
 //    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
