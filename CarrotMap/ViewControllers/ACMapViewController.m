@@ -9,6 +9,7 @@
 #import "ACMapViewController.h"
 #import "SYSUMyAnnotation.h"
 #import "SYSUMyAnnoCalloutView.h"
+#import "SYSUMyCalloutImageView.h"
 #import "SYSUCarrotCell.h"
 #import "JPCarrot.h"
 #import "JPDataManager.h"
@@ -367,7 +368,7 @@
     
     //这个协议方法是由一个Annotation发起的，因此它需要创建一个MKAnnotationView，这个View会中被绘制在地图上并提供交互。IOS提供了一个定义好的（包括图片，颜色等属性）的MKAnnotation的子类，叫做MKPinAnnotation。你可以用它放置熟悉的大头针。
     
-    if ([annotation isKindOfClass:[MKUserLocation class]])
+    /*if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
     if ([annotation isKindOfClass:[SYSUMyAnnotation class]]){
@@ -382,6 +383,7 @@
                 pinView.image=pinImage;
             }//靠...为毛不起作用
             
+            
             [pinView setPinColor:MKPinAnnotationColorPurple];
             [pinView setAnimatesDrop:YES];
             [pinView setCanShowCallout:NO];//这样就不会弹出系统默认的Callout
@@ -394,10 +396,10 @@
         return pinView;
     }
     
-    return nil;
+    return nil;*/
     
     
-    /*MKAnnotationView *result=nil;
+    MKAnnotationView *result=nil;
      if ([annotation isKindOfClass:[SYSUMyAnnotation class]]==NO) {
      return result;
      }
@@ -409,13 +411,12 @@
      SYSUMyAnnotation *senderAnnotation=(SYSUMyAnnotation *)annotation;
      
      NSString *pinReusableIdentifier=[SYSUMyAnnotation reusableIdentifierForPinColor:senderAnnotation.pinColor];
-     MKAnnotationView *annota=(MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
+     SYSUMyAnnoCalloutView *annota=(SYSUMyAnnoCalloutView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
      
      //初次定义MKAnnotationView
      if (annota==nil) {
-     annota=[[MKAnnotationView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
-     [annota setCanShowCallout:YES];
-     
+         annota=[[SYSUMyAnnoCalloutView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
+         [annota setCanShowCallout:YES];
      }
      
      
@@ -428,7 +429,7 @@
      
      result=annota;
      
-     return result;*/
+     return result;
     
 }
 

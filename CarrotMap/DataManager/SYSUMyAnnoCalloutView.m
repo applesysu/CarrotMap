@@ -12,7 +12,17 @@
 
 @implementation SYSUMyAnnoCalloutView
 
-@synthesize imageView;
+@synthesize calloutImageView;
+
+- (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.calloutImageView = [[SYSUMyCalloutImageView alloc] initWithImage:[UIImage imageNamed:@"notepad.png"]];
+        self.calloutImageView.messageLabel.text = annotation.title;
+    }
+    return self;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -42,37 +52,35 @@
     
     //定制每个Pin callout的View
     if (selected){
-        self.imageView = [[SYSUMyCalloutImageView alloc] initWithImage:[UIImage imageNamed:@"Icon.png"]];
-        self.imageView.messageLabel.text = @"提示信息";
-        [self.imageView setFrame:CGRectMake(0, 0, 0, 0)];
-        [self.imageView sizeToFit];
+        [self.calloutImageView setFrame:CGRectMake(24, 35, 0, 0)];
+        [self.calloutImageView sizeToFit];
         
         [self animateCalloutAppearance];
-        [self addSubview:self.imageView];
+        [self addSubview:self.calloutImageView];
     }
     else
     {
         //Remove your custom view...
-        [self.imageView removeFromSuperview];
+        [self.calloutImageView removeFromSuperview];
     }
     
 }
 
 - (void)animateCalloutAppearance {
     CGFloat scale = 0.001f;
-    self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -50);
+    self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -50);
     
     [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
         CGFloat scale = 1.1f;
-        self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 2);
+        self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 2);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
             CGFloat scale = 0.95;
-            self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -2);
+            self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -2);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
                 CGFloat scale = 1.0;
-                self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 0);
+                self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 0);
             } completion:nil];
         }];
     }];

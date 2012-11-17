@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UILabel *messageLabel;
 
+- (id)initWithFrame:(CGRect)frame;
+
 @end

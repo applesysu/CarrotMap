@@ -12,8 +12,9 @@
 
 @interface SYSUMyAnnoCalloutView : MKPinAnnotationView
 
-@property (nonatomic, strong) SYSUMyCalloutImageView *imageView;
+@property (nonatomic, strong) SYSUMyCalloutImageView *calloutImageView;
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+- (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier;
 
 @end
