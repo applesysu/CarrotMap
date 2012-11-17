@@ -13,6 +13,7 @@
 @implementation SYSUMyAnnoCalloutView
 
 @synthesize calloutImageView;
+@synthesize correspondingAnnotation;
 
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,22 +34,13 @@
     return self;
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     //demo需要定制
     //1.0版本需要根据ann的距离信息，然后定制View的内容，到时需要把UIImageView改成UIView，UIView里面包含一个label，然后根据距离的不同显示不同的信息
     
     
-//    SYSUMyAnnotation *ann = self.annotation;
+    //SYSUMyAnnotation *ann = self.annotation;
     
     //定制每个Pin callout的View
     if (selected){
@@ -57,6 +49,7 @@
         
         [self animateCalloutAppearance];
         [self addSubview:self.calloutImageView];
+        [self setCanShowCallout:NO];
     }
     else
     {

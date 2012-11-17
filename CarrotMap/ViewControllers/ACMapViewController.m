@@ -34,6 +34,7 @@
 @synthesize leftCornerTableView;
 @synthesize leftCornerLayer;
 @synthesize leftCornerPan;
+@synthesize tapOnPins;
 @synthesize bunnyUpperRight;
 @synthesize dragBunny;
 @synthesize userID;
@@ -156,19 +157,7 @@
     
     
     
-    
-    //用generalPublicCarrots在地图上setup一堆annotation
-    /*int i;
-    
-    self.carrotOnMap = [[NSMutableArray alloc] init];
-    for (i = 0; i < [self.generalPublicCarrots count]; i++){
-        JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
-        CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-        
-        [self.carrotOnMap addObject:[[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message]];
-        
-        [self.myMapView addAnnotation:[[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message]];
-    }*/
+   
     
     
     //获取具体地址，并赋值给我们的Pin
@@ -307,7 +296,22 @@
 //   NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
 //    
 //    NSLog(@"Latitude=%f, Longtitude=%f   $$$$$$",oldLocation.coordinate.latitude,oldLocation.coordinate.longitude);
-
+    int i;
+    for (i = 0; i < [carrotOnMap count]; i++){
+        
+        SYSUMyAnnotation *pin = [carrotOnMap objectAtIndex:i];
+        CLLocationCoordinate2D locationOfPinCoordinate = [pin coordinate];
+        CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
+        double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
+        
+        //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
+        if (distanceMeters<5000) {
+            pin.calloutViewOfPin.calloutImageView.messageLabel.text = @"That's near enough";
+        }
+        else {
+            pin.calloutViewOfPin.calloutImageView.messageLabel.text = @"That's too far";
+        }
+    }
 }
 
 #pragma mark - MKMapView Delegate
@@ -334,102 +338,70 @@
 
 
 //应用这个delegate method来实现callout是不同的信息（depend on距离）
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+/*- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     //把mapView上面的annotation里面的calloutView内容都更新一遍
     
-    /*int i;
-     for (i = 0; i < [carrotOnMap count]; i++){
+    int i;
+    for (i = 0; i < [carrotOnMap count]; i++){
      
-     SYSUMyAnnotation *pin = [carrotOnMap objectAtIndex:i];
-     CLLocationCoordinate2D locationOfPinCoordinate = [pin coordinate];
-     CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
-     double distanceMeters = [userLocation.location getDistanceFrom:locationOfPin];
-     double distanceMiles = (distanceMeters / 1609.344);*/
+        SYSUMyAnnotation *pin = [carrotOnMap objectAtIndex:i];
+        CLLocationCoordinate2D locationOfPinCoordinate = [pin coordinate];
+        CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
+        double distanceMeters = [userLocation.location distanceFromLocation:locationOfPin];
     
     //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
-    
-    
-    
-    
-    
-    //怎么实现？？通过annotation get它的calloutView
-    
-    
-    
-    
-    //距离足够近，设置callout里面的信息为“可以拔了哥！”
-    
-}
+        if (distanceMeters<5000) {
+            pin.calloutViewOfPin.calloutImageView.messageLabel.text = @"That's near enough";
+        }
+        else {
+            pin.calloutViewOfPin.calloutImageView.messageLabel.text = @"That's too far";
+        }
+    }
+}*/
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
     
     //更正：这个不是AnnotationDelegate的函数，而是MKMapViewDelegate的函数，尽管它的发起者是Annotation
     
     //这个协议方法是由一个Annotation发起的，因此它需要创建一个MKAnnotationView，这个View会中被绘制在地图上并提供交互。IOS提供了一个定义好的（包括图片，颜色等属性）的MKAnnotation的子类，叫做MKPinAnnotation。你可以用它放置熟悉的大头针。
     
-    /*if ([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
-    
-    if ([annotation isKindOfClass:[SYSUMyAnnotation class]]){
-        
-        SYSUMyAnnoCalloutView* pinView = (SYSUMyAnnoCalloutView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"SYSUMyAnnoCalloutView"];
-        if (!pinView){
-            pinView = [[SYSUMyAnnoCalloutView alloc] initWithAnnotation:annotation
-                                                        reuseIdentifier:@"SYSUMyAnnoCalloutView"];
-            NSLog(@"Build up a new MKAnnotationView");
-            UIImage *pinImage=[UIImage imageNamed:@"Icon.png"];
-            if (pinImage!=nil) {
-                pinView.image=pinImage;
-            }//靠...为毛不起作用
-            
-            
-            [pinView setPinColor:MKPinAnnotationColorPurple];
-            [pinView setAnimatesDrop:YES];
-            [pinView setCanShowCallout:NO];//这样就不会弹出系统默认的Callout
-            [pinView setDraggable:NO];
-        }
-        else
-            pinView.annotation = annotation;
-        
-        
-        return pinView;
-    }
-    
-    return nil;*/
-    
-    
     MKAnnotationView *result=nil;
-     if ([annotation isKindOfClass:[SYSUMyAnnotation class]]==NO) {
-     return result;
-     }
+    if ([annotation isKindOfClass:[SYSUMyAnnotation class]]==NO) {
+        return result;
+    }
      
-     if ([mapView isEqual:myMapView]==NO) {
-     return result;
-     }
+    if ([mapView isEqual:myMapView]==NO) {
+        return result;
+    }
      
-     SYSUMyAnnotation *senderAnnotation=(SYSUMyAnnotation *)annotation;
+    SYSUMyAnnotation *senderAnnotation=(SYSUMyAnnotation *)annotation;
      
-     NSString *pinReusableIdentifier=[SYSUMyAnnotation reusableIdentifierForPinColor:senderAnnotation.pinColor];
-     SYSUMyAnnoCalloutView *annota=(SYSUMyAnnoCalloutView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
+    NSString *pinReusableIdentifier=[SYSUMyAnnotation reusableIdentifierForPinColor:senderAnnotation.pinColor];
+    SYSUMyAnnoCalloutView *annota=(SYSUMyAnnoCalloutView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
+    senderAnnotation.calloutViewOfPin = annota;
      
+    
      //初次定义MKAnnotationView
-     if (annota==nil) {
-         annota=[[SYSUMyAnnoCalloutView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
-         [annota setCanShowCallout:YES];
-     }
+    if (annota==nil) {
+        //第一件事情：initWithAnnotation
+        annota=[[SYSUMyAnnoCalloutView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
+        senderAnnotation.calloutViewOfPin = annota;
+        [annota setCanShowCallout:NO];
+    }
      
      
      
-     result=annota;
-     UIImage *pinImage=[UIImage imageNamed:@"Icon.png"];
-     if (pinImage!=nil) {
-     annota.image=pinImage;
-     } 
+    result=annota;
+    UIImage *pinImage=[UIImage imageNamed:@"Icon.png"];
+    if (pinImage!=nil) {
+        annota.image=pinImage;
+    } 
      
-     result=annota;
+    result=annota;
      
-     return result;
+    return result;
     
 }
 

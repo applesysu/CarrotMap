@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UITapGestureRecognizer *insertCarrot;
 @property (nonatomic, strong) UITapGestureRecognizer *tapToChangeMode;
 @property (nonatomic, strong) UIPanGestureRecognizer *leftCornerPan;
+@property (nonatomic, strong) UITapGestureRecognizer *tapOnPins;
 
 //右上角有关新加
 @property (nonatomic, strong) UIImageView *bunnyUpperRight;

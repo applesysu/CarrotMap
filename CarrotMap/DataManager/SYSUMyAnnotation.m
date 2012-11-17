@@ -8,6 +8,7 @@
 
 #import "SYSUMyAnnotation.h"
 #import "SYSUMyAnnoCalloutView.h"
+#import "SYSUMyAnnoCalloutView.h"
 
 @implementation SYSUMyAnnotation
 
@@ -15,6 +16,7 @@
 @synthesize subtitle;
 @synthesize coordinate;
 @synthesize pinColor;
+@synthesize calloutViewOfPin;
 
 - (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {

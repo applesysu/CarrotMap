@@ -19,8 +19,8 @@
         CGRect boundsForLabel;
         boundsForLabel.origin.x = 10;
         boundsForLabel.origin.y = 10;
-        boundsForLabel.size.width = self.bounds.size.width - 20;
-        boundsForLabel.size.height = self.bounds.size.height - 20;
+        boundsForLabel.size.width = self.bounds.size.width - 100;
+        boundsForLabel.size.height = self.bounds.size.height - 100;
         self.messageLabel = [[UILabel alloc] initWithFrame:boundsForLabel];
         
         [self addSubview:self.messageLabel];
@@ -35,8 +35,8 @@
         CGRect boundsForLabel;
         boundsForLabel.origin.x = 10;
         boundsForLabel.origin.y = 10;
-        boundsForLabel.size.width = self.bounds.size.width - 20;
-        boundsForLabel.size.height = self.bounds.size.height - 20;
+        boundsForLabel.size.width = self.bounds.size.width - 100;
+        boundsForLabel.size.height = self.bounds.size.height - 100;
         self.messageLabel = [[UILabel alloc] initWithFrame:boundsForLabel];
         
         [self addSubview:self.messageLabel];
