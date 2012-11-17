@@ -197,8 +197,10 @@
     
     for (NSDictionary *single in receviers) {
       [  names appendFormat:@"%@,",[single objectForKey:@"name"] ] ;
+        NSLog(@"%@",[single objectForKey:@"name"]);
+        NSLog(@"%d",(int)[single objectForKey:@"id"]);
 //        NSLog(@"%@",[single objectForKey:@"name"]);
-        NSLog(@"%@",names);
+//        NSLog(@"%@",names);
     }
     
     self.selectField.text=names;
@@ -331,7 +333,10 @@
     
     NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
     for (NSDictionary *single in receviers) {
+        
         [ids addObject: [NSString stringWithFormat:@"%d", (int)[single objectForKey:@"id"]]];
+        NSLog(@"%@",[single objectForKey:@"name"]);
+        NSLog(@"%d",(int)[single objectForKey:@"id"]);
     }
     
 //    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];

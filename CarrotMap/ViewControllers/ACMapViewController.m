@@ -58,12 +58,12 @@
     if (self) {
         if ([userLoginType isEqualToString:@"Tourist"]){
             self.userType = userLoginType;
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrots) name:@"didGetGeneralPublicCarrots" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrotsMapView) name:@"didGetGeneralPublicCarrots" object:nil];
             [[JPDataManager sharedInstance] getGeneralPublicCarrotsWithUid:@"000000000"];
         }
         else if ([userLoginType isEqualToString:@"RenRenUser"]){
             self.userType = userLoginType;
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfo) name:@"didGetUserInfo" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetUserInfoMapView) name:@"didGetUserInfo" object:nil];
             [[JPDataManager sharedInstance] getUserInfo];
         }
     }
@@ -304,9 +304,9 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     //协议方法－－CClocation  一旦实施定位开启后，这个函数会在极短的时间内反复调用（即使你没有挪窝，这时两个位置参数的值一样）
-   NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
-    
-    NSLog(@"Latitude=%f, Longtitude=%f   $$$$$$",oldLocation.coordinate.latitude,oldLocation.coordinate.longitude);
+//   NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+//    
+//    NSLog(@"Latitude=%f, Longtitude=%f   $$$$$$",oldLocation.coordinate.latitude,oldLocation.coordinate.longitude);
 
 }
 
@@ -716,7 +716,7 @@
 
 #pragma mark - 异步的函数，实现和拉用户数据，拉萝卜有关的函数
 
-- (void)didGetUserInfo
+- (void)didGetUserInfoMapView
 {
     NSLog(@"didGetUserInfo");
     //拿到用户的信息数据
@@ -728,11 +728,11 @@
 
     
     //进入页面以后开始拉私有的萝卜
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPrivateCarrots) name:@"didGetGeneralPrivateCarrots" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPrivateCarrotsMapView) name:@"didGetGeneralPrivateCarrots" object:nil];
     [[JPDataManager sharedInstance] getGeneralPrivateCarrotsWithUid:self.userID];
 }
 
-- (void)didGetGeneralPrivateCarrots
+- (void)didGetGeneralPrivateCarrotsMapView
 {
     //把拉到的私有萝卜存储在ViewController里面的数组里面
     NSLog(@"didGetGeneralPrivateCarrots");
@@ -743,11 +743,11 @@
     
     
     //拉完私有萝卜以后就可以开始拉公有的萝卜
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrots) name:@"didGetGeneralPublicCarrots" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrotsMapView) name:@"didGetGeneralPublicCarrots" object:nil];
     [[JPDataManager sharedInstance] getGeneralPublicCarrotsWithUid:self.userID withNumber:5];
 }
 
-- (void)didGetGeneralPublicCarrots
+- (void)didGetGeneralPublicCarrotsMapView
 {
     NSLog(@"didGetGeneralPublicCarrots");
     //把拉到的公有萝卜存储在ViewController里面的数组里面
