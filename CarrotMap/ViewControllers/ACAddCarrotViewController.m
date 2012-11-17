@@ -334,7 +334,7 @@
         [ids addObject:[single objectForKey:@"id"]];
     }
     
-    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+//    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
     NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
     NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
     JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:[ausrInfo objectForKey:@"uid"] withReceiversID:ids withSendedTime:@"2002年5月20日"];
