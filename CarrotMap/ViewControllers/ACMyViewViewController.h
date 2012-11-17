@@ -16,7 +16,6 @@
     RNExpandingButtonBar *_bar;
 }
 
-
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIImageView *imageUpperView;
 @property (nonatomic, strong) UIImageView *headImageView;
