@@ -16,6 +16,8 @@
 @property (strong, nonatomic) UIButton *touristBtn;
 @property (strong, nonatomic) UILabel *orLabel;
 @property (strong, nonatomic) UIImageView *orImage;
+@property (strong, nonatomic) UIImageView *logoView;
+@property (strong, nonatomic) UIImageView *boxView;
 
 - (void)loginBtnPressed;
 - (void)TouristBtnPressed;

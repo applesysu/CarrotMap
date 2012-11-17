@@ -183,14 +183,16 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-//    NSString *names=[[NSString alloc] init];
-//    
-//    for (NSDictionary *single in receviers) {
-//      [  names stringByAppendingFormat:@"%@ ",[single objectForKey:@"name"] ] ;
-//        NSLog(@"%@",names);
-//    }
-//    self.selectField.text=names;
-//    NSLog(@"%d",receviers.count);
+    NSMutableString *names=[NSMutableString stringWithCapacity:receviers.count*5];
+    
+    for (NSDictionary *single in receviers) {
+      [  names appendFormat:@"%@ ",[single objectForKey:@"name"] ] ;
+//        NSLog(@"%@",[single objectForKey:@"name"]);
+        NSLog(@"%@",names);
+    }
+    
+    self.selectField.text=names;
+    NSLog(@"%d",receviers.count);
 }
 
 //
