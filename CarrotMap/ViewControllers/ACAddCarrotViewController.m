@@ -356,5 +356,6 @@
 
 -(void)DidGetUserInfo{
     ausrInfo=[JPDataManager sharedInstance].userInfo;
+    NSLog(@"%d", (int)[ausrInfo objectForKey:@"uid"]);
 }
 @end
