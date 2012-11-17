@@ -50,5 +50,6 @@
 @property (strong, nonatomic) UITextView *testRestrict;
 @property (strong, nonatomic) UIButton *buttonToPushCarrot;
 @property (strong, nonatomic) NSArray *theSelectedFriends;
+@property (strong, nonatomic) NSDictionary *ausrInfo;
 -(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude;
 @end

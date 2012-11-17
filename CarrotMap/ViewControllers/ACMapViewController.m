@@ -303,15 +303,17 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     //协议方法－－CClocation  一旦实施定位开启后，这个函数会在极短的时间内反复调用（即使你没有挪窝，这时两个位置参数的值一样）
-/*    NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+   NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
     
     NSLog(@"Latitude=%f, Longtitude=%f   $$$$$$",oldLocation.coordinate.latitude,oldLocation.coordinate.longitude);
-*/
+
 }
 
 #pragma mark - MKMapView Delegate
 
 -(void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated{
+    
+//    NSLog(@"%d",mode);
     //    if (mode==MKUserTrackingModeNone) {
     //       // NSLog(@"None!");
     //        self.myMapView.userTrackingMode=MKUserTrackingModeFollowWithHeading;

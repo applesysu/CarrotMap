@@ -29,6 +29,8 @@
 @synthesize receviers;
 @synthesize wantSay;
 @synthesize wantSubSay;
+@synthesize ausrInfo;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -79,6 +81,7 @@
     self.selectField.borderStyle=UITextBorderStyleNone;
     self.selectField.delegate=self;
     self.selectField.backgroundColor=[UIColor orangeColor];
+    self.selectField.font=[UIFont fontWithName:@"KaiTi_GB2312" size:9];
     self.selectField.layer.cornerRadius=15.0;
     
     self.buttonToFriend=[UIButton buttonWithType:UIButtonTypeContactAdd];
@@ -160,6 +163,12 @@
 //        [firstTwoWords addObject:[singString substringToIndex:2]];
 //        //      NSLog(@"%@" , [firstTwoWords objectAtIndex:i]);
 //    }
+
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DidGetUserInfo) name:@"didGetUserInfo" object:nil];
+    [[JPDataManager sharedInstance] getUserInfo];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -172,6 +181,7 @@
     self.friendNames=nil;
     self.friendsListViewController=nil;
     self.receviers=nil;
+    self.ausrInfo=nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 
@@ -186,13 +196,14 @@
     NSMutableString *names=[NSMutableString stringWithCapacity:receviers.count*5];
     
     for (NSDictionary *single in receviers) {
-      [  names appendFormat:@"%@ ",[single objectForKey:@"name"] ] ;
+      [  names appendFormat:@"%@,",[single objectForKey:@"name"] ] ;
 //        NSLog(@"%@",[single objectForKey:@"name"]);
         NSLog(@"%@",names);
     }
     
     self.selectField.text=names;
     NSLog(@"%d",receviers.count);
+    
 }
 
 //
@@ -317,18 +328,18 @@
 
 -(void)senderCarrot:(UIButton *)paramSender{
 //    NSLog(@"%@",receviers);
-//    
-//    NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
-//    for (NSDictionary *single in receviers) {
-//        [ids addObject:[single objectForKey:@"id"]];
-//    }
-//    
-//    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
-//    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
-//    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
-//    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:@"273999927" withReceiversID:ids withSendedTime:@"2002年5月20日"];
-//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
-//    
+    
+    NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
+    for (NSDictionary *single in receviers) {
+        [ids addObject:[single objectForKey:@"id"]];
+    }
+    
+    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
+    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
+    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:[ausrInfo objectForKey:@"uid"] withReceiversID:ids withSendedTime:@"2002年5月20日"];
+    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
+    
 }
 
 -(void)getFriendList{
@@ -336,5 +347,9 @@
     friendList=[[NSArray alloc] initWithArray:[JPDataManager sharedInstance].friendsList];
     friendsListViewController=[[ACFriendsListViewController alloc] initWithFriendsList:friendList];
     [self presentModalViewController:friendsListViewController animated:YES];
+}
+
+-(void)DidGetUserInfo{
+    ausrInfo=[JPDataManager sharedInstance].userInfo;
 }
 @end
