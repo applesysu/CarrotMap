@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		180FD0E01654C0E0000F3D1A /* BBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FD0DF1654C0E0000F3D1A /* BBCell.m */; };
-		180FD0E41654C123000F3D1A /* BBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FD0E31654C123000F3D1A /* BBViewController.m */; };
-		180FD0EA1654F3F4000F3D1A /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 180FD0E91654F3F4000F3D1A /* data.plist */; };
 		187BFCFA164E1BD0007AC7BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187BFCF9164E1BD0007AC7BA /* MapKit.framework */; };
 		187BFD02164E1C04007AC7BA /* SYSUMyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */; };
 		187BFD05164E1C78007AC7BA /* SYSUMyCalloutImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */; };
@@ -158,11 +155,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		180FD0DE1654C0E0000F3D1A /* BBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCell.h; sourceTree = "<group>"; };
-		180FD0DF1654C0E0000F3D1A /* BBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCell.m; sourceTree = "<group>"; };
-		180FD0E21654C122000F3D1A /* BBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBViewController.h; sourceTree = "<group>"; };
-		180FD0E31654C123000F3D1A /* BBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBViewController.m; sourceTree = "<group>"; };
-		180FD0E91654F3F4000F3D1A /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = data.plist; path = ViewControllers/data.plist; sourceTree = "<group>"; };
 		187BFCF9164E1BD0007AC7BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		187BFD00164E1C04007AC7BA /* SYSUMyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSUMyAnnotation.h; sourceTree = "<group>"; };
 		187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSUMyAnnotation.m; sourceTree = "<group>"; };
@@ -435,10 +427,6 @@
 			children = (
 				1887160D1652891400822642 /* RNExpandingButtonBar.h */,
 				1887160E1652891400822642 /* RNExpandingButtonBar.m */,
-				180FD0DE1654C0E0000F3D1A /* BBCell.h */,
-				180FD0DF1654C0E0000F3D1A /* BBCell.m */,
-				180FD0E21654C122000F3D1A /* BBViewController.h */,
-				180FD0E31654C123000F3D1A /* BBViewController.m */,
 			);
 			name = MyView;
 			sourceTree = "<group>";
@@ -566,7 +554,6 @@
 				5F8B9B7C1650CA2D0074CC46 /* notepad.png */,
 				5FAEF65A164F76770057D4ED /* Icon.png */,
 				60B6F31D1647B96800071E86 /* CarrotMap-Info.plist */,
-				180FD0E91654F3F4000F3D1A /* data.plist */,
 				60B6F31E1647B96800071E86 /* InfoPlist.strings */,
 				60B6F3211647B96800071E86 /* main.m */,
 				60B6F3231647B96800071E86 /* CarrotMap-Prefix.pch */,
@@ -1003,7 +990,6 @@
 				1887161B16528AF400822642 /* red_plus_up.png in Resources */,
 				1887161C16528AF400822642 /* red_x_down.png in Resources */,
 				1887161D16528AF400822642 /* red_x_up.png in Resources */,
-				180FD0EA1654F3F4000F3D1A /* data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1114,8 +1100,6 @@
 				5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */,
 				5F8B9B911650E9330074CC46 /* SDRecentFriendList.m in Sources */,
 				1887160F1652891400822642 /* RNExpandingButtonBar.m in Sources */,
-				180FD0E01654C0E0000F3D1A /* BBCell.m in Sources */,
-				180FD0E41654C123000F3D1A /* BBViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -354,6 +354,7 @@
     
     
     
+    
     //距离足够近，设置callout里面的信息为“可以拔了哥！”
     
 }
@@ -363,8 +364,8 @@
     //更正：这个不是AnnotationDelegate的函数，而是MKMapViewDelegate的函数，尽管它的发起者是Annotation
     
     //这个协议方法是由一个Annotation发起的，因此它需要创建一个MKAnnotationView，这个View会中被绘制在地图上并提供交互。IOS提供了一个定义好的（包括图片，颜色等属性）的MKAnnotation的子类，叫做MKPinAnnotation。你可以用它放置熟悉的大头针。
-     
-    /*if ([annotation isKindOfClass:[MKUserLocation class]])
+    
+    if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
     if ([annotation isKindOfClass:[SYSUMyAnnotation class]]){
@@ -391,23 +392,27 @@
         return pinView;
     }
     
-    return nil;*/
+    return nil;
     
     
-    SYSUMyAnnoCalloutView *result=nil;
+    /*MKAnnotationView *result=nil;
      if ([annotation isKindOfClass:[SYSUMyAnnotation class]]==NO) {
+     return result;
+     }
+     
+     if ([mapView isEqual:myMapView]==NO) {
      return result;
      }
      
      SYSUMyAnnotation *senderAnnotation=(SYSUMyAnnotation *)annotation;
      
      NSString *pinReusableIdentifier=[SYSUMyAnnotation reusableIdentifierForPinColor:senderAnnotation.pinColor];
-     SYSUMyAnnoCalloutView *annota=(SYSUMyAnnoCalloutView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
+     MKAnnotationView *annota=(MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
      
-     
+     //初次定义MKAnnotationView
      if (annota==nil) {
-     annota=[[SYSUMyAnnoCalloutView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
-     [annota setCanShowCallout:NO];
+     annota=[[MKAnnotationView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
+     [annota setCanShowCallout:YES];
      
      }
      
@@ -421,7 +426,7 @@
      
      result=annota;
      
-     return result;
+     return result;*/
     
 }
 

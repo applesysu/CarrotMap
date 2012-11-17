@@ -8,7 +8,6 @@
 
 #import "ACMyViewViewController.h"
 #import "JPDataManager.h"
-#import "BBViewController.h"
 
 @interface ACMyViewViewController ()
 
@@ -81,7 +80,7 @@
     
     
     
-    //以下代码块实现一个ExpandingButtonBar
+    
     
     
     
@@ -130,33 +129,17 @@
      * -------------------------------------------------------*/
     [self setBar:bar];
     [[self view] addSubview:[self bar]];
-    
-    
-    
-    
-    //以下代码块实现一个圆形的TableView
-    
-    self.myReceivedListButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.myReceivedListButton setFrame:CGRectMake(160, 370, 40, 40)];
-    [self.myReceivedListButton setTitle:@"yup" forState:UIControlStateNormal];
-    [self.myReceivedListButton addTarget:self action:@selector(touchUpMyReceivedListButton) forControlEvents:UIControlEventTouchUpInside];
-    self.myReceivedListButton.userInteractionEnabled = YES;
-    
-    [self.view addSubview:self.myReceivedListButton];
-    
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-#pragma mark - 点击Buttons的函数
-- (void)touchUpMyReceivedListButton
-{
-    NSLog(@"Button pressed");
-    BBViewController *bbViewController = [[BBViewController alloc] init];
-    [self presentModalViewController:bbViewController animated:YES];
 }
 
 @end

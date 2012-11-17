@@ -42,39 +42,14 @@
     
     //定制每个Pin callout的View
     if (selected){
-        self.imageView = [[SYSUMyCalloutImageView alloc] initWithImage:[UIImage imageNamed:@"Icon.png"]];
+        self.imageView = [[SYSUMyCalloutImageView alloc] initWithImage:[UIImage imageNamed:@"Icon@2x.png"]];
         self.imageView.messageLabel.text = @"提示信息";
-        [self.imageView setFrame:CGRectMake(-24, 35, 0, 0)];
+        [self.imageView setFrame:CGRectMake(24, 35, 0, 0)];
         [self.imageView sizeToFit];
         
-        [self animateCalloutAppearance];
         [self addSubview:self.imageView];
     }
-    else {
-        [self.imageView removeFromSuperview];
-    }
     
 }
-
-- (void)animateCalloutAppearance {
-    CGFloat scale = 0.001f;
-    self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -50);
-    
-    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-        CGFloat scale = 1.1f;
-        self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 2);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-            CGFloat scale = 0.95;
-            self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -2);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-                CGFloat scale = 1.0;
-                self.imageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 0);
-            } completion:nil];
-        }];
-    }];
-}
-
 
 @end
