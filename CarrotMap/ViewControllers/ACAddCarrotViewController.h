@@ -51,5 +51,8 @@
 @property (strong, nonatomic) UIButton *buttonToPushCarrot;
 @property (strong, nonatomic) NSArray *theSelectedFriends;
 @property (strong, nonatomic) NSDictionary *ausrInfo;
+@property (strong, nonatomic) UIImageView *theWholeBackground;
+@property (strong, nonatomic) UINavigationBar *topNavigation;
+
 -(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude;
 @end

@@ -30,7 +30,8 @@
 @synthesize wantSay;
 @synthesize wantSubSay;
 @synthesize ausrInfo;
-
+@synthesize theWholeBackground;
+@synthesize topNavigation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,48 +59,56 @@
 {
     [super viewDidLoad];
     
-	
-    [super viewDidLoad];
+	self.topNavigation=[[UINavigationBar alloc] init];
+    [self.view addSubview:self.topNavigation];
+    
+    
+    
     temparray=[[NSMutableArray alloc] initWithCapacity:600];
     [temparray removeAllObjects];
     self.view.backgroundColor=[UIColor clearColor];
+    
+    theWholeBackground=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wholeBackground"]];
+    theWholeBackground.frame=CGRectMake(0, 0, 320, 500);
+    theWholeBackground.userInteractionEnabled=YES;
+    [self.view addSubview:theWholeBackground];
     
     self.wantSay=[[UILabel alloc] initWithFrame:CGRectMake(10, 15, 50, 30)];
     self.wantSay.text=@"想对:";
     self.wantSay.textColor=[UIColor blackColor];
     self.wantSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
-    [self.view addSubview:self.wantSay];
+//    [self.view addSubview:self.wantSay];
     
     self.wantSubSay=[[UILabel alloc] initWithFrame:CGRectMake(225, 15, 25, 30)];
     self.wantSubSay.text=@"说";
     self.wantSubSay.textColor=[UIColor blackColor];
     self.wantSubSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
-    [self.view addSubview:self.wantSubSay];
+//    [self.view addSubview:self.wantSubSay];
     
-    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(50, 15, 170, 30)];
+    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(55, 62, 210, 25)];
 //    self.selectField.placeholder=@"";
     
     self.selectField.borderStyle=UITextBorderStyleNone;
     self.selectField.delegate=self;
-    self.selectField.backgroundColor=[UIColor orangeColor];
+    self.selectField.backgroundColor=[UIColor clearColor];
     self.selectField.font=[UIFont fontWithName:@"KaiTi_GB2312" size:9];
-    self.selectField.layer.cornerRadius=15.0;
+//    self.selectField.layer.cornerRadius=15.0;
     
     self.buttonToFriend=[UIButton buttonWithType:UIButtonTypeContactAdd];
     //    self.buttonToFriend.backgroundColor=[UIColor orangeColor];
     self.buttonToFriend.frame=CGRectMake(245,15, 30, 30);
     [self.buttonToFriend addTarget:self action:@selector(ToFriendList:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.buttonToFriend];
+    //[self.view addSubview:self.buttonToFriend];
 
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"notepad.png"]] ;
     imageView.userInteractionEnabled = YES;
     imageView.frame=CGRectMake(10, 50, 300, 350);
     imageView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:imageView];
+//    [self.view addSubview:imageView];
 
         
-    self.testRestrict=[[UITextView alloc] initWithFrame:CGRectMake(10, 60, 300, 300)];
+    self.testRestrict=[[UITextView alloc] initWithFrame:CGRectMake(18, 119, 280, 150)];
     self.testRestrict.delegate=self;
     self.testRestrict.font=[UIFont fontWithName:@"KaiTi_GB2312" size:18];
     self.testRestrict.backgroundColor=[UIColor clearColor];
@@ -113,7 +122,7 @@
 //    textView.backgroundColor = [UIColor blueColor];
 //    [self.view addSubview:textView];
     
-    [imageView addSubview:self.testRestrict];
+   [self.theWholeBackground addSubview:self.testRestrict];
     
     self.buttonToPushCarrot=[UIButton buttonWithType:UIButtonTypeCustom];
     self.buttonToPushCarrot.frame=CGRectMake(280, 15, 30, 30);
@@ -124,8 +133,12 @@
     
    
     
-     [self.view addSubview:self.selectField];
-    [self.view addSubview:self.buttonToPushCarrot];
+    [self.theWholeBackground addSubview:self.selectField];
+//    [self.view addSubview:self.buttonToPushCarrot];
+    
+    
+    
+    
 //    NSFetchRequest *fetchRequest=[[NSFetchRequest alloc] init];
 //    
 //    NSEntityDescription *entity=[NSEntityDescription entityForName:@"Friend" inManagedObjectContext:self.manageedObjectContext];
@@ -183,6 +196,9 @@
     self.friendsListViewController=nil;
     self.receviers=nil;
     self.ausrInfo=nil;
+    self.topNavigation=nil;
+    self.theWholeBackground=nil;
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 

@@ -18,6 +18,7 @@
     NSArray *friendList;
     NSMutableArray *receiverIDList;
     
+    
 };
 
 @property (strong, nonatomic) UITableView *atableView;

@@ -55,6 +55,7 @@
     if (self) {
         //登录按钮
         self.loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(40,140,100,90)];
+//        self.loginBtn=[[UIButton alloc] init];
         [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"renren.png"] forState:UIControlStateNormal];
 //        [self.loginBtn setTitle:@"人人登录" forState:UIControlStateNormal];
         [self.loginBtn addTarget:self action:@selector(loginBtnPressed) forControlEvents:UIControlEventTouchUpInside];
