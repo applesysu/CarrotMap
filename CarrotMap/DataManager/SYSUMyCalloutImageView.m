@@ -11,19 +11,38 @@
 @implementation SYSUMyCalloutImageView
 
 @synthesize messageLabel;
+@synthesize messageLabelSecond;
+@synthesize messageLabelThird;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        //第一个Label
         CGRect boundsForLabel;
-        boundsForLabel.origin.x = 10;
-        boundsForLabel.origin.y = 10;
+        boundsForLabel.origin.x = 20;
+        boundsForLabel.origin.y = 50;
         boundsForLabel.size.width = self.bounds.size.width - 100;
-        boundsForLabel.size.height = self.bounds.size.height - 100;
+        boundsForLabel.size.height = 20;
         self.messageLabel = [[UILabel alloc] initWithFrame:boundsForLabel];
-        
+        self.messageLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:self.messageLabel];
+        //第二个Label
+        boundsForLabel.origin.x = 20;
+        boundsForLabel.origin.y = 80;
+        boundsForLabel.size.width = self.bounds.size.width - 100;
+        boundsForLabel.size.height = 20;
+        self.messageLabelSecond = [[UILabel alloc] initWithFrame:boundsForLabel];
+        self.messageLabelSecond.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.messageLabelSecond];
+        //第三个Label
+        boundsForLabel.origin.x = 20;
+        boundsForLabel.origin.y = 110;
+        boundsForLabel.size.width = self.bounds.size.width - 100;
+        boundsForLabel.size.height = 20;
+        self.messageLabelThird = [[UILabel alloc] initWithFrame:boundsForLabel];
+        self.messageLabelThird.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.messageLabelThird];
     }
     return self;
 }
@@ -32,14 +51,31 @@
 {
     self = [super initWithImage:image];
     if (self){
+        //第一个Label
         CGRect boundsForLabel;
-        boundsForLabel.origin.x = 10;
-        boundsForLabel.origin.y = 10;
+        boundsForLabel.origin.x = 20;
+        boundsForLabel.origin.y = 50;
         boundsForLabel.size.width = self.bounds.size.width - 100;
-        boundsForLabel.size.height = self.bounds.size.height - 100;
+        boundsForLabel.size.height = 20;
         self.messageLabel = [[UILabel alloc] initWithFrame:boundsForLabel];
-        
+        self.messageLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:self.messageLabel];
+        //第二个Label
+        boundsForLabel.origin.x = 20;
+        boundsForLabel.origin.y = 80;
+        boundsForLabel.size.width = self.bounds.size.width - 100;
+        boundsForLabel.size.height = 20;
+        self.messageLabelSecond = [[UILabel alloc] initWithFrame:boundsForLabel];
+        self.messageLabelSecond.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.messageLabelSecond];
+        //第三个Label
+        boundsForLabel.origin.x = 20;
+        boundsForLabel.origin.y = 110;
+        boundsForLabel.size.width = self.bounds.size.width - 100;
+        boundsForLabel.size.height = 20;
+        self.messageLabelThird = [[UILabel alloc] initWithFrame:boundsForLabel];
+        self.messageLabelThird.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.messageLabelThird];
     }
     return self;
 }

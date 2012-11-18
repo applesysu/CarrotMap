@@ -44,7 +44,7 @@
     
     //定制每个Pin callout的View
     if (selected){
-        [self.calloutImageView setFrame:CGRectMake(24, 35, 0, 0)];
+        [self.calloutImageView setFrame:CGRectMake(-100, -100, 0, 0)];
         [self.calloutImageView sizeToFit];
         
         [self animateCalloutAppearance];
@@ -61,17 +61,17 @@
 
 - (void)animateCalloutAppearance {
     CGFloat scale = 0.001f;
-    self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -50);
+    self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 100);
     
-    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
         CGFloat scale = 1.1f;
         self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 2);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+        [UIView animateWithDuration:2.0 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
             CGFloat scale = 0.95;
             self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, -2);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+            [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
                 CGFloat scale = 1.0;
                 self.calloutImageView.transform = CGAffineTransformMake(scale, 0.0f, 0.0f, scale, 0, 0);
             } completion:nil];

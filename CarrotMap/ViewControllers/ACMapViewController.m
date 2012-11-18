@@ -735,6 +735,9 @@
 //    [self.myMapView addAnnotations:self.generalPrivateCarrots];
  
     
+    
+    
+    
     //把所有的公有萝卜转化成Annotation然后加到mapView里面
     self.carrotOnMap = [[NSMutableArray alloc] init];
     int i;

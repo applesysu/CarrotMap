@@ -11,6 +11,8 @@
 @interface SYSUMyCalloutImageView : UIImageView
 
 @property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UILabel *messageLabelSecond;
+@property (nonatomic, strong) UILabel *messageLabelThird;
 
 - (id)initWithFrame:(CGRect)frame;
 
