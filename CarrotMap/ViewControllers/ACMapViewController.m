@@ -703,6 +703,8 @@
     [dict objectForKey:@"tinyurl"];
     NSLog(@"%@", self.userID);
     
+    
+    self.view.userInteractionEnabled = YES;
     //拉了用户数据以后开始拉所有的朋友数据
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendList) name:@"didGetFriendsList" object:nil];
     [[JPDataManager sharedInstance] getFriendsList];
