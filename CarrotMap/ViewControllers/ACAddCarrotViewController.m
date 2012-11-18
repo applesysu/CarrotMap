@@ -334,7 +334,7 @@
     NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
     for (NSDictionary *single in receviers) {
         
-        [ids addObject: [NSString stringWithFormat:@"%@", [single objectForKey:@"id"]]];
+        [ids addObject: [NSString stringWithFormat:@"%d", (int)[single objectForKey:@"id"]]];
 //        NSLog(@"%@",[single objectForKey:@"name"]);
         NSLog(@"%@",ids);
         NSLog(@"%@",single);

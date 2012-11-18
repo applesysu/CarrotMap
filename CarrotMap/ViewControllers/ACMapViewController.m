@@ -338,15 +338,14 @@
 {
     //把mapView上面的annotation里面的calloutView内容都更新一遍
     
-    int i;
+    /*int i;
      for (i = 0; i < [carrotOnMap count]; i++){
      
      SYSUMyAnnotation *pin = [carrotOnMap objectAtIndex:i];
      CLLocationCoordinate2D locationOfPinCoordinate = [pin coordinate];
      CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
      double distanceMeters = [userLocation.location getDistanceFrom:locationOfPin];
-//     double distanceMiles = (distanceMeters / 1609.344);
-         NSLog(@"%lf",distanceMeters);
+     double distanceMiles = (distanceMeters / 1609.344);*/
     
     //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
     
@@ -360,7 +359,7 @@
     
     
     //距离足够近，设置callout里面的信息为“可以拔了哥！”
-     }
+    
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
