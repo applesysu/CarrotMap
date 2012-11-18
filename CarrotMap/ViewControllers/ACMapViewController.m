@@ -53,6 +53,9 @@
 //navController
 @synthesize navController;
 
+//id-Mapping Dictionary
+@synthesize idMappingDictionary;
+
 - (id)initWithUserType:(NSString *)userLoginType
 {
     self = [super init];
@@ -630,12 +633,14 @@
             
             if (indexPath.section == 0){
                 JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
-                cell.title.text = tmp.carrotID;
+                cell.title.text = [self.idMappingDictionary objectForKey:tmp.senderID];
+                NSLog(@"TEMPORARY TEST CELL %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
                 cell.subtitle.text = tmp.message;
             }
             else {
                 JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
-                cell.title.text = tmp.carrotID;
+                cell.title.text = [self.idMappingDictionary objectForKey:tmp.senderID];
+                NSLog(@"TEMPORARY TEST CELL %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
                 cell.subtitle.text = tmp.message;
             }
             
@@ -697,9 +702,28 @@
     [dict objectForKey:@"name"];
     [dict objectForKey:@"tinyurl"];
     NSLog(@"%@", self.userID);
-
     
-    //进入页面以后开始拉私有的萝卜
+    //拉了用户数据以后开始拉所有的朋友数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendList) name:@"didGetFriendsList" object:nil];
+    [[JPDataManager sharedInstance] getFriendsList];
+}
+
+- (void)didGetFriendList
+{
+    NSLog(@"didGetFriendList");
+    NSLog(@"%@", [JPDataManager sharedInstance].friendsList);
+    
+    //拉了朋友数据以后开始拉id-Mapping
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetIdMappingMapView) name:@"didGetIdMapping" object:nil];
+    [[JPDataManager sharedInstance] getIdMapping];
+}
+
+- (void)didGetIdMappingMapView
+{
+    NSLog(@"didGetIdMapping");
+    self.idMappingDictionary = [JPDataManager sharedInstance].idMapping;
+    
+    //拉了id-Mapping以后开始拉私有的萝卜
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPrivateCarrotsMapView) name:@"didGetGeneralPrivateCarrots" object:nil];
     [[JPDataManager sharedInstance] getGeneralPrivateCarrotsWithUid:self.userID];
 }
@@ -736,16 +760,14 @@
  
     
     
-    
-    
     //把所有的公有萝卜转化成Annotation然后加到mapView里面
     self.carrotOnMap = [[NSMutableArray alloc] init];
     int i;
     for (i = 0; i < [self.generalPublicCarrots count]; i++){
         JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message];
-        
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:tmp.senderID] subtitle:tmp.message];
+        NSLog(@"TEMP TEST ANNOTATION %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -753,8 +775,8 @@
     for (i = 0; i < [self.generalPrivateCarrots count]; i++){
         JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.carrotID subtitle:tmp.message];
-        
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:tmp.senderID] subtitle:tmp.message];
+        NSLog(@"TEMP TEST ANNOTATION %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -766,6 +788,7 @@
         self.rightCornerView.userInteractionEnabled = NO;
         self.bunnyUpperRight.userInteractionEnabled = NO;
     }
+
 }
 
 /*- (void) didSendACarrotToServer
