@@ -233,7 +233,11 @@
 {
     NSLog(@"Button 8 Pressed");
     
-    [[JPDataManager sharedInstance] refreshGeneralPublicCarrotsWithUid:@"245318989" withNumber:10];
+//    [[JPDataManager sharedInstance] refreshGeneralPublicCarrotsWithUid:@"245318989" withNumber:10];
+    
+    [[JPDataManager sharedInstance] getIdMapping];
+    
+    NSLog(@"%@",[JPDataManager sharedInstance].idMapping );
 }
 
 - (void) btn9Pressed
@@ -277,14 +281,17 @@
 //    NSLog(@"%@",arr3);
     
     //真正意义上的萝卜测试
-    NSLog(@"%d", [[[JPDataManager sharedInstance] getSawPublicCarrotsWithUid:@"245318989"] count]);
-    NSLog(@"%d", [[[JPDataManager sharedInstance] getMySendedCarrotsWithUid:@"245318989"] count]);
-    NSLog(@"%d", [[[JPDataManager sharedInstance] getMyReceivedCarrotsWithUid:@"245318989"] count]);
+//    NSLog(@"%d", [[[JPDataManager sharedInstance] getSawPublicCarrotsWithUid:@"245318989"] count]);
+//    NSLog(@"%d", [[[JPDataManager sharedInstance] getMySendedCarrotsWithUid:@"245318989"] count]);
+//    NSLog(@"%d", [[[JPDataManager sharedInstance] getMyReceivedCarrotsWithUid:@"245318989"] count]);
     
     // 一些数据库测试函数
     //[[JPLocalDataManager sharedInstance] testLocalDataManager];
     
     //NSLog(@"%d", [[[JPLocalDataManager sharedInstance] visitPublicCarrots] count]);
+    
+    //更新好友列表
+    [[JPDataManager sharedInstance] refreshFriendsList];
 }
 
 @end

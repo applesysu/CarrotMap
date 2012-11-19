@@ -26,9 +26,9 @@
     
     [Parse setApplicationId:@"d1xoVeL7WQ1Rb12AGfdfzkgzucRjepX18bipuaN2" clientKey:@"HOF6hje7vFgz9YSnFydZTO7Fb56rNSDh6FZDFm3d"];
 
-//    self.testViewController = [[ACTestViewController alloc] init];
-//    [self.window addSubview:self.testViewController.view];
-    self.window.rootViewController=[[ACLoginViewController alloc] init];
+    self.testViewController = [[ACTestViewController alloc] init];
+    [self.window addSubview:self.testViewController.view];
+//    self.window.rootViewController=[[ACLoginViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

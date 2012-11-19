@@ -270,13 +270,15 @@
             [tmpIdMapping setObject:[tmpDict objectForKey:@"name"] forKey:[tmpDict objectForKey:@"id"]];
         }
         self.friendsList = [NSArray arrayWithArray:tmpFriendsList];
-        self.idMapping = [NSDictionary dictionaryWithDictionary:tmpIdMapping];
+        self.idMapping = (NSDictionary *)[[NSDictionary alloc] initWithDictionary:tmpIdMapping copyItems:YES];
         NSLog(@"%@", self.friendsList);
         NSLog(@"%@", self.idMapping);
         
         //保存到本地
-        [[NSUserDefaults standardUserDefaults] setObject:self.friendsList forKey:@"friendsList"];
-        [[NSUserDefaults standardUserDefaults] setObject:self.idMapping forKey:@"idMapping"];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.idMapping];
+        [userDefaults setObject:self.friendsList forKey:@"friendsList"];
+        [userDefaults setObject:data forKey:@"idMapping"];
         
         //发送通知
         [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetFriendsList" object:self];
