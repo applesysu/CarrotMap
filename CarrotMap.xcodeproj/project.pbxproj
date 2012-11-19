@@ -29,8 +29,8 @@
 		5FAC2D7A165938FE005E3D3E /* wholeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAC2D79165938FE005E3D3E /* wholeBackground.png */; };
 		5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */; };
 		5FF35A4716590184002F4268 /* logoview.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF35A4016590184002F4268 /* logoview.png */; };
-		607A940B165A1D63008B1311 /* Avatars.m in Sources */ = {isa = PBXBuildFile; fileRef = 607A940A165A1D63008B1311 /* Avatars.m */; };
-		607A940F165A1D76008B1311 /* JPAvatarsDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 607A940E165A1D76008B1311 /* JPAvatarsDownloadOperation.m */; };
+		607A9412165A2E55008B1311 /* JPAvatarsDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 607A9411165A2E55008B1311 /* JPAvatarsDownloadOperation.m */; };
+		607A9415165A2EF9008B1311 /* Avatars.m in Sources */ = {isa = PBXBuildFile; fileRef = 607A9414165A2EF9008B1311 /* Avatars.m */; };
 		60B42893164CD49000D5FCD3 /* JPLocalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */; };
 		60B6F3141647B96800071E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3131647B96800071E86 /* UIKit.framework */; };
 		60B6F3161647B96800071E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B6F3151647B96800071E86 /* Foundation.framework */; };
@@ -190,10 +190,10 @@
 		5FAEF6B7164FC7840057D4ED /* SDFriendItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDFriendItems.h; path = ../SDFriendItems.h; sourceTree = "<group>"; };
 		5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDFriendItems.m; path = ../SDFriendItems.m; sourceTree = "<group>"; };
 		5FF35A4016590184002F4268 /* logoview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoview.png; path = 0login1115/logoview.png; sourceTree = "<group>"; };
-		607A9409165A1D63008B1311 /* Avatars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avatars.h; sourceTree = "<group>"; };
-		607A940A165A1D63008B1311 /* Avatars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avatars.m; sourceTree = "<group>"; };
-		607A940D165A1D76008B1311 /* JPAvatarsDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAvatarsDownloadOperation.h; sourceTree = "<group>"; };
-		607A940E165A1D76008B1311 /* JPAvatarsDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAvatarsDownloadOperation.m; sourceTree = "<group>"; };
+		607A9410165A2E54008B1311 /* JPAvatarsDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAvatarsDownloadOperation.h; sourceTree = "<group>"; };
+		607A9411165A2E55008B1311 /* JPAvatarsDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAvatarsDownloadOperation.m; sourceTree = "<group>"; };
+		607A9413165A2EF9008B1311 /* Avatars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avatars.h; sourceTree = "<group>"; };
+		607A9414165A2EF9008B1311 /* Avatars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avatars.m; sourceTree = "<group>"; };
 		60B42891164CD49000D5FCD3 /* JPLocalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalDataManager.h; sourceTree = "<group>"; };
 		60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalDataManager.m; sourceTree = "<group>"; };
 		60B6F30F1647B96800071E86 /* CarrotMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrotMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,8 +511,8 @@
 		60B42895164CDCC100D5FCD3 /* LocalModel */ = {
 			isa = PBXGroup;
 			children = (
-				607A9409165A1D63008B1311 /* Avatars.h */,
-				607A940A165A1D63008B1311 /* Avatars.m */,
+				607A9413165A2EF9008B1311 /* Avatars.h */,
+				607A9414165A2EF9008B1311 /* Avatars.m */,
 				60BB3FBD164D005600919070 /* SendedCarrots.h */,
 				60BB3FBE164D005600919070 /* SendedCarrots.m */,
 				60BB3FBA164D004300919070 /* SawPublicCarrots.h */,
@@ -657,10 +657,10 @@
 				60BA885A164880A50043AC75 /* JPParseServer.m */,
 				60B42891164CD49000D5FCD3 /* JPLocalDataManager.h */,
 				60B42892164CD49000D5FCD3 /* JPLocalDataManager.m */,
-				607A940D165A1D76008B1311 /* JPAvatarsDownloadOperation.h */,
-				607A940E165A1D76008B1311 /* JPAvatarsDownloadOperation.m */,
 				60C01D44164CB1E400778758 /* ACTestViewController.h */,
 				60C01D45164CB1E500778758 /* ACTestViewController.m */,
+				607A9410165A2E54008B1311 /* JPAvatarsDownloadOperation.h */,
+				607A9411165A2E55008B1311 /* JPAvatarsDownloadOperation.m */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -1152,6 +1152,8 @@
 				5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */,
 				5F8B9B911650E9330074CC46 /* SDRecentFriendList.m in Sources */,
 				1887160F1652891400822642 /* RNExpandingButtonBar.m in Sources */,
+				607A9412165A2E55008B1311 /* JPAvatarsDownloadOperation.m in Sources */,
+				607A9415165A2EF9008B1311 /* Avatars.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,8 +1162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				60B6F33F1647B96900071E86 /* CarrotMapTests.m in Sources */,
-				607A940B165A1D63008B1311 /* Avatars.m in Sources */,
-				607A940F165A1D76008B1311 /* JPAvatarsDownloadOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

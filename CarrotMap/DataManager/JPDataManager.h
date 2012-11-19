@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSDictionary *userInfo;
 @property (nonatomic, strong) NSArray *friendsList;
 @property (nonatomic, strong) NSDictionary *idMapping;
+@property (nonatomic, strong) NSDictionary *avatarMapping;
 
 @property (nonatomic, strong) NSArray *GeneralpublicCarrots;
 @property (nonatomic, strong) NSArray *GeneralprivateCarrots;

@@ -11,6 +11,7 @@
 #import "ReceivedCarrots.h"
 #import "SawPublicCarrots.h"
 #import "ACAppDelegate.h"
+#import "Avatars.h"
 #import "Test.h"
 
 @interface JPLocalDataManager()
@@ -76,6 +77,54 @@
 - (void) saveIdMapping:(NSDictionary*)idMapping
 {
     [[NSUserDefaults standardUserDefaults] setObject:idMapping forKey:@"idMapping"];
+}
+
+- (void)saveAnAvatarWithUid:(NSString *)uid withAvatar:(NSData *)data
+{
+    Avatars *avatars = (Avatars*)[NSEntityDescription insertNewObjectForEntityForName:@"Avatars" inManagedObjectContext:managedObjectContext];
+    avatars.uid = [NSString stringWithFormat:@"%@", uid];
+    avatars.avatar = data;
+    
+    NSError *error;
+    if ([managedObjectContext save:&error]) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:uid forKey:@"id"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didDownloadAnAvatar" object:self userInfo:dict];
+    }
+    else
+        NSLog(@"本地存储失败");
+    
+}
+
+- (NSDictionary *)getAvatars
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Avatars" inManagedObjectContext:managedObjectContext];
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *result = [managedObjectContext executeFetchRequest:request error:&error];
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    for ( Avatars *avatars in result ) {
+        [dict setObject:avatars.avatar forKey:avatars.uid];
+    }
+    
+    return dict;
+}
+
+- (void)removeAvatars
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Avatars" inManagedObjectContext:managedObjectContext];
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *result = [managedObjectContext executeFetchRequest:request error:&error];
+    
+    for ( Avatars *avatar in result ) {
+        [managedObjectContext deleteObject:avatar];
+    }
 }
 
 

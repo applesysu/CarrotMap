@@ -9,6 +9,7 @@
 #import "JPDataManager.h"
 #import "JPParseServer.h"
 #import "JPLocalDataManager.h"
+#import "JPAvatarsDownloadOperation.h"
 
 @interface JPDataManager ()
 {
@@ -28,6 +29,7 @@
 @synthesize userInfo;
 @synthesize friendsList;
 @synthesize idMapping;
+@synthesize avatarMapping;
 @synthesize GeneralpublicCarrots;
 @synthesize GeneralprivateCarrots;
 @synthesize detailCarrot;
@@ -104,14 +106,19 @@
     if ([self.friendsList count] != 0 ) {
         //发送通知
         [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetFriendsList" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didDownloadAllAvatars" object:self];
     }
     else {
         //从本地拉数据
         self.friendsList = [[JPLocalDataManager sharedInstance] getFriendsList];
+        self.avatarMapping = [[JPLocalDataManager sharedInstance] getAvatars];
         if ( [friendsList count] == 0 )
             [self refreshFriendsList];
         else
+        {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetFriendsList" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didDownloadAllAvatars" object:self];
+        }
     }
 }
 
@@ -274,6 +281,13 @@
         NSLog(@"%@", self.friendsList);
         NSLog(@"%@", self.idMapping);
         
+        //新建线程拉好友头像
+        [[JPLocalDataManager sharedInstance] removeAvatars];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadAnAvatar:) name:@"inter-NTF:didDownloadAnAvatar" object:nil];
+        JPAvatarsDownloadOperation *avatarsDownloadOperaton = [[JPAvatarsDownloadOperation alloc] initWithFriendsList:self.friendsList];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [queue addOperation:avatarsDownloadOperaton];
+        
         //保存到本地
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.idMapping];
@@ -340,6 +354,16 @@
     //发送通知
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetDetailPrivateCarrots" object:self];
     
+}
+
+- (void)didDownloadAnAvatar:(NSNotification*)notification
+{
+    NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithDictionary:self.avatarMapping];
+    [tmpDict setObject:[notification.userInfo objectForKey:@"content"] forKey:[notification.userInfo objectForKey:@"uid"]];
+    self.avatarMapping = [NSDictionary dictionaryWithDictionary:tmpDict];
+    
+    //保存到本地
+    [[JPLocalDataManager sharedInstance] saveAnAvatarWithUid:[notification.userInfo objectForKey:@"uid"] withAvatar:[notification.userInfo objectForKey:@"content"]];
 }
 
 @end

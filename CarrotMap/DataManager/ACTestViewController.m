@@ -141,9 +141,18 @@
     
     //监听特定通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendsList) name:@"didGetFriendsList" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadAnAvatar:) name:@"didDownloadAnAvatar" object:nil];
+
     
     [[JPDataManager sharedInstance] getFriendsList];
     
+}
+
+- (void)didDownloadAnAvatar:(NSNotification*)ntf
+{
+    NSLog(@"didDownloadAnAvatar");
+    NSLog(@"%d", [[JPDataManager sharedInstance].avatarMapping count] );
+    NSLog(@"%@", [ntf.userInfo objectForKey:@"id"]);
 }
 
 - (void)didGetFriendsList
@@ -291,6 +300,9 @@
     //NSLog(@"%d", [[[JPLocalDataManager sharedInstance] visitPublicCarrots] count]);
     
     //更新好友列表
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendsList) name:@"didGetFriendsList" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadAnAvatar:) name:@"didDownloadAnAvatar" object:nil];
+    
     [[JPDataManager sharedInstance] refreshFriendsList];
 }
 

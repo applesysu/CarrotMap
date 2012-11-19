@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface JPAvatarsDownloadOperation : NSOperation
+{
+    NSArray *friendsList;
+}
+
+- (id) initWithFriendsList:(NSArray *)argFriendsList;
 
 @end
