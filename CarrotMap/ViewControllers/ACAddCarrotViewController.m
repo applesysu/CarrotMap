@@ -27,8 +27,6 @@
 @synthesize theSelectedFriends;
 @synthesize friendList;
 @synthesize receviers;
-@synthesize wantSay;
-@synthesize wantSubSay;
 @synthesize ausrInfo;
 @synthesize theWholeBackground;
 @synthesize topNavigation;
@@ -59,81 +57,50 @@
 {
     [super viewDidLoad];
     
-	self.topNavigation=[[UINavigationBar alloc] init];
-    [self.view addSubview:self.topNavigation];
-    
+    self.topNavigation=[[UINavigationBar alloc] init];
+    self.topNavigation.frame=CGRectMake(0, 0, 320, 44);
     
     
     temparray=[[NSMutableArray alloc] initWithCapacity:600];
     [temparray removeAllObjects];
     self.view.backgroundColor=[UIColor clearColor];
     
-    theWholeBackground=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wholeBackground"]];
+    theWholeBackground=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wholeBackground.png"]];
     theWholeBackground.frame=CGRectMake(0, 0, 320, 500);
     theWholeBackground.userInteractionEnabled=YES;
-    [self.view addSubview:theWholeBackground];
+
+
     
-    self.wantSay=[[UILabel alloc] initWithFrame:CGRectMake(10, 15, 50, 30)];
-    self.wantSay.text=@"想对:";
-    self.wantSay.textColor=[UIColor blackColor];
-    self.wantSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
-//    [self.view addSubview:self.wantSay];
     
-    self.wantSubSay=[[UILabel alloc] initWithFrame:CGRectMake(225, 15, 25, 30)];
-    self.wantSubSay.text=@"说";
-    self.wantSubSay.textColor=[UIColor blackColor];
-    self.wantSubSay.font=[UIFont fontWithName:@"KaiTi_GB2312" size:22];
-//    [self.view addSubview:self.wantSubSay];
     
-    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(55, 62, 210, 25)];
-//    self.selectField.placeholder=@"";
-    
+    self.selectField=[[UITextField alloc] initWithFrame:CGRectMake(55, 62, 190, 25)];
     self.selectField.borderStyle=UITextBorderStyleNone;
     self.selectField.delegate=self;
     self.selectField.backgroundColor=[UIColor clearColor];
     self.selectField.font=[UIFont fontWithName:@"KaiTi_GB2312" size:9];
-//    self.selectField.layer.cornerRadius=15.0;
-    
-    self.buttonToFriend=[UIButton buttonWithType:UIButtonTypeContactAdd];
-    //    self.buttonToFriend.backgroundColor=[UIColor orangeColor];
-    self.buttonToFriend.frame=CGRectMake(245,15, 30, 30);
+    self.buttonToFriend=[[UIButton alloc] initWithFrame:CGRectMake(248,62, 30, 30)];
     [self.buttonToFriend addTarget:self action:@selector(ToFriendList:) forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonToFriend setBackgroundImage:[UIImage imageNamed:@"addfriend.png"] forState:UIControlStateNormal];
     
-    //[self.view addSubview:self.buttonToFriend];
+    
 
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"notepad.png"]] ;
-    imageView.userInteractionEnabled = YES;
-    imageView.frame=CGRectMake(10, 50, 300, 350);
-    imageView.backgroundColor = [UIColor clearColor];
-//    [self.view addSubview:imageView];
-
-        
     self.testRestrict=[[UITextView alloc] initWithFrame:CGRectMake(18, 119, 280, 150)];
     self.testRestrict.delegate=self;
     self.testRestrict.font=[UIFont fontWithName:@"KaiTi_GB2312" size:18];
     self.testRestrict.backgroundColor=[UIColor clearColor];
     self.testRestrict.scrollEnabled=YES;
     self.testRestrict.autocapitalizationType=UIViewAutoresizingFlexibleHeight;
-   
-//   UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(10, 60, 300, 300)];
-//    textView.delegate = self;
-//    textView.tag = 500;
-//    textView.font = [UIFont fontWithName:@"KaiTi_GB2312" size:21];
-//    textView.backgroundColor = [UIColor blueColor];
-//    [self.view addSubview:textView];
     
-   [self.theWholeBackground addSubview:self.testRestrict];
+    
+    
+    [self.theWholeBackground addSubview:self.testRestrict];
     
     self.buttonToPushCarrot=[UIButton buttonWithType:UIButtonTypeCustom];
     self.buttonToPushCarrot.frame=CGRectMake(280, 15, 30, 30);
     self.buttonToPushCarrot.backgroundColor=[UIColor greenColor];
     self.buttonToPushCarrot.layer.cornerRadius=10.0f;
     [self.buttonToPushCarrot addTarget:self action:@selector(senderCarrot:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-   
-    
-    [self.theWholeBackground addSubview:self.selectField];
+
 //    [self.view addSubview:self.buttonToPushCarrot];
     
     
@@ -181,6 +148,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DidGetUserInfo) name:@"didGetUserInfo" object:nil];
     [[JPDataManager sharedInstance] getUserInfo];
+    
+    
+    [self.view addSubview:theWholeBackground];
+    [self.view addSubview:self.topNavigation];
+    [self.theWholeBackground addSubview:self.selectField];
+    [self.theWholeBackground addSubview:self.buttonToFriend];
     
     
 }

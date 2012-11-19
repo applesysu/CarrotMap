@@ -118,7 +118,7 @@
     
     // Code Data 出错时使用该句
     // 此句亦可用来清空数据库
-//    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+  //  [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
