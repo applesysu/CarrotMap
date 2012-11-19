@@ -7,59 +7,148 @@
 //
 
 #import "ACFriendsListViewController.h"
-
+#import "SDFriendItems.h"
+#import "JPDataManager.h"
+#import "ACAddCarrotViewController.h"
+#import "SDRecentFriendList.h"
+#import "SDFriendItems.h"
 @interface ACFriendsListViewController ()
 
 @end
 
 @implementation ACFriendsListViewController
+@synthesize theRecentScollView;
+@synthesize friendNames;
+@synthesize friendLineListView;
+@synthesize atableView;
+@synthesize friendList;
+@synthesize receiverIDList;
 
-- (id)initWithStyle:(UITableViewStyle)style
+
+- (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
+
+-(id)initWithFriendsList:(NSArray*)friendsList{
+    self=[super init];
+    if (self) {
+        self.friendList=friendsList;
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
+    self.view.backgroundColor=[UIColor clearColor];
+  
+    toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIBarButtonItem *leftButton=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(GetBack:)];
+    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftButton,nil];
+    [toolBar setItems:itemArray animated:YES];
+    [self.view addSubview:toolBar];
+    
+    
+    self.receiverIDList=[[NSMutableArray alloc] initWithCapacity:[friendList count]];
+   
+    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 100)];
+    recentScollViewBackground.userInteractionEnabled=YES;
+    recentScollViewBackground.backgroundColor=[UIColor orangeColor];
+    [self.view addSubview:recentScollViewBackground];
+    
+   
+    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,30,280,50)];
+    self.theRecentScollView.scrollEnabled=YES;
+    self.theRecentScollView.delegate=self;
+    self.theRecentScollView.alwaysBounceHorizontal=YES;
+
+    
+    NSMutableArray *imageDataArray=[[NSMutableArray alloc] initWithCapacity:15];
+    for (int i=0;i<friendList.count;i++) {
+        NSDictionary *single=[friendList objectAtIndex:i];
+        NSString *imageString=[single objectForKey:@"tinyurl"];
+        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
+        [imageDataArray addObject:imageData];
+        UIImage *image=[[UIImage alloc] initWithData:imageData];
+          
+        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*56, 0, 50, 50) withUIImage:image];
+        recentFriendItem.backgroundColor=[UIColor whiteColor];
+        [self.theRecentScollView addSubview:recentFriendItem];
+    }
+    self.theRecentScollView.contentSize=CGSizeMake(48*friendList.count-8, 40);
+    [recentScollViewBackground addSubview:self.theRecentScollView];
+
+    
+    NSLog(@"%@",[friendList objectAtIndex:0]);
+    
+    
+    UIImageView *theWholeFriendListBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 140, 320, 340)];
+    theWholeFriendListBackground.backgroundColor=[UIColor blueColor];
+    theWholeFriendListBackground.layer.cornerRadius=12.0;
+    theWholeFriendListBackground.userInteractionEnabled=YES;
+    [self.view addSubview:theWholeFriendListBackground];
+    
+    
+    self.friendLineListView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 30, 320, 300)];
+    self.friendLineListView.backgroundColor=[UIColor whiteColor];
+    self.friendLineListView.scrollEnabled=YES;
+    self.friendLineListView.delegate=self;
+    self.friendLineListView.alwaysBounceVertical=YES;
+    self.friendLineListView.backgroundColor=[UIColor orangeColor];
+    [theWholeFriendListBackground addSubview:friendLineListView];
+    
+
+    int counter=-1;
+    for (int i=0;i<friendList.count;i++) {
+            if (i%3==0)
+            {
+                counter++;
+            }
+        NSDictionary *single=[friendList objectAtIndex:i];
+        NSString *imageString=[single objectForKey:@"tinyurl"];
+        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
+        [imageDataArray addObject:imageData];
+        UIImage *image=[[UIImage alloc] initWithData:imageData];
+        SDFriendItems *item=[[SDFriendItems alloc] initWithFrame:CGRectMake(20+ 100*(i%3), 16+96*counter, 80,80) withImage:image withLabel:@""];
+        item.tag=i;
+        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
+        [item addGestureRecognizer:tap];
+        [self.friendLineListView addSubview:item];
+    }
+    
+    self.friendLineListView.contentSize=CGSizeMake(320, 16+96*friendList.count);
+    
 }
 
 - (void)viewDidUnload
 {
+    
+    
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-#pragma mark - Table view data source
-
+#pragma mark- Table view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    return [friendList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,61 +156,67 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    
+    NSDictionary *aDict=[friendList objectAtIndex:indexPath.row];
+    cell.textLabel.text=[aDict objectForKey:@"name"];
+    
+//    Friend *thisFriend=[friends objectAtIndex:indexPath.row];
+    
+    //    // 显示名字
+    //    NSString *str = [NSString stringWithFormat:@"%@", [[friends objectAtIndex:indexPath.row] objectForKey:@"name"]];
+//    [cell.textLabel setText:thisFriend.name];
+    //
+    //    // 显示头像
+    //    NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[[friends objectAtIndex:indexPath.row] objectForKey:@"tinyurl"]]];
+//    UIImage *image = [UIImage imageWithData:thisFriend.imagdata];
+//    [cell.imageView setImage:image];
+    NSString *imageString=[aDict objectForKey:@"tinyurl"];
+    NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
+    UIImage *image=[[UIImage alloc] initWithData:imageData];
+    cell.imageView.image=image;
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.textLabel.textColor  isEqual:[UIColor orangeColor]]) {
+        cell.textLabel.textColor=[UIColor blackColor];
+        [self.receiverIDList removeObject:[friendList objectAtIndex:indexPath.row]];
+    }else{
+    cell.textLabel.textColor=[UIColor orangeColor];
+    [self.receiverIDList addObject:[friendList objectAtIndex:indexPath.row]];
+    }
+    
 }
 
+#pragma mark- Button methods
+
+-(void)GetBack:(UIBarButtonItem *)paramSender{
+   
+    ACAddCarrotViewController *add=(ACAddCarrotViewController *)self.presentingViewController;
+    add.receviers=self.receiverIDList;
+    NSLog(@"%@",self.receiverIDList);
+    NSLog(@"%@",add.receviers);
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)changeColor:(UITapGestureRecognizer *)paramSender{
+    if (paramSender.state==UIGestureRecognizerStateEnded) {
+        if ([paramSender.view.backgroundColor isEqual:[UIColor blueColor]]) {
+            paramSender.view.backgroundColor=[UIColor whiteColor];
+            [receiverIDList removeObject:[friendList objectAtIndex:paramSender.view.tag]];
+        }else {
+            paramSender.view.backgroundColor=[UIColor blueColor];
+            [receiverIDList addObject: [friendList objectAtIndex:paramSender.view.tag]];
+            NSLog(@"%@",[friendList objectAtIndex:paramSender.view.tag]);
+         
+        }
+        
+    }
+}
 @end

@@ -7,9 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+@interface ACFriendsListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+{
 
-@interface ACFriendsListViewController : UITableViewController
+    UIToolbar *toolBar;
+    UITableView *atableView;
+    UIScrollView *theRecentScollView;
+    UIScrollView *friendLineListView;
+    NSArray *friendList;
+    NSMutableArray *receiverIDList;
+    
+    
+};
 
-- initWithFriendsList:(NSArray*)friendsList;
+@property (strong, nonatomic) UITableView *atableView;
+@property (strong, nonatomic) UIScrollView *theRecentScollView;
+@property (strong, nonatomic) NSMutableArray *friendNames;
+@property (strong, nonatomic) UIScrollView *friendLineListView;
+@property (strong, nonatomic) NSArray *friendList;
+@property (strong, nonatomic) NSMutableArray *receiverIDList;
+
+
+- (id)initWithFriendsList:(NSArray*)friendsList;
+
 
 @end

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Avatars" representedClassName="Avatars" syncable="YES">
+        <attribute name="avatar" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="uid" attributeType="String" indexed="YES" syncable="YES"/>
+    </entity>
     <entity name="ReceivedCarrots" representedClassName="ReceivedCarrots" syncable="YES">
         <attribute name="carrotID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -48,5 +52,6 @@
         <element name="SawPublicCarrots" positionX="0" positionY="0" width="0" height="0"/>
         <element name="SendedCarrots" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Test" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Avatars" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

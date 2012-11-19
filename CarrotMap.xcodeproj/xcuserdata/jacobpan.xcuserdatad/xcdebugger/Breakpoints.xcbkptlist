@@ -4,28 +4,15 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "CarrotMap/DataManager/JPDataManager.m"
-         timestampString = "374200310.916352"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "262"
-         endingLineNumber = "262"
-         landmarkName = "-renren:requestDidReturnResponse:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/DataManager/JPLocalDataManager.m"
-         timestampString = "374170935.093841"
+         timestampString = "375010573.087036"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
+         startingLineNumber = "198"
+         endingLineNumber = "198"
          landmarkName = "-getSawPublicCarrotsWithUid:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/DataManager/JPDataManager.m"
-         timestampString = "374200310.916352"
+         timestampString = "375009486.669357"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "298"
-         endingLineNumber = "298"
+         startingLineNumber = "314"
+         endingLineNumber = "314"
          landmarkName = "-didGetGeneralPublicCarrots:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/DataManager/JPDataManager.m"
-         timestampString = "374200310.916352"
+         timestampString = "375009486.669357"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "303"
-         endingLineNumber = "303"
+         startingLineNumber = "319"
+         endingLineNumber = "319"
          landmarkName = "-didGetGeneralPublicCarrots:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/DataManager/JPDataManager.m"
-         timestampString = "374200310.916352"
+         timestampString = "375009486.669357"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "296"
-         endingLineNumber = "296"
+         startingLineNumber = "312"
+         endingLineNumber = "312"
          landmarkName = "-didGetGeneralPublicCarrots:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,12 +60,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/DataManager/ACTestViewController.m"
-         timestampString = "374200138.479377"
+         timestampString = "375009277.188283"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "284"
-         endingLineNumber = "284"
+         startingLineNumber = "297"
+         endingLineNumber = "297"
          landmarkName = "-btn10Pressed"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "CarrotMap/DataManager/ACTestViewController.m"
+         timestampString = "375009658.00217"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
+         landmarkName = "-didDownloadAnAvatar:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

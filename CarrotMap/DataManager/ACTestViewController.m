@@ -16,6 +16,8 @@
 
 @implementation ACTestViewController
 
+@synthesize textView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -112,6 +114,7 @@
 {
     NSLog(@"Button 1 Pressed");
     
+    [[JPDataManager sharedInstance] RenrenLogout];
     //监听特定通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRenrenLogin) name:@"didRenrenLogin" object:nil];
     
@@ -138,9 +141,18 @@
     
     //监听特定通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendsList) name:@"didGetFriendsList" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadAnAvatar:) name:@"didDownloadAnAvatar" object:nil];
+
     
     [[JPDataManager sharedInstance] getFriendsList];
     
+}
+
+- (void)didDownloadAnAvatar:(NSNotification*)ntf
+{
+    NSLog(@"didDownloadAnAvatar");
+    NSLog(@"%d", [[JPDataManager sharedInstance].avatarMapping count] );
+    NSLog(@"%@", [ntf.userInfo objectForKey:@"id"]);
 }
 
 - (void)didGetFriendsList
@@ -230,7 +242,11 @@
 {
     NSLog(@"Button 8 Pressed");
     
-    [[JPDataManager sharedInstance] refreshGeneralPublicCarrotsWithUid:@"245318989" withNumber:10];
+//    [[JPDataManager sharedInstance] refreshGeneralPublicCarrotsWithUid:@"245318989" withNumber:10];
+    
+    [[JPDataManager sharedInstance] getIdMapping];
+    
+    NSLog(@"%@",[JPDataManager sharedInstance].idMapping );
 }
 
 - (void) btn9Pressed
@@ -274,14 +290,20 @@
 //    NSLog(@"%@",arr3);
     
     //真正意义上的萝卜测试
-    NSLog(@"%d", [[[JPDataManager sharedInstance] getSawPublicCarrotsWithUid:@"245318989"] count]);
-    NSLog(@"%d", [[[JPDataManager sharedInstance] getMySendedCarrotsWithUid:@"245318989"] count]);
-    NSLog(@"%d", [[[JPDataManager sharedInstance] getMyReceivedCarrotsWithUid:@"245318989"] count]);
+//    NSLog(@"%d", [[[JPDataManager sharedInstance] getSawPublicCarrotsWithUid:@"245318989"] count]);
+//    NSLog(@"%d", [[[JPDataManager sharedInstance] getMySendedCarrotsWithUid:@"245318989"] count]);
+//    NSLog(@"%d", [[[JPDataManager sharedInstance] getMyReceivedCarrotsWithUid:@"245318989"] count]);
     
     // 一些数据库测试函数
     //[[JPLocalDataManager sharedInstance] testLocalDataManager];
     
     //NSLog(@"%d", [[[JPLocalDataManager sharedInstance] visitPublicCarrots] count]);
+    
+    //更新好友列表
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendsList) name:@"didGetFriendsList" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadAnAvatar:) name:@"didDownloadAnAvatar" object:nil];
+    
+    [[JPDataManager sharedInstance] refreshFriendsList];
 }
 
 @end

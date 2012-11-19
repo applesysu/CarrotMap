@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ACTestViewController.h"
-
+#import "ACLoginViewController.h"
+#import <CoreData/CoreData.h>
 @interface ACAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) ACTestViewController *testViewController;
+@property (strong, nonatomic) ACLoginViewController *rootViewController;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

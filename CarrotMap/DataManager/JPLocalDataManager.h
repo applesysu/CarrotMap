@@ -18,6 +18,9 @@
 - (void) saveUserInfo:(NSDictionary*)userInfo;
 - (void) saveFriendsList:(NSArray*)friendsList;
 - (void) saveIdMapping:(NSDictionary*)idMapping;
+- (void) saveAnAvatarWithUid:(NSString*)uid withAvatar:(NSData*)data;
+- (NSDictionary *) getAvatars;
+- (void) removeAvatars;
 
 - (NSArray*) getMySendedCarrotsWithUid:(NSString*)uid;
 - (NSArray*) getMyReceivedCarrotsWithUid:(NSString*)uid;
