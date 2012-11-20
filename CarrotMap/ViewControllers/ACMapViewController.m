@@ -634,13 +634,11 @@
             if (indexPath.section == 0){
                 JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
                 cell.title.text = [self.idMappingDictionary objectForKey:tmp.senderID];
-                NSLog(@"TEMPORARY TEST CELL %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
                 cell.subtitle.text = tmp.message;
             }
             else {
                 JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
                 cell.title.text = [self.idMappingDictionary objectForKey:tmp.senderID];
-                NSLog(@"TEMPORARY TEST CELL %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
                 cell.subtitle.text = tmp.message;
             }
             
@@ -769,7 +767,6 @@
         JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:tmp.senderID] subtitle:tmp.message];
-        NSLog(@"TEMP TEST ANNOTATION %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -778,7 +775,6 @@
         JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:tmp.senderID] subtitle:tmp.message];
-        NSLog(@"TEMP TEST ANNOTATION %@", [self.idMappingDictionary objectForKey:tmp.senderID]);
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
