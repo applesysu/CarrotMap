@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) UIImageView *rightCornerView;
 @property (nonatomic, strong) UIImageView *LocationTrackingView;
+@property (nonatomic, strong) UIImageView *leftCornerBackground;
 @property (nonatomic, strong) UIView *leftCornerView;
 @property (nonatomic, strong) UITableView *leftCornerTableView;
 @property (nonatomic, strong) CALayer *leftCornerLayer;

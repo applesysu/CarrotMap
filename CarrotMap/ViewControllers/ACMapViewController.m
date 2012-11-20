@@ -26,6 +26,7 @@
 @synthesize myManager;
 @synthesize myGeocoder;
 @synthesize rightCornerView;
+@synthesize leftCornerBackground;
 //@synthesize myTapGestureRecognizer;
 @synthesize insertCarrot;
 @synthesize tapToChangeMode;
@@ -89,37 +90,7 @@
     self.generalPublicCarrots = [[NSMutableArray alloc] init];
     self.generalPrivateCarrots = [[NSMutableArray alloc] init];
     
-    //乱发5个公有的萝卜
-    /*JPCarrot *carrot1 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"38.1" withLatitude:@"22.2" withMessage:@"carrot1" withSenderID:@"0001" withSendedTime:@"00:01"];
-    JPCarrot *carrot2 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"35.1" withLatitude:@"23.2" withMessage:@"carrot2" withSenderID:@"0002" withSendedTime:@"00:02"];
-    JPCarrot *carrot3 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"36.1" withLatitude:@"25.2" withMessage:@"carrot3" withSenderID:@"0003" withSendedTime:@"00:03"];
-    JPCarrot *carrot4 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"10" withLatitude:@"10" withMessage:@"carrot4" withSenderID:@"0004" withSendedTime:@"00:04"];
-    JPCarrot *carrot5 = [[JPCarrot alloc] initPublicCarrotWithLogitude:@"22.6" withLatitude:@"36.1" withMessage:@"carrot5" withSenderID:@"0005" withSendedTime:@"00:05"];*/
-    
-//    
-//    //昨晚没有sync成功
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSendACarrotToServer) name:@"didSendACarrotToServer" object:nil];
-////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot1];
-//    
-////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot2];
-////    
-////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot3];
-////   
-////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot4];
-////   
-////    [[JPDataManager sharedInstance] sendACarrotToServer:carrot5];
-////    
-    
-    //初始化虚拟数据
-    
-    
-    /*self.database = [NSArray arrayWithObjects:carrot1, carrot2, carrot3, carrot4, carrot5, nil];*/
-    
-    
-    
-    
-    
-    
+        
 //纯代码添加 mapview
     self.myMapView=[[MKMapView alloc] initWithFrame:self.view.bounds];
     self.myMapView.mapType=MKMapTypeStandard;
@@ -158,11 +129,6 @@
     
     
     
-    
-    
-   
-    
-    
     //获取具体地址，并赋值给我们的Pin
     self.myGeocoder=[[CLGeocoder alloc] init];
     [self.myGeocoder reverseGeocodeLocation:GLocation completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -184,7 +150,8 @@
 //1. 目的是放置一键插萝卜功能
     UIImage *rightCorner=[UIImage imageNamed:@"1add.png"];
     rightCornerView=[[UIImageView alloc] initWithImage:rightCorner];
-    self.rightCornerView.center=CGPointMake(290, 430);
+    [self.rightCornerView setFrame:CGRectMake(250, 390, 55, 63)];
+    //self.rightCornerView.center=CGPointMake(290, 430);
     self.rightCornerView.userInteractionEnabled=YES;
     [self.view addSubview:self.rightCornerView];
     
@@ -197,8 +164,9 @@
     
 //2. 定位图标，用来提供给用户，用以回到自己位置并开始实时定位
     UIImage *locationTracking=[UIImage  imageNamed:@"1locate.png"];
-    LocationTrackingView=[[UIImageView alloc] initWithImage:locationTracking];
-    self.LocationTrackingView.center=CGPointMake(230, 430);
+    self.LocationTrackingView=[[UIImageView alloc] initWithImage:locationTracking];
+    [self.LocationTrackingView setFrame:CGRectMake(180, 390, 55, 63)];
+    //self.LocationTrackingView.center=CGPointMake(230, 430);
     self.LocationTrackingView.userInteractionEnabled=YES;
     [self.view addSubview:self.LocationTrackingView];
     
@@ -215,22 +183,22 @@
     self.leftCornerView=[[UIView alloc] init];
     //WithImage:image];
     self.leftCornerView.userInteractionEnabled=YES;
-    self.leftCornerView.frame=CGRectMake(0, 460, 150, 480);
-    self.leftCornerView.center=CGPointMake(75, 600);
+    self.leftCornerView.frame=CGRectMake(0, 388, 160, 320);
+    NSLog(@"x of the center %f", self.leftCornerView.center.x);
+    NSLog(@"y of the center %f", self.leftCornerView.center.y);
+    self.leftCornerView.backgroundColor = [UIColor clearColor];
     
-    //弄一个Bar出来，以识别拉动的是tableView还是Bar
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:self.leftCornerView.bounds];
-    [navBar setTintColor:[UIColor greenColor]];
-    
-    [leftCornerView addSubview:navBar];
+    //设定兔子板的背景图片
+    self.leftCornerBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1board.png"]];
+    [self.leftCornerBackground setFrame:self.leftCornerView.bounds];
+    [self.leftCornerView addSubview:self.leftCornerBackground];
     
     //萝卜列表tableView
     CGRect tableBounds;
-    tableBounds.origin.x = 15;
-    tableBounds.origin.y = 15;
-    tableBounds.size.width = self.leftCornerView.bounds.size.width - 30;
-    tableBounds.size.height = self.leftCornerView.bounds.size.height - 30;
+    tableBounds.origin.x = 6;
+    tableBounds.origin.y = 70.5;
+    tableBounds.size.width = self.leftCornerView.bounds.size.width-10.5;
+    tableBounds.size.height = self.leftCornerView.bounds.size.height - 77;
     self.leftCornerTableView = [[UITableView alloc] initWithFrame:tableBounds style:UITableViewStylePlain];
     self.leftCornerTableView.backgroundColor = [UIColor orangeColor];
     self.leftCornerTableView.separatorColor = [UIColor colorWithWhite:0 alpha:.2];
@@ -261,7 +229,9 @@
     self.bunnyUpperRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1info.png"]];
     [self.bunnyUpperRight setFrame:CGRectMake(250, 0, 60, 60)];
     [self.bunnyUpperRight sizeToFit];
-    self.bunnyUpperRight.userInteractionEnabled = YES;
+    
+    //暂时将interaction设置成NO
+    self.bunnyUpperRight.userInteractionEnabled = NO;
     [self.myMapView addSubview:self.bunnyUpperRight];
     //添加PanGesture
     self.dragBunny = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(PanBunnyUpperRight:)];
@@ -484,15 +454,17 @@
     
     
     if(paramSender.state==UIGestureRecognizerStateEnded) {
-        
-        if (paramSender.view.center.y==600.0f) {
+        float setY = 304.0f;//拉上去的Y点
+        float beforeSetY = 548.0f;
+        if (paramSender.view.center.y==beforeSetY) {
             
             //CG上拉路径设置
+            
             CGMutablePathRef thePath=CGPathCreateMutable();
-            CGPathMoveToPoint(thePath, NULL, 75.0f, 600.0f);
-            CGPathAddLineToPoint(thePath, NULL, 75.0f, 160.0f);
-            CGPathAddCurveToPoint(thePath, NULL, 75.0f, 145.0f, 75.0f, 170.0f, 75.0f, 154.0f);
-            CGPathAddLineToPoint(thePath, NULL, 75.0f, 160.0f);
+            CGPathMoveToPoint(thePath, NULL, 80.0f, beforeSetY);
+            CGPathAddLineToPoint(thePath, NULL, 80.0f, setY);
+            CGPathAddCurveToPoint(thePath, NULL, 80.0f, setY-15, 80.0f, setY+10, 80.0f, setY-6);
+            CGPathAddLineToPoint(thePath, NULL, 80.0f, setY);
             CAKeyframeAnimation *theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
             
             //CA path设置
@@ -505,17 +477,17 @@
             
             CFRelease(thePath);
             [self.leftCornerView.layer addAnimation:theGroup forKey:@"positon"];
-            paramSender.view.center=CGPointMake(75.0f, 160.0f);
+            paramSender.view.center=CGPointMake(80.0f, setY);
             
-            
+            NSLog(@"testtesttesttesttesttest %f", self.leftCornerView.center.y);
         }
         
-        else if(paramSender.view.center.y==160){
+        else if(paramSender.view.center.y==setY){
             CGMutablePathRef thePath=CGPathCreateMutable();
-            CGPathMoveToPoint(thePath, NULL, 75.0f, 160.0f);
-            CGPathAddLineToPoint(thePath, NULL, 75.0f, 600.0f);
-            CGPathAddCurveToPoint(thePath, NULL, 75.0f, 610.0f, 75.0f, 595.0f, 75.0f,597.0f);
-            CGPathAddLineToPoint(thePath, NULL, 75.0f, 600.0f);
+            CGPathMoveToPoint(thePath, NULL, 80.0f, setY);
+            CGPathAddLineToPoint(thePath, NULL, 80.0f, beforeSetY);
+            CGPathAddCurveToPoint(thePath, NULL, 80.0f, beforeSetY+10, 80.0f, beforeSetY-5, 80.0f,beforeSetY-3);
+            CGPathAddLineToPoint(thePath, NULL, 80.0f, beforeSetY);
             CAKeyframeAnimation *theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
             
             theAnimation.path=thePath;
@@ -527,7 +499,7 @@
             
             CFRelease(thePath);
             [self.leftCornerView.layer addAnimation:theGroup forKey:@"position"];
-            paramSender.view.center=CGPointMake(75.0f, 600.0f);
+            paramSender.view.center=CGPointMake(80.0f, beforeSetY);
             
         }
     }
@@ -634,12 +606,12 @@
             if (indexPath.section == 0){
                 JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
                 cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
-                cell.subtitle.text = tmp.message;
+                /*cell.subtitle.text = tmp.message;*/
             }
             else {
                 JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
                 cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
-                cell.subtitle.text = tmp.message;           
+                /*cell.subtitle.text = tmp.message;*/           
             }
     
             return cell;
@@ -654,10 +626,16 @@
     NSString *result = nil;
     if ([tableView isEqual:self.leftCornerTableView]) {
         if (section == 0) {
-            return @"私有萝卜";
+            NSString *numbersOfPrivate = [[NSString alloc] init];
+            numbersOfPrivate = [numbersOfPrivate stringByAppendingString:@"私有萝卜 "];
+            numbersOfPrivate = [numbersOfPrivate stringByAppendingString:[NSString stringWithFormat:@"%d", [[JPDataManager sharedInstance].GeneralprivateCarrots count]]];
+            return numbersOfPrivate;
         }
         else {
-            return @"公有萝卜";
+            NSString *numbersOfPublic = [[NSString alloc] init];
+            numbersOfPublic = [numbersOfPublic stringByAppendingString:@"共有萝卜 "];
+            numbersOfPublic = [numbersOfPublic stringByAppendingString:[NSString stringWithFormat:@"%d", [[JPDataManager sharedInstance].GeneralpublicCarrots count]]];
+            return numbersOfPublic;
         }
     }
     return result;
