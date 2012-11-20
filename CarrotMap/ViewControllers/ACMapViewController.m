@@ -633,15 +633,14 @@
             
             if (indexPath.section == 0){
                 JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
-                cell.title.text = [self.idMappingDictionary objectForKey:tmp.senderID];
+                cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
                 cell.subtitle.text = tmp.message;
             }
             else {
                 JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
-                cell.title.text = [self.idMappingDictionary objectForKey:tmp.senderID];
-                cell.subtitle.text = tmp.message;
+                cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
+                cell.subtitle.text = tmp.message;           
             }
-            
     
             return cell;
         }
@@ -702,18 +701,8 @@
     NSLog(@"%@", self.userID);
     
     
-    self.view.userInteractionEnabled = YES;
-    //拉了用户数据以后开始拉所有的朋友数据
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendList) name:@"didGetFriendsList" object:nil];
-    [[JPDataManager sharedInstance] getFriendsList];
-}
-
-- (void)didGetFriendList
-{
-    NSLog(@"didGetFriendList");
-    NSLog(@"%@", [JPDataManager sharedInstance].friendsList);
     
-    //拉了朋友数据以后开始拉id-Mapping
+    //拉了用户数据以后开始拉id-Mapping
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetIdMappingMapView) name:@"didGetIdMapping" object:nil];
     [[JPDataManager sharedInstance] getIdMapping];
 }
@@ -722,6 +711,7 @@
 {
     NSLog(@"didGetIdMapping");
     self.idMappingDictionary = [JPDataManager sharedInstance].idMapping;
+    NSLog(@"%@", self.idMappingDictionary);
     
     //拉了id-Mapping以后开始拉私有的萝卜
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPrivateCarrotsMapView) name:@"didGetGeneralPrivateCarrots" object:nil];
@@ -766,7 +756,9 @@
     for (i = 0; i < [self.generalPublicCarrots count]; i++){
         JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:tmp.senderID] subtitle:tmp.message];
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]] subtitle:tmp.message];
+        NSLog(@"idmapping key check %@", [NSNumber numberWithInt:[tmp.senderID intValue]]);
+        NSLog(@"idmapping name check %@", [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]);
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -774,7 +766,9 @@
     for (i = 0; i < [self.generalPrivateCarrots count]; i++){
         JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:tmp.senderID] subtitle:tmp.message];
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]] subtitle:tmp.message];
+        NSLog(@"idmapping key check %@", [NSNumber numberWithInt:[tmp.senderID intValue]]);
+        NSLog(@"idmapping name check %@", [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]);
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
