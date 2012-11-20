@@ -182,7 +182,7 @@
     
     
 //1. 目的是放置一键插萝卜功能
-    UIImage *rightCorner=[UIImage imageNamed:@"Icon.png"];
+    UIImage *rightCorner=[UIImage imageNamed:@"1add.png"];
     rightCornerView=[[UIImageView alloc] initWithImage:rightCorner];
     self.rightCornerView.center=CGPointMake(290, 430);
     self.rightCornerView.userInteractionEnabled=YES;
@@ -196,7 +196,7 @@
     [self.rightCornerView addGestureRecognizer:self.insertCarrot];
     
 //2. 定位图标，用来提供给用户，用以回到自己位置并开始实时定位
-    UIImage *locationTracking=[UIImage  imageNamed:@"Icon.png"];
+    UIImage *locationTracking=[UIImage  imageNamed:@"1locate.png"];
     LocationTrackingView=[[UIImageView alloc] initWithImage:locationTracking];
     self.LocationTrackingView.center=CGPointMake(230, 430);
     self.LocationTrackingView.userInteractionEnabled=YES;
@@ -258,7 +258,7 @@
     
     
 //4. 右上角拉动兔子出来
-    self.bunnyUpperRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Icon.png"]];
+    self.bunnyUpperRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1info.png"]];
     [self.bunnyUpperRight setFrame:CGRectMake(250, 0, 60, 60)];
     [self.bunnyUpperRight sizeToFit];
     self.bunnyUpperRight.userInteractionEnabled = YES;
@@ -397,7 +397,7 @@
      
      
     result=annota;
-    UIImage *pinImage=[UIImage imageNamed:@"Icon.png"];
+    UIImage *pinImage=[UIImage imageNamed:@"1carr.png"];
     if (pinImage!=nil) {
         annota.image=pinImage;
     } 
