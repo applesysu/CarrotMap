@@ -71,13 +71,13 @@
     
     NSMutableArray *imageDataArray=[[NSMutableArray alloc] initWithCapacity:15];
     for (int i=0;i<friendList.count;i++) {
-        NSDictionary *single=[friendList objectAtIndex:i];
-        NSString *imageString=[single objectForKey:@"tinyurl"];
-        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
-        [imageDataArray addObject:imageData];
-        UIImage *image=[[UIImage alloc] initWithData:imageData];
+      //  NSDictionary *single=[friendList objectAtIndex:i];
+       // NSString *imageString=[single objectForKey:@"tinyurl"];
+        //NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
+        //[imageDataArray addObject:imageData];
+        //UIImage *image=[[UIImage alloc] initWithData:imageData];
           
-        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*56, 0, 50, 50) withUIImage:image];
+        SDRecentFriendList *recentFriendItem=[[SDRecentFriendList alloc] initWithFrame:CGRectMake(i*56, 0, 50, 50) withUIImage:[UIImage imageNamed:@"Icon.png"]];
         recentFriendItem.backgroundColor=[UIColor whiteColor];
         [self.theRecentScollView addSubview:recentFriendItem];
     }
@@ -111,10 +111,16 @@
                 counter++;
             }
         NSDictionary *single=[friendList objectAtIndex:i];
-        NSString *imageString=[single objectForKey:@"tinyurl"];
-        NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
-        [imageDataArray addObject:imageData];
-        UIImage *image=[[UIImage alloc] initWithData:imageData];
+       // NSString *imageString=[single objectForKey:@"tinyurl"];
+        NSString *nameForImage=[single objectForKey:@"name"];
+     //   NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
+      //  [imageDataArray addObject:imageData];
+       // UIImage *image=[[UIImage alloc] initWithData:imageData];
+        UIImage *image=[[UIImage alloc] init];
+        image=[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage];
+        if (image==nil) {
+            image=[UIImage imageNamed:@"Icon.png"];
+        }
         SDFriendItems *item=[[SDFriendItems alloc] initWithFrame:CGRectMake(20+ 100*(i%3), 16+96*counter, 80,80) withImage:image withLabel:@""];
         item.tag=i;
         UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
@@ -122,7 +128,14 @@
         [self.friendLineListView addSubview:item];
     }
     
-    self.friendLineListView.contentSize=CGSizeMake(320, 16+96*friendList.count);
+    self.friendLineListView.contentSize=CGSizeMake(320, 16+96*(friendList.count/3+1));
+    
+    
+    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSingleFriendImage:) name:@"didDownAnAvatar" object:nil];
+
+    [[JPDataManager sharedInstance] refreshFriendsList];
     
 }
 
@@ -218,5 +231,23 @@
         }
         
     }
+}
+
+
+#pragma mark- Notification Methods
+-(void)getSingleFriendImage:(id)paramSender{
+    NSLog(@"Get A Avatar!");
+    NSDictionary *getNameOfImage=(NSDictionary *)paramSender;
+    NSString *name=[getNameOfImage objectForKey:@"id"];
+    for (int i=0; i<friendList.count; i++) {
+        NSDictionary *single=[friendList objectAtIndex:i];
+        NSString *nameForImage=[single objectForKey:@"name"];
+        if ([nameForImage isEqualToString:name]) {
+            SDFriendItems *item=(SDFriendItems *)[self.view viewWithTag:i];
+            item.image=[[JPDataManager sharedInstance].avatarMapping objectForKey:name];
+            break;
+        }
+    }
+    
 }
 @end
