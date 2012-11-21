@@ -30,6 +30,8 @@
 @synthesize ausrInfo;
 @synthesize theWholeBackground;
 @synthesize topNavigation;
+@synthesize leftBackBar;
+@synthesize rightSenderBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,8 +59,12 @@
 {
     [super viewDidLoad];
     
-    self.topNavigation=[[UINavigationBar alloc] init];
+    self.topNavigation=[[UIToolbar alloc] init];
     self.topNavigation.frame=CGRectMake(0, 0, 320, 44);
+    leftBackBar=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(backToMapView)];
+    rightSenderBar=[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendCarrotMap)];
+    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftBackBar,rightSenderBar,nil];
+    [self.topNavigation  setItems:itemArray animated:YES];
     
     
     temparray=[[NSMutableArray alloc] initWithCapacity:600];
@@ -171,6 +177,8 @@
     self.ausrInfo=nil;
     self.topNavigation=nil;
     self.theWholeBackground=nil;
+    self.rightSenderBar=nil;
+    self.leftBackBar=nil;
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -347,5 +355,32 @@
 -(void)DidGetUserInfo{
     ausrInfo=[JPDataManager sharedInstance].userInfo;
     NSLog(@"%d", (int)[ausrInfo objectForKey:@"uid"]);
+}
+
+#pragma mark- BarItem Actions
+
+-(void)backToMapView{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)sendCarrotMap{
+    NSLog(@"%@",receviers);
+    
+    NSMutableArray *ids=[[NSMutableArray alloc] initWithCapacity:[receviers count]];
+    for (NSDictionary *single in receviers) {
+        
+        [ids addObject: [NSString stringWithFormat:@"%d", (int)[single objectForKey:@"id"]]];
+        //        NSLog(@"%@",[single objectForKey:@"name"]);
+        NSLog(@"%@",ids);
+        NSLog(@"%@",single);
+    }
+    
+    //    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+//    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
+//    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
+//    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:[ausrInfo objectForKey:@"uid"] withReceiversID:ids withSendedTime:@"2002年5月20日"];
+//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
+     [self dismissModalViewControllerAnimated:YES];
+
 }
 @end

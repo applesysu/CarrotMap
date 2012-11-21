@@ -48,7 +48,9 @@
 @property (strong, nonatomic) NSArray *theSelectedFriends;
 @property (strong, nonatomic) NSDictionary *ausrInfo;
 @property (strong, nonatomic) UIImageView *theWholeBackground;
-@property (strong, nonatomic) UINavigationBar *topNavigation;
+@property (strong, nonatomic) UIToolbar *topNavigation;
+@property (strong, nonatomic) UIBarButtonItem *leftBackBar;
+@property (strong, nonatomic) UIBarButtonItem *rightSenderBar;
 
 -(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude;
 @end

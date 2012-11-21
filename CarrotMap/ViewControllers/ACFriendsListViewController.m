@@ -103,6 +103,7 @@
     self.friendLineListView.backgroundColor=[UIColor orangeColor];
     [theWholeFriendListBackground addSubview:friendLineListView];
     
+//    NSLog(@"%@",[JPDataManager sharedInstance].avatarMapping);
 
     int counter=-1;
     for (int i=0;i<friendList.count;i++) {
@@ -112,12 +113,12 @@
             }
         NSDictionary *single=[friendList objectAtIndex:i];
        // NSString *imageString=[single objectForKey:@"tinyurl"];
-        NSString *nameForImage=[single objectForKey:@"name"];
+         NSNumber *nameForImage=[single objectForKey:@"id"];
      //   NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
       //  [imageDataArray addObject:imageData];
        // UIImage *image=[[UIImage alloc] initWithData:imageData];
-        UIImage *image=[[UIImage alloc] init];
-        image=[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage];
+        NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]);
+        UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
         if (image==nil) {
             image=[UIImage imageNamed:@"Icon.png"];
         }
