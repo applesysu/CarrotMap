@@ -58,7 +58,10 @@
 - (NSDictionary*) getIdMapping
 {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"idMapping"];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (data != nil)
+        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    else
+        return nil;
 }
 
 
