@@ -136,7 +136,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSingleFriendImage:) name:@"didDownAnAvatar" object:nil];
 
-    [[JPDataManager sharedInstance] refreshFriendsList];
+    [[JPDataManager sharedInstance] getFriendsList];
     
 }
 
