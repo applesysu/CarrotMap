@@ -244,14 +244,19 @@
     self.leftCornerPan=nil;
     self.leftCornerLayer=nil;
     self.leftCornerView=nil;
+    self.leftCornerBackground=nil;
     self.myMapView=nil;
     self.myManager=nil;
     self.myGeocoder=nil;
-    self.myGeocoder=nil;
-    //   self.myTapGestureRecognizer=nil;
+    self.leftCornerPan=nil;
     self.insertCarrot=nil;
     self.tapToChangeMode=nil;
     self.LocationTrackingView=nil;
+    self.rightCornerView=nil;
+    self.bunnyUpperRight=nil;
+    self.dragBunny=nil;
+    self.database=nil;
+    self.tapOnPins=nil;
     [self.myManager stopUpdatingLocation];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
