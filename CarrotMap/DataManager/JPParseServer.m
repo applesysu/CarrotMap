@@ -44,6 +44,10 @@
 {
     keepArgCarrot = generalCarrot;
     PFQuery *dataTable = [PFQuery queryWithClassName:@"PublicDetailCarrot"];
+    
+    //Test
+    NSLog(@"CarrotID: %@", generalCarrot.carrotID);
+    
     [dataTable whereKey:@"carrotID" equalTo:generalCarrot.carrotID];
     [dataTable findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if ( !error ) {
