@@ -141,7 +141,7 @@
     else{
         self.idMapping = [[JPLocalDataManager sharedInstance] getIdMapping];
         if ( [self.idMapping count] == 0 ) {
-        //...
+            [[JPDataManager sharedInstance] refreshFriendsList];
         }
         else
             [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetIdMapping" object:self];
