@@ -153,7 +153,7 @@
 
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DidGetUserInfo) name:@"didGetUserInfo" object:nil];
-    [[JPDataManager sharedInstance] getUserInfo];
+   [[JPDataManager sharedInstance] getUserInfo];
     
     
     [self.view addSubview:theWholeBackground];

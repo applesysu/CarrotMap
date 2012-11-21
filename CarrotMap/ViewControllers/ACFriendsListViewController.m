@@ -23,7 +23,8 @@
 @synthesize atableView;
 @synthesize friendList;
 @synthesize receiverIDList;
-
+@synthesize connectMeLabelView;
+@synthesize littleCarrotView;
 
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
@@ -47,7 +48,14 @@
 
   
     self.view.backgroundColor=[UIColor clearColor];
-  
+
+    self.connectMeLabelView=[[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.connectMeLabelView.image=[UIImage imageNamed:@"lefttop.png"];
+    self.connectMeLabelView.userInteractionEnabled=YES;
+    [self.view addSubview:self.connectMeLabelView];
+    
+
+    
     toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     UIBarButtonItem *leftButton=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(GetBack:)];
     NSArray *itemArray=[[NSArray alloc] initWithObjects:leftButton,nil];
@@ -55,13 +63,15 @@
     [self.view addSubview:toolBar];
     
     
+    
     self.receiverIDList=[[NSMutableArray alloc] initWithCapacity:[friendList count]];
    
     UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 100)];
     recentScollViewBackground.userInteractionEnabled=YES;
-    recentScollViewBackground.backgroundColor=[UIColor orangeColor];
+//    recentScollViewBackground.backgroundColor=[UIColor orangeColor];
     [self.view addSubview:recentScollViewBackground];
     
+
    
     self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,30,280,50)];
     self.theRecentScollView.scrollEnabled=YES;
@@ -88,10 +98,11 @@
     NSLog(@"%@",[friendList objectAtIndex:0]);
     
     
-    UIImageView *theWholeFriendListBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 140, 320, 340)];
-    theWholeFriendListBackground.backgroundColor=[UIColor blueColor];
+    UIImageView *theWholeFriendListBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 160, 320, 340)];
+//    theWholeFriendListBackground.backgroundColor=[UIColor blueColor];
     theWholeFriendListBackground.layer.cornerRadius=12.0;
     theWholeFriendListBackground.userInteractionEnabled=YES;
+    theWholeFriendListBackground.image=[UIImage imageNamed:@"littlecarrot.png"];
     [self.view addSubview:theWholeFriendListBackground];
     
     
@@ -100,7 +111,7 @@
     self.friendLineListView.scrollEnabled=YES;
     self.friendLineListView.delegate=self;
     self.friendLineListView.alwaysBounceVertical=YES;
-    self.friendLineListView.backgroundColor=[UIColor orangeColor];
+//    self.friendLineListView.backgroundColor=[UIColor orangeColor];
     [theWholeFriendListBackground addSubview:friendLineListView];
     
 //    NSLog(@"%@",[JPDataManager sharedInstance].avatarMapping);
@@ -143,7 +154,14 @@
 - (void)viewDidUnload
 {
     
-    
+    self.friendLineListView=nil;
+    self.friendList=nil;
+    self.friendNames=nil;
+    self.theRecentScollView=nil;
+    self.connectMeLabelView=nil;
+    self.receiverIDList=nil;
+    self.atableView=nil;
+    self.littleCarrotView=nil;
     [super viewDidUnload];
 
 }
