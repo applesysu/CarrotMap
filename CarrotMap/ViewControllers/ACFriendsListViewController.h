@@ -29,6 +29,9 @@
 @property (strong, nonatomic) NSMutableArray *receiverIDList;
 @property (strong, nonatomic) UIImageView *connectMeLabelView;
 @property (strong, nonatomic) UIImageView *littleCarrotView;
+@property (strong, nonatomic) UIImageView *theWholeFriendListBackground;
+
+@property (strong, nonatomic) UISearchBar *searchForSingleFriend;
 
 - (id)initWithFriendsList:(NSArray*)friendsList;
 

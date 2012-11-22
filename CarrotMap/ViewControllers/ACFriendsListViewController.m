@@ -25,6 +25,8 @@
 @synthesize receiverIDList;
 @synthesize connectMeLabelView;
 @synthesize littleCarrotView;
+@synthesize theWholeFriendListBackground;
+@synthesize searchForSingleFriend;
 
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
@@ -66,7 +68,7 @@
     
     self.receiverIDList=[[NSMutableArray alloc] initWithCapacity:[friendList count]];
    
-    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 100)];
+    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 80)];
     recentScollViewBackground.userInteractionEnabled=YES;
 //    recentScollViewBackground.backgroundColor=[UIColor orangeColor];
     [self.view addSubview:recentScollViewBackground];
@@ -98,21 +100,25 @@
     NSLog(@"%@",[friendList objectAtIndex:0]);
     
     
-    UIImageView *theWholeFriendListBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 160, 320, 340)];
+    theWholeFriendListBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 430)];
 //    theWholeFriendListBackground.backgroundColor=[UIColor blueColor];
     theWholeFriendListBackground.layer.cornerRadius=12.0;
     theWholeFriendListBackground.userInteractionEnabled=YES;
     theWholeFriendListBackground.image=[UIImage imageNamed:@"littlecarrot.png"];
-    [self.view addSubview:theWholeFriendListBackground];
+    [self.connectMeLabelView addSubview:theWholeFriendListBackground];
+    
+    self.searchForSingleFriend=[[UISearchBar alloc] initWithFrame:CGRectMake(10, 120, 300, 50)];
+    self.searchForSingleFriend.delegate=self;
+    [self.theWholeFriendListBackground addSubview:self.searchForSingleFriend];
     
     
-    self.friendLineListView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 30, 320, 300)];
+    self.friendLineListView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 180, 320, 250)];
     self.friendLineListView.backgroundColor=[UIColor whiteColor];
     self.friendLineListView.scrollEnabled=YES;
     self.friendLineListView.delegate=self;
     self.friendLineListView.alwaysBounceVertical=YES;
 //    self.friendLineListView.backgroundColor=[UIColor orangeColor];
-    [theWholeFriendListBackground addSubview:friendLineListView];
+ //   [theWholeFriendListBackground addSubview:friendLineListView];
     
 //    NSLog(@"%@",[JPDataManager sharedInstance].avatarMapping);
 
@@ -128,7 +134,7 @@
      //   NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
       //  [imageDataArray addObject:imageData];
        // UIImage *image=[[UIImage alloc] initWithData:imageData];
-        NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]);
+       // NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]);
         UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
         if (image==nil) {
             image=[UIImage imageNamed:@"Icon.png"];
@@ -162,6 +168,9 @@
     self.receiverIDList=nil;
     self.atableView=nil;
     self.littleCarrotView=nil;
+    self.connectMeLabelView=nil;
+    self.theWholeFriendListBackground=nil;
+    self.searchForSingleFriend=nil;
     [super viewDidUnload];
 
 }
