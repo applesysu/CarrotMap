@@ -391,6 +391,7 @@
     NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
     JPCarrot *carrot=[[JPCarrot alloc] initPublicCarrotWithLogitude:longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:[ausrInfo objectForKey:@"uid"] withSendedTime:@"2002年5月20日"];
     [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
+    [self dismissModalViewControllerAnimated:YES];
 
 }
 @end
