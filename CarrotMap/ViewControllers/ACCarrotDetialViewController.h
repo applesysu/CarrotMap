@@ -10,6 +10,9 @@
 
 @interface ACCarrotDetialViewController : UIViewController
 
+@property (nonatomic, strong) UILabel *senderNameLabel;
+@property (nonatomic, strong) UILabel *detailMessageLabel;
+
 - (id)initWithCarrot:(JPCarrot*)carrot;
 
 @end

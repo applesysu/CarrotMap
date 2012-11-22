@@ -15,8 +15,8 @@
 #import "JPDataManager.h"
 #import "ACAddCarrotViewController.h"
 #import "ACMyViewViewController.h"
+#import "ACCarrotDetialViewController.h"
 #import "UIViewController+MJPopupViewController.h"
-#import "MJDetailViewController.h"
 @interface ACMapViewController ()
 
 @end
@@ -806,24 +806,20 @@
 
 -(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-    if (event.type==UIEventSubtypeMotionShake) {
+    static BOOL didShake = 0;
+    if (event.type==UIEventSubtypeMotionShake && !didShake) {
         NSLog(@"shake motion detected");
         NSLog(@"the nearbyCarrot to be pulled out %@", self.nearbyCarrot);
         NSLog(@"the carrotID of the nearbyCarrot %@", self.nearbyCarrot.carrotID);
         
-        //初始化一个DetailView
-        MJDetailViewController *detailViewController = [[MJDetailViewController alloc] init];
-        detailViewController.view.backgroundColor = [UIColor blueColor];
-        [detailViewController.view setFrame:CGRectMake(50, 50, 150, 150)];
-        [self presentPopupViewController:detailViewController animationType:MJPopupViewAnimationSlideBottomBottom];
-        
+        didShake = 1;
         //去拉萝卜detail的数据，当然主要是message，对它是公有还是私有作判断
         if (self.nearbyCarrot.isPublic == 1){
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPublicCarrotMapView) name:@"didGetDetailPublicCarrot" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPublicCarrotMapView) name:@"didGetDetailPublicCarrots" object:nil];
             [[JPDataManager sharedInstance] getDetailPublicCarrotWithGeneralCarrot:self.nearbyCarrot];
         }
         else {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPrivateCarrotMapView) name:@"didGetDetailPrivateCarrot" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPrivateCarrotMapView) name:@"didGetDetailPrivateCarrots" object:nil];
             [[JPDataManager sharedInstance] getDetailPrivateCarrotWithGeneralCarrot:self.nearbyCarrot];
         }
     }
@@ -833,6 +829,17 @@
 {
     NSLog(@"didGetDetailPublicCarrotMapView");
     NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
+    
+    //初始化一个DetailView
+    
+    
+    //这里如果是private的话可能出现一个bug
+    //就是因为已经getDetailPrivate了的话会把萝卜从数据库上面清除掉，然后就没有办法来init了
+    
+    ACCarrotDetialViewController *detailViewController = [[ACCarrotDetialViewController alloc] initWithCarrot:[JPDataManager sharedInstance].detailCarrot];
+    detailViewController.view.backgroundColor = [UIColor greenColor];
+    [detailViewController.view setFrame:CGRectMake(50, 50, 150, 150)];
+    [self presentPopupViewController:detailViewController animationType:MJPopupViewAnimationSlideBottomBottom];
 }
 
 - (void)didGetDetailPrivateCarrotMapView
