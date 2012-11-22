@@ -57,6 +57,7 @@
 
 //储存用户的info
 @property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSDictionary *userInfo;
 
 //储存Pin所需要的Annotation信息
 //需要把“萝卜”转换成Annotation

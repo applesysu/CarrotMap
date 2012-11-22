@@ -41,6 +41,7 @@
 @synthesize bunnyUpperRight;
 @synthesize dragBunny;
 @synthesize userID;
+@synthesize userInfo;
 
 //虚构数据
 @synthesize database;
@@ -432,7 +433,7 @@
 //才能由用户输入来确定萝卜中的数据
 
 -(void)PushCarrot:(UITapGestureRecognizer  *)parasender{
-    
+    NSLog(@"detect the sendCarrot-button pressed");
     if(parasender.state==UIGestureRecognizerStateEnded){
         MKUserLocation *usrLocation=self.myMapView.userLocation;
         CLLocation *location=usrLocation.location;
@@ -447,7 +448,7 @@
 //        
 //        
 //        [self.myMapView addAnnotation:tapAnnotation];
-        ACAddCarrotViewController *addCarrotViewController=[[ACAddCarrotViewController alloc] initWithLatitude:location2D.latitude withLongtitude:location2D.longitude];
+        ACAddCarrotViewController *addCarrotViewController=[[ACAddCarrotViewController alloc] initWithLatitude:location2D.latitude withLongtitude:location2D.longitude withUserInfo:self.userInfo];
         [self presentModalViewController:addCarrotViewController animated:YES];
     
     }
@@ -708,10 +709,10 @@
 {
     NSLog(@"didGetUserInfo");
     //拿到用户的信息数据
-    NSDictionary *dict=[[NSDictionary alloc] initWithDictionary:[[JPDataManager sharedInstance] userInfo]];
-    self.userID = [dict objectForKey:@"uid"];
-    [dict objectForKey:@"name"];
-    [dict objectForKey:@"tinyurl"];
+    self.userInfo =[[NSDictionary alloc] initWithDictionary:[[JPDataManager sharedInstance] userInfo]];
+    self.userID = [self.userInfo objectForKey:@"uid"];
+    [self.userInfo objectForKey:@"name"];
+    [self.userInfo objectForKey:@"tinyurl"];
     NSLog(@"%@", self.userID);
     
     
@@ -797,24 +798,46 @@
 
 #pragma mark - 摇动手机拔萝卜有关的函数
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     [self becomeFirstResponder];
 }
 
--(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
     if (event.type==UIEventSubtypeMotionShake) {
         NSLog(@"shake motion detected");
         NSLog(@"the nearbyCarrot to be pulled out %@", self.nearbyCarrot);
+        NSLog(@"the carrotID of the nearbyCarrot %@", self.nearbyCarrot.carrotID);
+        
+        //初始化一个DetailView
         MJDetailViewController *detailViewController = [[MJDetailViewController alloc] init];
         detailViewController.view.backgroundColor = [UIColor blueColor];
         [detailViewController.view setFrame:CGRectMake(50, 50, 150, 150)];
         [self presentPopupViewController:detailViewController animationType:MJPopupViewAnimationSlideBottomBottom];
+        
+        //去拉萝卜detail的数据，当然主要是message，对它是公有还是私有作判断
+        if (self.nearbyCarrot.isPublic == 1){
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailCarrotMapView) name:@"didGetDetailPublicCarrot" object:nil];
+            [[JPDataManager sharedInstance] getDetailPublicCarrotWithGeneralCarrot:self.nearbyCarrot];
+        }
+        else {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailCarrotMapView) name:@"didGetDetailPrivateCarrot" object:nil];
+            [[JPDataManager sharedInstance] getDetailPrivateCarrotWithGeneralCarrot:self.nearbyCarrot];
+        }
     }
 }
 
--(BOOL)canBecomeFirstResponder{
+-(BOOL)canBecomeFirstResponder
+{
     return YES;
+}
+
+- (void)didGetDetailCarrotMapView
+{
+    NSLog(@"didGetDetailCarrotMapView");
+    NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
 }
 
 @end

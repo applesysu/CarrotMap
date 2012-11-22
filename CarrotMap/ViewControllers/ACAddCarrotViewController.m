@@ -42,15 +42,16 @@
     return self;
 }
 
--(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude{
+- (id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude withUserInfo:(NSDictionary *)userInformation
+{
     self = [super init];
     if (self) {
         laitutude=alatitude;
         longtitude=alongtitude;
+        ausrInfo = userInformation;
         
-        
-//        id delegate = [[UIApplication sharedApplication] delegate];
-//        self.manageedObjectContext=[delegate managedObjectContext];
+        //        id delegate = [[UIApplication sharedApplication] delegate];
+        //        self.manageedObjectContext=[delegate managedObjectContext];
     }
     return self;
 }
@@ -152,8 +153,8 @@
 //    }
 
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DidGetUserInfo) name:@"didGetUserInfo" object:nil];
-   [[JPDataManager sharedInstance] getUserInfo];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DidGetUserInfo) name:@"didGetUserInfo" object:nil];
+//   [[JPDataManager sharedInstance] getUserInfo];
     
     
     [self.view addSubview:theWholeBackground];
@@ -352,10 +353,10 @@
     [self presentModalViewController:friendsListViewController animated:YES];
 }
 
--(void)DidGetUserInfo{
-    ausrInfo=[JPDataManager sharedInstance].userInfo;
-    NSLog(@"%d", (int)[ausrInfo objectForKey:@"uid"]);
-}
+//-(void)DidGetUserInfo{
+//    ausrInfo=[JPDataManager sharedInstance].userInfo;
+//    NSLog(@"%d", (int)[ausrInfo objectForKey:@"uid"]);
+//}
 
 #pragma mark- BarItem Actions
 

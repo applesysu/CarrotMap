@@ -52,5 +52,5 @@
 @property (strong, nonatomic) UIBarButtonItem *leftBackBar;
 @property (strong, nonatomic) UIBarButtonItem *rightSenderBar;
 
--(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude;
+-(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude withUserInfo:(NSDictionary *)userInformation;
 @end
