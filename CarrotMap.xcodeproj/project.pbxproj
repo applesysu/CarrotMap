@@ -27,6 +27,9 @@
 		1887161D16528AF400822642 /* red_x_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1887161616528AF400822642 /* red_x_up.png */; };
 		18BFA4DA16522DAB00D2317C /* infoUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BFA4D916522DAB00D2317C /* infoUpper.png */; };
 		18BFA4DD16522DDA00D2317C /* infoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BFA4DC16522DDA00D2317C /* infoBackground.png */; };
+		18D272AC165DC5D600335A58 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D272AB165DC5D600335A58 /* MJPopupBackgroundView.m */; };
+		18D272AF165DC63300335A58 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D272AE165DC63300335A58 /* UIViewController+MJPopupViewController.m */; };
+		18D272B6165DC72300335A58 /* MJDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D272B5165DC72300335A58 /* MJDetailViewController.m */; };
 		5F0C2B801658EC04007D7982 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0C2B7F1658EC04007D7982 /* Icon.png */; };
 		5F0C2B821658ECED007D7982 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0C2B811658ECED007D7982 /* Default.png */; };
 		5F8B9B911650E9330074CC46 /* SDRecentFriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */; };
@@ -198,6 +201,12 @@
 		1887161616528AF400822642 /* red_x_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_x_up.png; sourceTree = "<group>"; };
 		18BFA4D916522DAB00D2317C /* infoUpper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoUpper.png; sourceTree = "<group>"; };
 		18BFA4DC16522DDA00D2317C /* infoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoBackground.png; sourceTree = "<group>"; };
+		18D272AA165DC5D600335A58 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJPopupBackgroundView.h; path = CarrotMap/ViewControllers/MJPopupBackgroundView.h; sourceTree = SOURCE_ROOT; };
+		18D272AB165DC5D600335A58 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJPopupBackgroundView.m; path = CarrotMap/ViewControllers/MJPopupBackgroundView.m; sourceTree = SOURCE_ROOT; };
+		18D272AD165DC63300335A58 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MJPopupViewController.h"; path = "CarrotMap/ViewControllers/UIViewController+MJPopupViewController.h"; sourceTree = SOURCE_ROOT; };
+		18D272AE165DC63300335A58 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MJPopupViewController.m"; path = "CarrotMap/ViewControllers/UIViewController+MJPopupViewController.m"; sourceTree = SOURCE_ROOT; };
+		18D272B4165DC72300335A58 /* MJDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJDetailViewController.h; path = CarrotMap/ViewControllers/MJDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		18D272B5165DC72300335A58 /* MJDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJDetailViewController.m; path = CarrotMap/ViewControllers/MJDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		5F0C2B7F1658EC04007D7982 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		5F0C2B811658ECED007D7982 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		5F8B9B8F1650E9330074CC46 /* SDRecentFriendList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRecentFriendList.h; sourceTree = "<group>"; };
@@ -499,6 +508,19 @@
 			name = "MyView Images";
 			sourceTree = "<group>";
 		};
+		18D2729C165DC41C00335A58 /* 拔萝卜 */ = {
+			isa = PBXGroup;
+			children = (
+				18D272AA165DC5D600335A58 /* MJPopupBackgroundView.h */,
+				18D272AB165DC5D600335A58 /* MJPopupBackgroundView.m */,
+				18D272B4165DC72300335A58 /* MJDetailViewController.h */,
+				18D272B5165DC72300335A58 /* MJDetailViewController.m */,
+				18D272AD165DC63300335A58 /* UIViewController+MJPopupViewController.h */,
+				18D272AE165DC63300335A58 /* UIViewController+MJPopupViewController.m */,
+			);
+			name = "拔萝卜";
+			sourceTree = "<group>";
+		};
 		5F8B9BCA1650F4D40074CC46 /* FriendImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,6 +548,7 @@
 		5FAEF665164F7DB20057D4ED /* Map views */ = {
 			isa = PBXGroup;
 			children = (
+				18D2729C165DC41C00335A58 /* 拔萝卜 */,
 				187BFD00164E1C04007AC7BA /* SYSUMyAnnotation.h */,
 				187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */,
 				187BFD03164E1C78007AC7BA /* SYSUMyCalloutImageView.h */,
@@ -1219,6 +1242,9 @@
 				1887160F1652891400822642 /* RNExpandingButtonBar.m in Sources */,
 				607A9412165A2E55008B1311 /* JPAvatarsDownloadOperation.m in Sources */,
 				607A9415165A2EF9008B1311 /* Avatars.m in Sources */,
+				18D272AC165DC5D600335A58 /* MJPopupBackgroundView.m in Sources */,
+				18D272AF165DC63300335A58 /* UIViewController+MJPopupViewController.m in Sources */,
+				18D272B6165DC72300335A58 /* MJDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

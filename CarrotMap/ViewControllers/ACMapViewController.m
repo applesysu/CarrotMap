@@ -15,6 +15,8 @@
 #import "JPDataManager.h"
 #import "ACAddCarrotViewController.h"
 #import "ACMyViewViewController.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "MJDetailViewController.h"
 @interface ACMapViewController ()
 
 @end
@@ -769,13 +771,25 @@
 
 }
 
-/*- (void) didSendACarrotToServer
-{
-    NSLog(@"Send a carrot");
-    NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPublicCarrots) name:@"didGetGeneralPublicCarrots" object:nil];
-    [[JPDataManager sharedInstance] getGeneralPublicCarrotsWithUid:@"311260621" withNumber:5];
-}*/
+#pragma mark - 摇动手机拔萝卜有关的函数
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+}
+
+-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    if (event.type==UIEventSubtypeMotionShake) {
+        NSLog(@"shake motion detected");
+        MJDetailViewController *detailViewController = [[MJDetailViewController alloc] init];
+        detailViewController.view.backgroundColor = [UIColor blueColor];
+        [detailViewController.view setFrame:CGRectMake(50, 50, 150, 150)];
+        [self presentPopupViewController:detailViewController animationType:MJPopupViewAnimationSlideBottomBottom];
+    }
+}
+
+-(BOOL)canBecomeFirstResponder{
+    return YES;
+}
 
 @end
