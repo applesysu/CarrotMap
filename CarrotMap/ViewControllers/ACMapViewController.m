@@ -227,8 +227,7 @@
     
 //4. 右上角拉动兔子出来
     self.bunnyUpperRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1info.png"]];
-    [self.bunnyUpperRight setFrame:CGRectMake(250, 0, 60, 60)];
-    [self.bunnyUpperRight sizeToFit];
+    [self.bunnyUpperRight setFrame:CGRectMake(220, 10, 60, 40)];
     
     //暂时将interaction设置成NO
     self.bunnyUpperRight.userInteractionEnabled = NO;
@@ -610,11 +609,15 @@
             
             if (indexPath.section == 0){
                 JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
+                /*cell.title.text = @"From";
+                cell.title.text = [cell.title.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]];*/
                 cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
                 /*cell.subtitle.text = tmp.message;*/
             }
             else {
                 JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
+                /*cell.title.text = @"From:";
+                cell.title.text = [cell.title.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]];*/
                 cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
                 /*cell.subtitle.text = tmp.message;*/           
             }
@@ -638,7 +641,7 @@
         }
         else {
             NSString *numbersOfPublic = [[NSString alloc] init];
-            numbersOfPublic = [numbersOfPublic stringByAppendingString:@"共有萝卜 "];
+            numbersOfPublic = [numbersOfPublic stringByAppendingString:@"公有萝卜 "];
             numbersOfPublic = [numbersOfPublic stringByAppendingString:[NSString stringWithFormat:@"%d", [[JPDataManager sharedInstance].GeneralpublicCarrots count]]];
             return numbersOfPublic;
         }
