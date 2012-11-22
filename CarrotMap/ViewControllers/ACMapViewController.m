@@ -59,6 +59,9 @@
 //id-Mapping Dictionary
 @synthesize idMappingDictionary;
 
+//nearbyCarrot
+@synthesize nearbyCarrot;
+
 - (id)initWithUserType:(NSString *)userLoginType
 {
     self = [super init];
@@ -291,6 +294,29 @@
             pin.calloutViewOfPin.calloutImageView.messageLabel.text = @"That's too far";
         }
     }
+    
+    if (self.nearbyCarrot != nil){
+        return;
+    }
+
+    for (i = 0; i < [[JPDataManager sharedInstance].GeneralprivateCarrots count]; i++){
+        JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralprivateCarrots objectAtIndex:i];
+        CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
+        double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
+        if (distanceMeters < 5000){
+            self.nearbyCarrot = tmpCarrot;
+        }
+    }
+    
+    for (i = 0; i < [[JPDataManager sharedInstance].GeneralpublicCarrots count]; i++){
+        JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralpublicCarrots objectAtIndex:i];
+        CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
+        double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
+        if (distanceMeters < 5000){
+            self.nearbyCarrot = tmpCarrot;
+        }
+    }
+    NSLog(@"did add a nearbyCarrot into the property %@", self.nearbyCarrot);
 }
 
 #pragma mark - MKMapView Delegate
@@ -745,8 +771,7 @@
         JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]] subtitle:tmp.message];
-        NSLog(@"idmapping key check %@", [NSNumber numberWithInt:[tmp.senderID intValue]]);
-        NSLog(@"idmapping name check %@", [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]);
+        
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -755,8 +780,7 @@
         JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]] subtitle:tmp.message];
-        NSLog(@"idmapping key check %@", [NSNumber numberWithInt:[tmp.senderID intValue]]);
-        NSLog(@"idmapping name check %@", [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]);
+        
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -781,6 +805,7 @@
 -(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
     if (event.type==UIEventSubtypeMotionShake) {
         NSLog(@"shake motion detected");
+        NSLog(@"the nearbyCarrot to be pulled out %@", self.nearbyCarrot);
         MJDetailViewController *detailViewController = [[MJDetailViewController alloc] init];
         detailViewController.view.backgroundColor = [UIColor blueColor];
         [detailViewController.view setFrame:CGRectMake(50, 50, 150, 150)];

@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
          landmarkName = "-initWithUserType:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,37 +60,37 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
+         landmarkName = "-initWithUserType:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
+         timestampString = "375246443.633711"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
+         landmarkName = "-initWithUserType:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "70"
          endingLineNumber = "70"
-         landmarkName = "-initWithUserType:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "72"
-         endingLineNumber = "72"
-         landmarkName = "-initWithUserType:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "67"
-         endingLineNumber = "67"
          landmarkName = "-initWithUserType:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -104,7 +104,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "205"
          endingLineNumber = "205"
-         landmarkName = "-GetBack:"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
          landmarkName = "-initWithUserType:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "721"
-         endingLineNumber = "721"
+         startingLineNumber = "747"
+         endingLineNumber = "747"
          landmarkName = "-didGetGeneralPrivateCarrotsMapView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "678"
-         endingLineNumber = "678"
+         startingLineNumber = "704"
+         endingLineNumber = "704"
          landmarkName = "@implementation ACMapViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "695"
-         endingLineNumber = "695"
+         startingLineNumber = "721"
+         endingLineNumber = "721"
          landmarkName = "-didGetUserInfoMapView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "690"
-         endingLineNumber = "690"
+         startingLineNumber = "716"
+         endingLineNumber = "716"
          landmarkName = "-didGetUserInfoMapView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -346,11 +346,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "707"
-         endingLineNumber = "707"
+         startingLineNumber = "733"
+         endingLineNumber = "733"
          landmarkName = "-didGetIdMappingMapView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -359,11 +359,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "375244753.343417"
+         timestampString = "375246443.633711"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "760"
-         endingLineNumber = "760"
+         startingLineNumber = "784"
+         endingLineNumber = "784"
          landmarkName = "-didGetGeneralPublicCarrotsMapView"
          landmarkType = "5">
       </FileBreakpoint>
