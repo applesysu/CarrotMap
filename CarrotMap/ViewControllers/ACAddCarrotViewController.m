@@ -64,7 +64,8 @@
     self.topNavigation.frame=CGRectMake(0, 0, 320, 44);
     leftBackBar=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(backToMapView)];
     rightSenderBar=[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendCarrotMap)];
-    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftBackBar,rightSenderBar,nil];
+    UIBarButtonItem *publicBar=[[UIBarButtonItem alloc] initWithTitle:@"Public" style:UIBarButtonItemStyleBordered target:self action:@selector(SendPublicCarrot)];
+    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftBackBar,rightSenderBar,publicBar, nil];
     [self.topNavigation  setItems:itemArray animated:YES];
     
     
@@ -376,12 +377,20 @@
         NSLog(@"%@",single);
     }
     
-    //    self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
-//    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
-//    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
-//    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:[ausrInfo objectForKey:@"uid"] withReceiversID:ids withSendedTime:@"2002年5月20日"];
-//    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
+       self.receviers=[[NSArray alloc] initWithObjects:@"311260621",nil ];
+    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
+    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
+    JPCarrot *carrot=[[JPCarrot alloc] initPrivateCarrotWithLogitude: longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:[ausrInfo objectForKey:@"uid"] withReceiversID:ids withSendedTime:@"2002年5月20日"];
+    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
      [self dismissModalViewControllerAnimated:YES];
+
+}
+
+-(void)SendPublicCarrot{
+    NSString *longtitudeSting=[[NSString alloc] initWithFormat:@"%f",longtitude];
+    NSString *latitudeSting=[[NSString alloc] initWithFormat:@"%f",laitutude];
+    JPCarrot *carrot=[[JPCarrot alloc] initPublicCarrotWithLogitude:longtitudeSting withLatitude:latitudeSting withMessage:testRestrict.text withSenderID:[ausrInfo objectForKey:@"uid"] withSendedTime:@"2002年5月20日"];
+    [[JPDataManager sharedInstance] sendACarrotToServer:carrot];
 
 }
 @end
