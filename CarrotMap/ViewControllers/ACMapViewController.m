@@ -819,25 +819,31 @@
         
         //去拉萝卜detail的数据，当然主要是message，对它是公有还是私有作判断
         if (self.nearbyCarrot.isPublic == 1){
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailCarrotMapView) name:@"didGetDetailPublicCarrot" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPublicCarrotMapView) name:@"didGetDetailPublicCarrot" object:nil];
             [[JPDataManager sharedInstance] getDetailPublicCarrotWithGeneralCarrot:self.nearbyCarrot];
         }
         else {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailCarrotMapView) name:@"didGetDetailPrivateCarrot" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPrivateCarrotMapView) name:@"didGetDetailPrivateCarrot" object:nil];
             [[JPDataManager sharedInstance] getDetailPrivateCarrotWithGeneralCarrot:self.nearbyCarrot];
         }
     }
 }
 
+- (void)didGetDetailPublicCarrotMapView
+{
+    NSLog(@"didGetDetailPublicCarrotMapView");
+    NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
+}
+
+- (void)didGetDetailPrivateCarrotMapView
+{
+    NSLog(@"didGetDetailPrivateCarrotMapView");
+    NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
+}
+
 -(BOOL)canBecomeFirstResponder
 {
     return YES;
-}
-
-- (void)didGetDetailCarrotMapView
-{
-    NSLog(@"didGetDetailCarrotMapView");
-    NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
 }
 
 @end
