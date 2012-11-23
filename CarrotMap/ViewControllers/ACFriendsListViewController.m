@@ -51,10 +51,10 @@
   
     self.view.backgroundColor=[UIColor clearColor];
 
-    self.connectMeLabelView=[[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.connectMeLabelView.image=[UIImage imageNamed:@"lefttop.png"];
-    self.connectMeLabelView.userInteractionEnabled=YES;
-    [self.view addSubview:self.connectMeLabelView];
+//    self.connectMeLabelView=[[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+   //self.connectMeLabelView.image=[UIImage imageNamed:@"lefttop.png"];
+//    self.connectMeLabelView.userInteractionEnabled=YES;
+//    [self.view addSubview:self.connectMeLabelView];
     
 
     
@@ -70,9 +70,14 @@
    
     UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 80)];
     recentScollViewBackground.userInteractionEnabled=YES;
-//    recentScollViewBackground.backgroundColor=[UIColor orangeColor];
+ //  recentScollViewBackground.image=[UIImage imageNamed:@"lefttop.png"];
+   //recentScollViewBackground.backgroundColor=[UIColor orangeColor];
+    
     [self.view addSubview:recentScollViewBackground];
     
+    UIImageView *leftTopView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 50, 50)];
+    leftTopView.image=[UIImage imageNamed:@"lefttop.png"];
+  //  recentScollViewBackground add
 
    
     self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,30,280,50)];
@@ -107,8 +112,11 @@
     theWholeFriendListBackground.image=[UIImage imageNamed:@"littlecarrot.png"];
     [self.connectMeLabelView addSubview:theWholeFriendListBackground];
     
-    self.searchForSingleFriend=[[UISearchBar alloc] initWithFrame:CGRectMake(10, 120, 300, 50)];
+    
+    
+    self.searchForSingleFriend=[[UISearchBar alloc] initWithFrame:CGRectMake(0, 130, 320, 50)];
     self.searchForSingleFriend.delegate=self;
+  //  self.searchForSingleFriend.backgroundImage=[UIImage imageNamed:@"search.png"];
     [self.theWholeFriendListBackground addSubview:self.searchForSingleFriend];
     
     
@@ -118,7 +126,7 @@
     self.friendLineListView.delegate=self;
     self.friendLineListView.alwaysBounceVertical=YES;
 //    self.friendLineListView.backgroundColor=[UIColor orangeColor];
- //   [theWholeFriendListBackground addSubview:friendLineListView];
+    [theWholeFriendListBackground addSubview:friendLineListView];
     
 //    NSLog(@"%@",[JPDataManager sharedInstance].avatarMapping);
 
