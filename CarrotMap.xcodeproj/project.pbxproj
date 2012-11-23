@@ -33,7 +33,6 @@
 		5F0C2B821658ECED007D7982 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0C2B811658ECED007D7982 /* Default.png */; };
 		5F8B9B911650E9330074CC46 /* SDRecentFriendList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */; };
 		5F9CCAA7165D0327002F244D /* littlecarrot.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9CCAA2165D0327002F244D /* littlecarrot.png */; };
-		5F9CCAA9165D0327002F244D /* 3frs1116.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5F9CCAA4165D0327002F244D /* 3frs1116.jpg */; };
 		5F9CCAAA165D0327002F244D /* lefttop.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9CCAA5165D0327002F244D /* lefttop.png */; };
 		5F9CCAAB165D0327002F244D /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9CCAA6165D0327002F244D /* search.png */; };
 		5FAEF6B9164FC7840057D4ED /* SDFriendItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAEF6B8164FC7840057D4ED /* SDFriendItems.m */; };
@@ -208,7 +207,6 @@
 		5F8B9B8F1650E9330074CC46 /* SDRecentFriendList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRecentFriendList.h; sourceTree = "<group>"; };
 		5F8B9B901650E9330074CC46 /* SDRecentFriendList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRecentFriendList.m; sourceTree = "<group>"; };
 		5F9CCAA2165D0327002F244D /* littlecarrot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = littlecarrot.png; sourceTree = "<group>"; };
-		5F9CCAA4165D0327002F244D /* 3frs1116.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3frs1116.jpg; sourceTree = "<group>"; };
 		5F9CCAA5165D0327002F244D /* lefttop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lefttop.png; sourceTree = "<group>"; };
 		5F9CCAA6165D0327002F244D /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		5FAEF6B7164FC7840057D4ED /* SDFriendItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDFriendItems.h; path = ../SDFriendItems.h; sourceTree = "<group>"; };
@@ -529,7 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				5F9CCAA2165D0327002F244D /* littlecarrot.png */,
-				5F9CCAA4165D0327002F244D /* 3frs1116.jpg */,
 				5F9CCAA5165D0327002F244D /* lefttop.png */,
 				5F9CCAA6165D0327002F244D /* search.png */,
 			);
@@ -1118,7 +1115,6 @@
 				18870DB8165BA5DE0007BC72 /* 1locate.png in Resources */,
 				18870DBA165BCE200007BC72 /* 1board.png in Resources */,
 				5F9CCAA7165D0327002F244D /* littlecarrot.png in Resources */,
-				5F9CCAA9165D0327002F244D /* 3frs1116.jpg in Resources */,
 				5F9CCAAA165D0327002F244D /* lefttop.png in Resources */,
 				5F9CCAAB165D0327002F244D /* search.png in Resources */,
 			);
