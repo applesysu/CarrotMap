@@ -289,10 +289,10 @@
         
         //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
         if (distanceMeters<5000) {
-            pin.calloutViewOfPin.calloutImageView.messageLabel.text = @"That's near enough";
+            pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"摇动手机拔萝卜吧！";
         }
         else {
-            pin.calloutViewOfPin.calloutImageView.messageLabel.text = @"That's too far";
+            pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"太远了！先靠近这根萝卜吧！";
         }
     }
     
@@ -386,13 +386,29 @@
      
     NSString *pinReusableIdentifier=[SYSUMyAnnotation reusableIdentifierForPinColor:senderAnnotation.pinColor];
     SYSUMyAnnoCalloutView *annota=(SYSUMyAnnoCalloutView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
+    annota.calloutImageView.messageLabel.text = @"来自:";
+    if ([senderAnnotation.title isEqualToString:self.userID]){
+        annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.userInfo objectForKey:@"name"]];
+    }
+    else {
+        annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[senderAnnotation.title intValue]]]];
+        
+    }
+    annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:@"的一根萝卜"];
     senderAnnotation.calloutViewOfPin = annota;
-     
     
      //初次定义MKAnnotationView
     if (annota==nil) {
         //第一件事情：initWithAnnotation
         annota=[[SYSUMyAnnoCalloutView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
+        annota.calloutImageView.messageLabel.text = @"来自:";
+        if ([senderAnnotation.title isEqualToString:self.userID]){
+            annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.userInfo objectForKey:@"name"]];
+        }
+        else {
+            annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[senderAnnotation.title intValue]]]];
+        }
+        annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:@"的一根萝卜"];
         senderAnnotation.calloutViewOfPin = annota;
         [annota setCanShowCallout:NO];
     }
@@ -640,14 +656,26 @@
                 JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
                 /*cell.title.text = @"From";
                 cell.title.text = [cell.title.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]];*/
-                cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
-                /*cell.subtitle.text = tmp.message;*/
+                if ([tmp.senderID isEqualToString:self.userID]) {
+                    cell.title.text = [self.userInfo objectForKey:@"name"];
+                }
+                else{
+                    cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
+                    /*cell.subtitle.text = tmp.message;*/
+                }
             }
             else {
                 JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
                 /*cell.title.text = @"From:";
                 cell.title.text = [cell.title.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]];*/
-                cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
+                
+                if ([tmp.senderID isEqualToString:self.userID]) {
+                    cell.title.text = [self.userInfo objectForKey:@"name"];
+                }
+                else{
+                    cell.title.text = [self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]];
+                    /*cell.subtitle.text = tmp.message;*/
+                }
                 /*cell.subtitle.text = tmp.message;*/           
             }
     
@@ -771,7 +799,7 @@
     for (i = 0; i < [self.generalPublicCarrots count]; i++){
         JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]] subtitle:tmp.message];
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.senderID subtitle:tmp.message];
         
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
@@ -780,7 +808,7 @@
     for (i = 0; i < [self.generalPrivateCarrots count]; i++){
         JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
-        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]] subtitle:tmp.message];
+        SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.senderID subtitle:tmp.message];
         
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
