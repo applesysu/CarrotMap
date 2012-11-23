@@ -50,11 +50,6 @@
 
   
     self.view.backgroundColor=[UIColor clearColor];
-
-//    self.connectMeLabelView=[[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-   //self.connectMeLabelView.image=[UIImage imageNamed:@"lefttop.png"];
-//    self.connectMeLabelView.userInteractionEnabled=YES;
-//    [self.view addSubview:self.connectMeLabelView];
     
 
     
@@ -62,7 +57,7 @@
     UIBarButtonItem *leftButton=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(GetBack:)];
     NSArray *itemArray=[[NSArray alloc] initWithObjects:leftButton,nil];
     [toolBar setItems:itemArray animated:YES];
-    [self.view addSubview:toolBar];
+    
     
     
     
@@ -73,20 +68,20 @@
  //  recentScollViewBackground.image=[UIImage imageNamed:@"lefttop.png"];
    //recentScollViewBackground.backgroundColor=[UIColor orangeColor];
     
-    [self.view addSubview:recentScollViewBackground];
+   
     
-    UIImageView *leftTopView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 50, 50)];
+    UIImageView *leftTopView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 110, 60)];
     leftTopView.image=[UIImage imageNamed:@"lefttop.png"];
-  //  recentScollViewBackground add
+
 
    
-    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,30,280,50)];
+    self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,17,280,50)];
     self.theRecentScollView.scrollEnabled=YES;
     self.theRecentScollView.delegate=self;
     self.theRecentScollView.alwaysBounceHorizontal=YES;
 
     
-    NSMutableArray *imageDataArray=[[NSMutableArray alloc] initWithCapacity:15];
+//    NSMutableArray *imageDataArray=[[NSMutableArray alloc] initWithCapacity:15];
     for (int i=0;i<friendList.count;i++) {
       //  NSDictionary *single=[friendList objectAtIndex:i];
        // NSString *imageString=[single objectForKey:@"tinyurl"];
@@ -99,7 +94,7 @@
         [self.theRecentScollView addSubview:recentFriendItem];
     }
     self.theRecentScollView.contentSize=CGSizeMake(48*friendList.count-8, 40);
-    [recentScollViewBackground addSubview:self.theRecentScollView];
+   
 
     
     NSLog(@"%@",[friendList objectAtIndex:0]);
@@ -110,14 +105,15 @@
     theWholeFriendListBackground.layer.cornerRadius=12.0;
     theWholeFriendListBackground.userInteractionEnabled=YES;
     theWholeFriendListBackground.image=[UIImage imageNamed:@"littlecarrot.png"];
-    [self.connectMeLabelView addSubview:theWholeFriendListBackground];
+    [self.view addSubview:theWholeFriendListBackground];
     
     
     
     self.searchForSingleFriend=[[UISearchBar alloc] initWithFrame:CGRectMake(0, 130, 320, 50)];
     self.searchForSingleFriend.delegate=self;
+    
   //  self.searchForSingleFriend.backgroundImage=[UIImage imageNamed:@"search.png"];
-    [self.theWholeFriendListBackground addSubview:self.searchForSingleFriend];
+    
     
     
     self.friendLineListView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 180, 320, 250)];
@@ -126,7 +122,7 @@
     self.friendLineListView.delegate=self;
     self.friendLineListView.alwaysBounceVertical=YES;
 //    self.friendLineListView.backgroundColor=[UIColor orangeColor];
-    [theWholeFriendListBackground addSubview:friendLineListView];
+    
     
 //    NSLog(@"%@",[JPDataManager sharedInstance].avatarMapping);
 
@@ -162,7 +158,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSingleFriendImage:) name:@"didDownAnAvatar" object:nil];
 
     [[JPDataManager sharedInstance] getFriendsList];
+ 
     
+    [self.theWholeFriendListBackground addSubview:leftTopView];
+    [self.theWholeFriendListBackground addSubview:recentScollViewBackground];
+    [self.theWholeFriendListBackground addSubview:self.searchForSingleFriend];
+    [theWholeFriendListBackground addSubview:friendLineListView];
+    [recentScollViewBackground addSubview:self.theRecentScollView];    
+    [self.view addSubview:toolBar];
 }
 
 - (void)viewDidUnload
