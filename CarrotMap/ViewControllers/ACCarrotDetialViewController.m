@@ -26,7 +26,17 @@
         self.senderNameLabel.backgroundColor = [UIColor clearColor];
         self.senderNameLabel.lineBreakMode = UILineBreakModeCharacterWrap;
         self.senderNameLabel.text = @"来自:";
-        self.senderNameLabel.text = [self.senderNameLabel.text stringByAppendingString:[[JPDataManager sharedInstance].idMapping objectForKey:[NSNumber numberWithInt:[carrot.senderID intValue]]]];
+        NSLog(@"%d", [carrot.senderID intValue]);
+        NSLog(@"%@", carrot.senderID);
+        NSLog(@"%@", [[JPDataManager sharedInstance].userInfo objectForKey:@"uid"]);
+        
+        if ([carrot.senderID isEqualToString:[[JPDataManager sharedInstance].userInfo objectForKey:@"uid"]]){
+            self.senderNameLabel.text = [self.senderNameLabel.text stringByAppendingString:[[JPDataManager sharedInstance].userInfo objectForKey:@"name"]];
+        }
+        else{
+            self.senderNameLabel.text = [self.senderNameLabel.text stringByAppendingString:[[JPDataManager sharedInstance].idMapping objectForKey:[NSNumber numberWithInt:[carrot.senderID intValue]]]];
+            
+        }
         self.senderNameLabel.text = [self.senderNameLabel.text stringByAppendingString:@"的一条信息"];
         [self.view addSubview:self.senderNameLabel];
         
