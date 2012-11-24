@@ -124,32 +124,32 @@
         NSLog(@"Service are not available");
     }
     
-/* A Sample location*/
-    CLLocationCoordinate2D location=CLLocationCoordinate2DMake(23.01, 113.33);
-    CLLocation *GLocation=[[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
-    
-    //创建SYSUAnnotation, 这是我们自定义的Annotation
-    SYSUMyAnnotation *annotation=[[SYSUMyAnnotation alloc] initWithCoordinate:location title:@"MyAnnotation" subtitle:@"SubTitle"];
-    annotation.pinColor=MKPinAnnotationColorPurple;
-    [self.myMapView addAnnotation:annotation];
-    
-    
-    
-    //获取具体地址，并赋值给我们的Pin
-    self.myGeocoder=[[CLGeocoder alloc] init];
-    [self.myGeocoder reverseGeocodeLocation:GLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        if (error==nil&&[placemarks count]>0) {
-            CLPlacemark *placemark=[placemarks objectAtIndex:0];
-            //   NSLog(@"%@",placemark);
-            //  NSLog(@"%@ : %@ : %@", placemark.subLocality,placemark.name, placemark.locality);
-            annotation.title=placemark.name;
-            annotation.subtitle=placemark.subLocality;
-        } else if(error==nil&&[placemarks count]==0){
-            NSLog(@"No Results returns");
-        }else if (error!=nil){
-            NSLog(@"Error=%@",error);
-        }
-    }];
+///* A Sample location*/
+//    CLLocationCoordinate2D location=CLLocationCoordinate2DMake(23.01, 113.33);
+//    CLLocation *GLocation=[[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude];
+//    
+//    //创建SYSUAnnotation, 这是我们自定义的Annotation
+//    SYSUMyAnnotation *annotation=[[SYSUMyAnnotation alloc] initWithCoordinate:location title:@"MyAnnotation" subtitle:@"SubTitle"];
+//    annotation.pinColor=MKPinAnnotationColorPurple;
+//    [self.myMapView addAnnotation:annotation];
+//    
+//    
+//    
+//    //获取具体地址，并赋值给我们的Pin
+//    self.myGeocoder=[[CLGeocoder alloc] init];
+//    [self.myGeocoder reverseGeocodeLocation:GLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+//        if (error==nil&&[placemarks count]>0) {
+//            CLPlacemark *placemark=[placemarks objectAtIndex:0];
+//            //   NSLog(@"%@",placemark);
+//            //  NSLog(@"%@ : %@ : %@", placemark.subLocality,placemark.name, placemark.locality);
+//            annotation.title=placemark.name;
+//            annotation.subtitle=placemark.subLocality;
+//        } else if(error==nil&&[placemarks count]==0){
+//            NSLog(@"No Results returns");
+//        }else if (error!=nil){
+//            NSLog(@"Error=%@",error);
+//        }
+//    }];
 
     
     
@@ -387,12 +387,14 @@
     NSString *pinReusableIdentifier=[SYSUMyAnnotation reusableIdentifierForPinColor:senderAnnotation.pinColor];
     SYSUMyAnnoCalloutView *annota=(SYSUMyAnnoCalloutView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
     annota.calloutImageView.messageLabel.text = @"来自:";
+    
     if ([senderAnnotation.title isEqualToString:self.userID]){
+        NSLog(@"%@", [self.userInfo objectForKey:@"name"]);
         annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.userInfo objectForKey:@"name"]];
     }
     else {
+        NSLog(@"%d", [senderAnnotation.title intValue]);
         annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[senderAnnotation.title intValue]]]];
-        
     }
     annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:@"的一根萝卜"];
     senderAnnotation.calloutViewOfPin = annota;
