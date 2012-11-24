@@ -156,7 +156,7 @@
 //1. 目的是放置一键插萝卜功能
     UIImage *rightCorner=[UIImage imageNamed:@"1add.png"];
     rightCornerView=[[UIImageView alloc] initWithImage:rightCorner];
-    [self.rightCornerView setFrame:CGRectMake(250, 390, 55, 63)];
+    [self.rightCornerView setFrame:CGRectMake(270, 405, 45, 52)];
     //self.rightCornerView.center=CGPointMake(290, 430);
     self.rightCornerView.userInteractionEnabled=YES;
     [self.view addSubview:self.rightCornerView];
@@ -171,7 +171,7 @@
 //2. 定位图标，用来提供给用户，用以回到自己位置并开始实时定位
     UIImage *locationTracking=[UIImage  imageNamed:@"1locate.png"];
     self.LocationTrackingView=[[UIImageView alloc] initWithImage:locationTracking];
-    [self.LocationTrackingView setFrame:CGRectMake(180, 390, 55, 63)];
+    [self.LocationTrackingView setFrame:CGRectMake(220, 405, 45, 52)];
     //self.LocationTrackingView.center=CGPointMake(230, 430);
     self.LocationTrackingView.userInteractionEnabled=YES;
     [self.view addSubview:self.LocationTrackingView];
@@ -233,7 +233,7 @@
     
 //4. 右上角拉动兔子出来
     self.bunnyUpperRight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1info.png"]];
-    [self.bunnyUpperRight setFrame:CGRectMake(220, 10, 60, 40)];
+    [self.bunnyUpperRight setFrame:CGRectMake(250, 10, 60, 40)];
     
     //暂时将interaction设置成NO
     self.bunnyUpperRight.userInteractionEnabled = NO;
@@ -288,7 +288,7 @@
         double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
         
         //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
-        if (distanceMeters<5000) {
+        if (distanceMeters<60) {
             pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"摇动手机拔萝卜吧！";
         }
         else {
@@ -875,6 +875,11 @@
 {
     NSLog(@"didGetDetailPrivateCarrotMapView");
     NSLog(@"%@", [JPDataManager sharedInstance].detailCarrot);
+    
+    ACCarrotDetialViewController *detailViewController = [[ACCarrotDetialViewController alloc] initWithCarrot:[JPDataManager sharedInstance].detailCarrot];
+    detailViewController.view.backgroundColor = [UIColor greenColor];
+    [detailViewController.view setFrame:CGRectMake(50, 50, 150, 150)];
+    [self presentPopupViewController:detailViewController animationType:MJPopupViewAnimationSlideBottomBottom];
 }
 
 -(BOOL)canBecomeFirstResponder

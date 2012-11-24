@@ -7,6 +7,7 @@
 //
 
 #import "ACCarrotDetialViewController.h"
+#import "JPDataManager.h"
 @interface ACCarrotDetialViewController ()
 
 @end
@@ -21,12 +22,18 @@
     self = [super init];
     if (self) {
         self.senderNameLabel = [[UILabel alloc] init];
-        [self.senderNameLabel setFrame:CGRectMake(5, 5, 120, 20)];
-        self.senderNameLabel.text = carrot.senderID;
+        [self.senderNameLabel setFrame:CGRectMake(5, 5, 140, 20)];
+        self.senderNameLabel.backgroundColor = [UIColor clearColor];
+        self.senderNameLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+        self.senderNameLabel.text = @"来自:";
+        self.senderNameLabel.text = [self.senderNameLabel.text stringByAppendingString:[[JPDataManager sharedInstance].idMapping objectForKey:[NSNumber numberWithInt:[carrot.senderID intValue]]]];
+        self.senderNameLabel.text = [self.senderNameLabel.text stringByAppendingString:@"的一条信息"];
         [self.view addSubview:self.senderNameLabel];
         
         self.detailMessageLabel = [[UILabel alloc] init];
-        [self.detailMessageLabel setFrame:CGRectMake(5, 30, 120, 70)];
+        [self.detailMessageLabel setFrame:CGRectMake(5, 30, 140, 120)];
+        self.detailMessageLabel.backgroundColor = [UIColor clearColor];
+        self.detailMessageLabel.lineBreakMode = UILineBreakModeCharacterWrap;
         self.detailMessageLabel.text = carrot.message;
         [self.view addSubview:self.detailMessageLabel];
     }

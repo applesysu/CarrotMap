@@ -26,6 +26,7 @@
         boundsForLabel.size.height = 20;
         self.messageLabel = [[UILabel alloc] initWithFrame:boundsForLabel];
         self.messageLabel.backgroundColor = [UIColor clearColor];
+        self.messageLabelSecond.lineBreakMode = UILineBreakModeWordWrap;
         [self addSubview:self.messageLabel];
         //第二个Label
         boundsForLabel.origin.x = 20;
@@ -34,6 +35,7 @@
         boundsForLabel.size.height = 20;
         self.messageLabelSecond = [[UILabel alloc] initWithFrame:boundsForLabel];
         self.messageLabelSecond.backgroundColor = [UIColor clearColor];
+        self.messageLabelSecond.lineBreakMode = UILineBreakModeWordWrap;
         [self addSubview:self.messageLabelSecond];
         //第三个Label
         boundsForLabel.origin.x = 20;
@@ -42,6 +44,7 @@
         boundsForLabel.size.height = 20;
         self.messageLabelThird = [[UILabel alloc] initWithFrame:boundsForLabel];
         self.messageLabelThird.backgroundColor = [UIColor clearColor];
+        self.messageLabelSecond.lineBreakMode = UILineBreakModeWordWrap;
         [self addSubview:self.messageLabelThird];
     }
     return self;
