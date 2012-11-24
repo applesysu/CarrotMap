@@ -31,5 +31,6 @@
 
 - (void) testLocalDataManager;
 - (NSArray*) visitPublicCarrots;
+- (NSArray*)visitAvatars;
 
 @end

@@ -110,6 +110,7 @@
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     for ( Avatars *avatars in result ) {
+//        NSLog(@"%@", avatars.avatar);
         [dict setObject:avatars.avatar forKey:avatars.uid];
     }
     
@@ -326,6 +327,17 @@
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SawPublicCarrots" inManagedObjectContext:managedObjectContext];
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *result = [managedObjectContext executeFetchRequest:request error:&error];
+    return result;
+}
+
+- (NSArray *)visitAvatars
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Avatars" inManagedObjectContext:managedObjectContext];
     [request setEntity:entity];
     
     NSError *error;

@@ -196,7 +196,7 @@
     NSMutableString *names=[NSMutableString stringWithCapacity:receviers.count*5];
     NSLog(@"%@",receviers);
     for (NSDictionary *single in receviers) {
-      [ names appendFormat:@"%@,",[single objectForKey:@"name"] ] ;
+      [ names appendFormat:@"%@ ",[single objectForKey:@"name"] ] ;
    
 //        NSLog(@"%@",[single objectForKey:@"name"]);
 //        NSLog(@"%@",names);

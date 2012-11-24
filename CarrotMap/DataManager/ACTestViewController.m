@@ -9,6 +9,7 @@
 #import "ACTestViewController.h"
 #import "JPDataManager.h"
 #import "JPLocalDataManager.h"
+#import "Avatars.h"
 
 @interface ACTestViewController ()
 
@@ -300,10 +301,16 @@
     //NSLog(@"%d", [[[JPLocalDataManager sharedInstance] visitPublicCarrots] count]);
     
     //更新好友列表
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendsList) name:@"didGetFriendsList" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadAnAvatar:) name:@"didDownloadAnAvatar" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetFriendsList) name:@"didGetFriendsList" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadAnAvatar:) name:@"didDownloadAnAvatar" object:nil];
+//    
+//    [[JPDataManager sharedInstance] refreshFriendsList];
     
-    [[JPDataManager sharedInstance] refreshFriendsList];
+    
+    // 测试之后，数据数有东西的
+    NSArray *arr = [[JPLocalDataManager sharedInstance] visitAvatars];
+    Avatars *a = [arr objectAtIndex:0];
+    NSLog(@"%@", a.avatar);
 }
 
 @end

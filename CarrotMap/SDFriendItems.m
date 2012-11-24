@@ -40,4 +40,7 @@
     return self;
 }
 
+-(void)setImage:(UIImage *)image{
+    self.friendHeader.image=image;
+}
 @end
