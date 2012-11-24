@@ -317,7 +317,6 @@
             self.nearbyCarrot = tmpCarrot;
         }
     }
-    NSLog(@"did add a nearbyCarrot into the property %@", self.nearbyCarrot);
 }
 
 #pragma mark - MKMapView Delegate
