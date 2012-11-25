@@ -530,7 +530,7 @@
             [self.leftCornerView.layer addAnimation:theGroup forKey:@"positon"];
             paramSender.view.center=CGPointMake(80.0f, setY);
             
-            NSLog(@"testtesttesttesttesttest %f", self.leftCornerView.center.y);
+          //  NSLog(@"testtesttesttesttesttest %f", self.leftCornerView.center.y);
         }
         
         else if(paramSender.view.center.y==setY){
