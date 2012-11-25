@@ -29,21 +29,12 @@
         //登录按钮
         self.loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(40,140,90,90)];
         [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"renren.png"] forState:UIControlStateNormal];
-        //        [self.loginBtn setTitle:@"人人登录" forState:UIControlStateNormal];
         [self.loginBtn addTarget:self action:@selector(loginBtnPressed) forControlEvents:UIControlEventTouchUpInside];
         
    
-        //or分隔线
-//        self.orImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"or.png"]];
-//        [self.orImage setFrame:CGRectMake(30, 220, self.orImage.frame.size.width/2, self.orImage.frame.size.height/2)];
-//        self.orLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 205, 30, 30)];
-//        self.orLabel.text = @"or";
-        
         //游客浏览按钮
         self.touristBtn = [[UIButton alloc] initWithFrame:CGRectMake(160,140,80, 90)];
         [self.touristBtn setBackgroundImage:[UIImage imageNamed:@"guest.png"] forState:UIControlStateNormal];
-        //        [self.touristBtn setTitle:@"以游客身份浏览" forState:UIControlStateNormal];
-        //        [self.touristBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.touristBtn addTarget:self action:@selector(TouristBtnPressed) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
@@ -55,22 +46,13 @@
     if (self) {
         //登录按钮
         self.loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(40,140,100,90)];
-//        self.loginBtn=[[UIButton alloc] init];
         [self.loginBtn setBackgroundImage:[UIImage imageNamed:@"renren.png"] forState:UIControlStateNormal];
-//        [self.loginBtn setTitle:@"人人登录" forState:UIControlStateNormal];
         [self.loginBtn addTarget:self action:@selector(loginBtnPressed) forControlEvents:UIControlEventTouchUpInside];
         
-        //or分隔线
-//        self.orImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"or.png"]];
-//        [self.orImage setFrame:CGRectMake(30, 220, self.orImage.frame.size.width/2, self.orImage.frame.size.height/2)];
-//        self.orLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 205, 30, 30)];
-//        self.orLabel.text = @"or";
         
         //游客浏览按钮
         self.touristBtn = [[UIButton alloc] initWithFrame:CGRectMake(160,140,80, 90)];
         [self.touristBtn setBackgroundImage:[UIImage imageNamed:@"guest.png"] forState:UIControlStateNormal];
-//        [self.touristBtn setTitle:@"以游客身份浏览" forState:UIControlStateNormal];
-//        [self.touristBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.touristBtn addTarget:self action:@selector(TouristBtnPressed) forControlEvents:UIControlEventTouchUpInside];
         
         
@@ -94,19 +76,13 @@
     self.boxView.image=[UIImage imageNamed:@"box.png"];
     self.boxView.userInteractionEnabled=YES;
     [self.view addSubview:self.boxView];
-//    
-    //关闭键盘背景按钮
-//    UIButton *bgBtn = [[UIButton alloc] initWithFrame:self.view.frame];
-//    [bgBtn addTarget:self action:@selector(bgPressed) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:bgBtn];
+
     
     
     
     
     //把控件添加到页面上
     [self.boxView addSubview:self.loginBtn];
-//    [self.view addSubview:self.orImage];
-//    [self.view addSubview:self.orLabel];
     [self.boxView addSubview:self.touristBtn];
 
 }
@@ -121,6 +97,9 @@
     self.orLabel=nil;
     self.logoView=nil;
 
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didRenrenLogin"  object:nil];
 }
 
 - (void)loginBtnPressed;

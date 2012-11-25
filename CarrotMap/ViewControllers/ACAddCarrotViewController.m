@@ -394,4 +394,9 @@
     [self dismissModalViewControllerAnimated:YES];
 
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didGetFriendsList" object:nil];
+}
 @end

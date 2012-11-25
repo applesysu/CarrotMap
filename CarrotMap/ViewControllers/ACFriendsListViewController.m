@@ -52,10 +52,11 @@
     self.view.backgroundColor=[UIColor clearColor];
     
 
-    
+   //工具栏
     toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     UIBarButtonItem *leftButton=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(GetBack:)];
-    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftButton,nil];
+    UIBarButtonItem *sender=[[UIBarButtonItem alloc] initWithTitle:@"SenNoti" style:UIBarButtonItemStyleBordered target:self action:@selector(SenderNo)];
+    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftButton,sender,nil];
     [toolBar setItems:itemArray animated:YES];
     
     
@@ -63,6 +64,7 @@
     
     self.receiverIDList=[[NSMutableArray alloc] initWithCapacity:[friendList count]];
    
+    //最近常联系的好友列表的背景
     UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 80)];
     recentScollViewBackground.userInteractionEnabled=YES;
  //  recentScollViewBackground.image=[UIImage imageNamed:@"lefttop.png"];
@@ -74,7 +76,7 @@
     leftTopView.image=[UIImage imageNamed:@"lefttop.png"];
 
 
-   
+   //最近常联系的好友
     self.theRecentScollView=[[UIScrollView alloc] initWithFrame:CGRectMake(20,17,280,50)];
     self.theRecentScollView.scrollEnabled=YES;
     self.theRecentScollView.delegate=self;
@@ -101,23 +103,22 @@
     
     NSLog(@"%@",[friendList objectAtIndex:0]);
     
-    
+    //好友列表的背景
     theWholeFriendListBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 430)];
-//    theWholeFriendListBackground.backgroundColor=[UIColor blueColor];
     theWholeFriendListBackground.layer.cornerRadius=12.0;
     theWholeFriendListBackground.userInteractionEnabled=YES;
     theWholeFriendListBackground.image=[UIImage imageNamed:@"littlecarrot.png"];
     [self.view addSubview:theWholeFriendListBackground];
     
     
-    
+   //SearchBar
     self.searchForSingleFriend=[[UISearchBar alloc] initWithFrame:CGRectMake(0, 130, 320, 50)];
     self.searchForSingleFriend.delegate=self;
     
-  //  self.searchForSingleFriend.backgroundImage=[UIImage imageNamed:@"search.png"];
+
     
     
-    
+    //好友全部列表
     self.friendLineListView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 180, 320, 250)];
     self.friendLineListView.backgroundColor=[UIColor whiteColor];
     self.friendLineListView.scrollEnabled=YES;
@@ -147,12 +148,11 @@
         // UIImage *image=[[UIImage alloc] initWithData:imageData];
         // NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]);
        UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
-//        UIImage *image=[[UIImage alloc] init];
-  //      image=nil;
+        image=nil;
         
         //        NSLog(@"%@", nameForImage);
         //        NSLog(@"%@", [[JPDataManager sharedInstance].avatarMapping allKeys]);
-                NSLog(@"%d", [[JPDataManager sharedInstance].avatarMapping count]);
+            //    NSLog(@"%d", [[JPDataManager sharedInstance].avatarMapping count]);
         //        NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:@"339557652"] );
         
         if (image==nil) {
@@ -170,11 +170,6 @@
     
 
 
-    
-
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSingleFriendImage:) name:@"didDownloadAnAvatar" object:nil];
-
-//    [[JPDataManager sharedInstance] refreshFriendsList];
  
     
     [self.theWholeFriendListBackground addSubview:leftTopView];
@@ -201,6 +196,11 @@
     self.searchForSingleFriend=nil;
     [super viewDidUnload];
 
+}
+
+-(void)viewWillDisappear:(BOOL)animated{    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didDownloadAnAvatar" object:nil];
+    [[NSNotificationCenter defaultCenter]  removeObserver:self name:@"didDownloadAllAvatars" object:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -290,6 +290,10 @@
 }
 
 
+-(void)SenderNo{
+    [[JPDataManager sharedInstance] refreshFriendsList];
+}
+
 #pragma mark- Notification Methods
 -(void)getSingleFriendImage:(NSNotification*)notifation{
     NSLog(@"Get A Avatar!");
@@ -306,7 +310,7 @@
 //            NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:name]);
 //            NSLog(@"%d",i);
           UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
-//            [item setImage:image];
+       //     item.friendHeader.image=image;
 //            [[JPDataManager sharedInstance].avatarMapping objectForKey:name];
      //       NSLog(@"%@",item);
             break;
@@ -319,5 +323,7 @@
     NSLog(@"Get All Avatars!");
 
 }
+
+
 
 @end

@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SDFriendItems : UIView
-
+{
+    UIImageView *friendHeader;
+    
+}
 
 @property(strong, nonatomic) UIImageView *friendHeader;
 

@@ -279,7 +279,7 @@
 //   NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
 //    
 //    NSLog(@"Latitude=%f, Longtitude=%f   $$$$$$",oldLocation.coordinate.latitude,oldLocation.coordinate.longitude);
-    NSLog(@"Location Delegate called");
+ //   NSLog(@"Location Delegate called");
     int i;
     for (i = 0; i < [carrotOnMap count]; i++){
         
