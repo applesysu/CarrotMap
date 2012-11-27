@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-@interface ACFriendsListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+@interface ACFriendsListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,UISearchBarDelegate>
 {
 
     UIToolbar *toolBar;
@@ -17,7 +17,7 @@
     UIScrollView *friendLineListView;
     NSArray *friendList;
     NSMutableArray *receiverIDList;
-    
+    int numOfScoll;
     
 };
 
@@ -30,9 +30,10 @@
 @property (strong, nonatomic) UIImageView *connectMeLabelView;
 @property (strong, nonatomic) UIImageView *littleCarrotView;
 @property (strong, nonatomic) UIImageView *theWholeFriendListBackground;
+@property (strong, nonatomic) UIImageView *recentScollViewBackground;
 
 @property (strong, nonatomic) UISearchBar *searchForSingleFriend;
-
+@property (strong, nonatomic) NSMutableArray *friendItems;
 - (id)initWithFriendsList:(NSArray*)friendsList;
 
 

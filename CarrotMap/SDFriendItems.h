@@ -15,8 +15,8 @@
 }
 
 @property(strong, nonatomic) UIImageView *friendHeader;
-
-
+@property(strong, nonatomic) UIImageView *nameBackground;
+@property(strong, nonatomic) UILabel *nameLabel;
 
 -(id)initWithFrame:(CGRect)frame withImage:(UIImage *)image withLabel:(NSString *)name;
 -(void)setImage:(UIImage *)image;

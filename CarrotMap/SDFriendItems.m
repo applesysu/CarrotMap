@@ -10,6 +10,8 @@
 
 @implementation SDFriendItems
 @synthesize friendHeader;
+@synthesize nameBackground;
+@synthesize nameLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -31,10 +33,16 @@
         self.friendHeader.image=image;
         self.friendHeader.layer.cornerRadius=5.0;
         self.friendHeader.layer.masksToBounds=YES;
-
+       // self.nameBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 58, 73, 10)];
+      //  self.nameBackground.backgroundColor=[UIColor blackColor];
+        self.nameLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 58, 73, 10)];
+        self.nameLabel.text=name;
+        self.nameLabel.textAlignment=UITextAlignmentCenter;
+        self.nameLabel.font=[UIFont systemFontOfSize:10.0];
+      //  self.nameLabel.textColor=[UIColor whiteColor];
         [self addSubview:friendHeader];
-
-        
+        [self.friendHeader addSubview:self.nameBackground];
+        [self.friendHeader addSubview:self.nameLabel];
     }
     
     return self;

@@ -12,6 +12,7 @@
 #import "ACAddCarrotViewController.h"
 #import "SDRecentFriendList.h"
 #import "SDFriendItems.h"
+#import "UIImageView+WebCache.h"
 @interface ACFriendsListViewController ()
 
 @end
@@ -27,6 +28,8 @@
 @synthesize littleCarrotView;
 @synthesize theWholeFriendListBackground;
 @synthesize searchForSingleFriend;
+@synthesize friendItems;
+@synthesize recentScollViewBackground;
 
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
@@ -41,6 +44,8 @@
     self=[super init];
     if (self) {
         self.friendList=friendsList;
+        friendItems=[[NSMutableArray alloc] initWithCapacity:friendList.count];
+        numOfScoll=0;
     }
     return self;
 }
@@ -53,7 +58,7 @@
     
 
    //工具栏
-    toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     UIBarButtonItem *leftButton=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(GetBack:)];
     UIBarButtonItem *sender=[[UIBarButtonItem alloc] initWithTitle:@"SenNoti" style:UIBarButtonItemStyleBordered target:self action:@selector(SenderNo)];
     NSArray *itemArray=[[NSArray alloc] initWithObjects:leftButton,sender,nil];
@@ -65,7 +70,7 @@
     self.receiverIDList=[[NSMutableArray alloc] initWithCapacity:[friendList count]];
    
     //最近常联系的好友列表的背景
-    UIImageView *recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 80)];
+    recentScollViewBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0,50, 320, 80)];
     recentScollViewBackground.userInteractionEnabled=YES;
  //  recentScollViewBackground.image=[UIImage imageNamed:@"lefttop.png"];
    //recentScollViewBackground.backgroundColor=[UIColor orangeColor];
@@ -101,14 +106,14 @@
    
 
     
-    NSLog(@"%@",[friendList objectAtIndex:0]);
+ //   NSLog(@"%@",[friendList objectAtIndex:0]);
     
     //好友列表的背景
     theWholeFriendListBackground=[[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 430)];
     theWholeFriendListBackground.layer.cornerRadius=12.0;
     theWholeFriendListBackground.userInteractionEnabled=YES;
     theWholeFriendListBackground.image=[UIImage imageNamed:@"littlecarrot.png"];
-    [self.view addSubview:theWholeFriendListBackground];
+   
     
     
    //SearchBar
@@ -141,25 +146,23 @@
             counter++;
         }
         NSDictionary *single=[friendList objectAtIndex:i];
-        // NSString *imageString=[single objectForKey:@"tinyurl"];
-        NSString *nameForImage=[NSString stringWithFormat:@"%@", [single objectForKey:@"id"]];
-        //   NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
-        //  [imageDataArray addObject:imageData];
-        // UIImage *image=[[UIImage alloc] initWithData:imageData];
-        // NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]);
-       UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
-        image=nil;
+         NSString *imageString=[single objectForKey:@"tinyurl"];
+       // NSString *nameForImage=[NSString stringWithFormat:@"%@", [single objectForKey:@"id"]];
+         //     UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
+      //  image=nil;
         
         //        NSLog(@"%@", nameForImage);
         //        NSLog(@"%@", [[JPDataManager sharedInstance].avatarMapping allKeys]);
             //    NSLog(@"%d", [[JPDataManager sharedInstance].avatarMapping count]);
         //        NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:@"339557652"] );
         
-        if (image==nil) {
-            image=[UIImage imageNamed:@"Icon.png"];
-        }
-        
-        SDFriendItems *item=[[SDFriendItems alloc] initWithFrame:CGRectMake(20+ 100*(i%3), 16+96*counter, 80,80) withImage:image withLabel:@""];
+//        if (image==nil) {
+//            image=[UIImage imageNamed:@"Icon.png"];
+//        }
+//        
+        SDFriendItems *item=[[SDFriendItems alloc] initWithFrame:CGRectMake(20+ 100*(i%3), 16+96*counter, 80,80) withImage:nil withLabel:[single objectForKey:@"name"]];
+        [item.friendHeader setImageWithURL:imageString placeholderImage:[UIImage imageNamed:@"Icon,png"]];
+     //   [self.friendItems addObject:item];
         item.tag=i;
         UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
         [item addGestureRecognizer:tap];
@@ -171,6 +174,8 @@
 
 
  
+  //  NSLog(@"----- %d ---------",friendItems.count);
+     [self.view addSubview:theWholeFriendListBackground];
     
     [self.theWholeFriendListBackground addSubview:leftTopView];
     [self.theWholeFriendListBackground addSubview:recentScollViewBackground];
@@ -194,6 +199,9 @@
     self.connectMeLabelView=nil;
     self.theWholeFriendListBackground=nil;
     self.searchForSingleFriend=nil;
+    self.friendItems=nil;
+    self.recentScollViewBackground=nil;
+    
     [super viewDidUnload];
 
 }
@@ -291,31 +299,53 @@
 
 
 -(void)SenderNo{
+//    int i=0;
     [[JPDataManager sharedInstance] refreshFriendsList];
+   
+//
+//
+//    for (i; i<friendItems.count; i++) {
+//        NSDictionary *single=[friendList objectAtIndex:i];
+//        NSString *nameForImage=[NSString stringWithFormat:@"%@", [single objectForKey:@"id"]];
+//    
+//   SDFriendItems *item=[self.friendItems objectAtIndex:i];
+//        item.friendHeader.image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
+// 
+//        NSLog(@"%@",item);
+//    }
+   
 }
 
 #pragma mark- Notification Methods
 -(void)getSingleFriendImage:(NSNotification*)notifation{
     NSLog(@"Get A Avatar!");
-    NSDictionary *getNameOfImage=notifation.userInfo;
-    NSString *name=[NSString stringWithFormat:@"%@", [getNameOfImage objectForKey:@"id"]];
+//    NSDictionary *getNameOfImage=notifation.userInfo;
+//    NSString *name=[NSString stringWithFormat:@"%@", [getNameOfImage objectForKey:@"id"]];
    // NSLog(@"%@", name);
-    for (int i=0; i<friendList.count; i++) {
-        NSDictionary *single=[friendList objectAtIndex:i];
-    //    NSLog(@"%d",i);
-        NSString *nameForImage= [NSString stringWithFormat:@"%@",[single objectForKey:@"id"]];
+//    for (int i=0; i<friendList.count; i++) {
+//        NSDictionary *single=[friendList objectAtIndex:i];
+    //    NSLog(@"%d",i);h
+//        NSString *nameForImage= [NSString stringWithFormat:@"%@",[single objectForKey:@"id"]];
   //      NSLog(@"%@",nameForImage);
-        if ([nameForImage isEqualToString:name]) {
-            SDFriendItems *item=(SDFriendItems *)[self.friendLineListView viewWithTag:i];
-//            NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:name]);
+//        if ([nameForImage isEqualToString:name]) {
+//            SDFriendItems *item=[self.friendItems objectAtIndex:i];
+//            NSLog(@"%@",item);
+            //=(SDFriendItems *)[self.friendLineListView viewWithTag:i];
+//           NSLog(@"%@",[[JPDataManager sharedInstance].avatarMapping objectForKey:name]);
 //            NSLog(@"%d",i);
-          UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
-       //     item.friendHeader.image=image;
+//          UIImage *image=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:nameForImage]];
+//            if (image==nil) {
+//                NSLog(@"SO GA!!");
+//            }
+         //   item.friendHeader.image=image;
 //            [[JPDataManager sharedInstance].avatarMapping objectForKey:name];
      //       NSLog(@"%@",item);
-            break;
-        }
-    }
+//            [self changeTheImage:nameForImage];
+//            break;
+    
+       
+//        }
+//    }
     
 }
 
@@ -325,5 +355,67 @@
 }
 
 
+#pragma mark - Make the Change
+-(void)changeTheImage:(NSString *)aName{
+    NSLog(@"%@",aName);
+    SDFriendItems *Item=[self.friendItems objectAtIndex:0];
+   UIImage *aImage=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:aName]];
+    UIImageView *aView=[[UIImageView alloc] initWithImage:aImage];
+    [self.view addSubview:aView];
+}
 
+
+#pragma mark - UIScollView Delegate
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    if ([scrollView isEqual:self.friendLineListView]) {
+       // NSLog(@"** %f ** %f **",velocity.x,velocity.y);
+       // NSLog(@"## %f ## %f ##",targetContentOffset->x,targetContentOffset->y );
+        if (numOfScoll==0) {
+            if ((targetContentOffset->y)>100) {
+            [UIView beginAnimations:@"scoll" context:nil];
+            self.theWholeFriendListBackground.frame=CGRectMake(0, -90, 320, 570);
+            self.friendLineListView.frame=CGRectMake(0, 180, 320, 340);
+            NSLog(@"God Demn you!");
+            [UIView commitAnimations];
+            }
+        }
+    }
+}
+
+#pragma mark - UISearchBar Delegate
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"I'm CancelButton");
+     [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"I'm ResultsListButton");
+}
+
+-(void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"Mark Button Clicked!");
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"Search Button Clicked!");
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if ([self.searchForSingleFriend isEqual:searchBar]) {
+        NSLog(@"%@",searchText);
+        if ([searchText length]==0) {
+           // NSLog(@"NULL!");
+            [searchBar resignFirstResponder];
+        }
+    }
+}
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    NSLog(@"I'm End");\
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+}
 @end
