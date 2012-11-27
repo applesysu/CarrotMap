@@ -33,7 +33,9 @@
 @property (strong, nonatomic) UIImageView *recentScollViewBackground;
 
 @property (strong, nonatomic) UISearchBar *searchForSingleFriend;
-@property (strong, nonatomic) NSMutableArray *friendItems;
+@property (strong, nonatomic) NSMutableArray *friendItemsUserForSearch;
+
+
 - (id)initWithFriendsList:(NSArray*)friendsList;
 
 

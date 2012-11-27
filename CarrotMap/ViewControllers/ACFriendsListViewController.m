@@ -28,7 +28,7 @@
 @synthesize littleCarrotView;
 @synthesize theWholeFriendListBackground;
 @synthesize searchForSingleFriend;
-@synthesize friendItems;
+@synthesize friendItemsUserForSearch;
 @synthesize recentScollViewBackground;
 
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
@@ -44,7 +44,8 @@
     self=[super init];
     if (self) {
         self.friendList=friendsList;
-        friendItems=[[NSMutableArray alloc] initWithCapacity:friendList.count];
+        friendItemsUserForSearch =[[NSMutableArray alloc] initWithCapacity:friendList.count];
+      //  NSLog(@"%d",friendItemsUserForSearch.count);
         numOfScoll=0;
     }
     return self;
@@ -180,7 +181,7 @@
     [self.theWholeFriendListBackground addSubview:leftTopView];
     [self.theWholeFriendListBackground addSubview:recentScollViewBackground];
     [self.theWholeFriendListBackground addSubview:self.searchForSingleFriend];
-    [theWholeFriendListBackground addSubview:friendLineListView];
+    [self.theWholeFriendListBackground addSubview:friendLineListView];
     [recentScollViewBackground addSubview:self.theRecentScollView];    
     [self.view addSubview:toolBar];
 }
@@ -199,7 +200,7 @@
     self.connectMeLabelView=nil;
     self.theWholeFriendListBackground=nil;
     self.searchForSingleFriend=nil;
-    self.friendItems=nil;
+    self.friendItemsUserForSearch=nil;
     self.recentScollViewBackground=nil;
     
     [super viewDidUnload];
@@ -358,10 +359,10 @@
 #pragma mark - Make the Change
 -(void)changeTheImage:(NSString *)aName{
     NSLog(@"%@",aName);
-    SDFriendItems *Item=[self.friendItems objectAtIndex:0];
-   UIImage *aImage=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:aName]];
-    UIImageView *aView=[[UIImageView alloc] initWithImage:aImage];
-    [self.view addSubview:aView];
+//    SDFriendItems *Item=[self.friendItemsUserForSearch objectAtIndex:0];
+//   UIImage *aImage=[[UIImage alloc] initWithData:[[JPDataManager sharedInstance].avatarMapping objectForKey:aName]];
+//    UIImageView *aView=[[UIImageView alloc] initWithImage:aImage];
+//    [self.view addSubview:aView];
 }
 
 
@@ -375,7 +376,7 @@
             [UIView beginAnimations:@"scoll" context:nil];
             self.theWholeFriendListBackground.frame=CGRectMake(0, -90, 320, 570);
             self.friendLineListView.frame=CGRectMake(0, 180, 320, 340);
-            NSLog(@"God Demn you!");
+          //  NSLog(@"God Demn you!");
             [UIView commitAnimations];
             }
         }
@@ -384,37 +385,48 @@
 
 #pragma mark - UISearchBar Delegate
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"I'm CancelButton");
+    //NSLog(@"I'm CancelButton");
      [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 }
 
 -(void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"I'm ResultsListButton");
+  //  NSLog(@"I'm ResultsListButton");
 }
 
 -(void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"Mark Button Clicked!");
+    //NSLog(@"Mark Button Clicked!");
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"Search Button Clicked!");
+   // NSLog(@"Search Button Clicked!");
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if ([self.searchForSingleFriend isEqual:searchBar]) {
-        NSLog(@"%@",searchText);
-        if ([searchText length]==0) {
-           // NSLog(@"NULL!");
-            [searchBar resignFirstResponder];
+        for (int i=0;i<friendList.count;i++) {
+            NSDictionary *sing=[self.friendList objectAtIndex:i];
+            NSString *tempName=[sing objectForKey:@"name"];
+            NSRange a=[tempName rangeOfString:tempName];
+            if (a.length!=0) {
+                NSLog(@"%@",tempName);
+                [self.friendItemsUserForSearch addObject:sing];
+            }
+            
         }
+        
     }
+    if(self.friendItemsUserForSearch.count>0){
+    [self.friendLineListView removeFromSuperview];
+    [self.theWholeFriendListBackground addSubview:self.friendLineListView];
+
+}
 }
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [searchBar setShowsCancelButton:YES animated:YES];
 }
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    NSLog(@"I'm End");\
+    NSLog(@"I'm End");
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 }
