@@ -190,8 +190,6 @@
     //WithImage:image];
     self.leftCornerView.userInteractionEnabled=YES;
     self.leftCornerView.frame=CGRectMake(0, 388, 160, 320);
-    NSLog(@"x of the center %f", self.leftCornerView.center.x);
-    NSLog(@"y of the center %f", self.leftCornerView.center.y);
     self.leftCornerView.backgroundColor = [UIColor clearColor];
     
     //设定兔子板的背景图片
@@ -288,6 +286,8 @@
         CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
         double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
         
+        NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
+        
         //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
         if (distanceMeters<800) {
             pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"摇动手机拔萝卜吧！";
@@ -297,6 +297,9 @@
         }
     }
     
+    
+    //以下部分是设置nearbyCarrot
+    //Private的萝卜优先
     if (self.nearbyCarrot != nil){
         return;
     }
@@ -756,7 +759,6 @@
 {
     NSLog(@"didGetIdMapping");
     self.idMappingDictionary = [JPDataManager sharedInstance].idMapping;
-    NSLog(@"%@", self.idMappingDictionary);
     
     //拉了id-Mapping以后开始拉私有的萝卜
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetGeneralPrivateCarrotsMapView) name:@"didGetGeneralPrivateCarrots" object:nil];
