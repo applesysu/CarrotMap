@@ -81,6 +81,14 @@
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"view did appear function called");
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -829,12 +837,6 @@
 }
 
 #pragma mark - 摇动手机拔萝卜有关的函数
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self becomeFirstResponder];
-}
 
 -(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
