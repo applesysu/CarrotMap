@@ -380,6 +380,13 @@
             [UIView commitAnimations];
             }
         }
+       
+        if (targetContentOffset->y==0) {
+            [UIView beginAnimations:@"scollBack" context:nil];
+            self.theWholeFriendListBackground.frame=CGRectMake(0, 0, 320, 480);
+            self.friendLineListView.frame=CGRectMake(0, 180, 320, 250);
+            [UIView commitAnimations];
+        }
     }
 }
 
