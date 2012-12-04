@@ -20,4 +20,5 @@
 
 -(id)initWithFrame:(CGRect)frame withImage:(UIImage *)image withLabel:(NSString *)name;
 -(void)setImage:(UIImage *)image;
+-(void)setFriendHeader:(UIImageView *)friendHeader;
 @end
