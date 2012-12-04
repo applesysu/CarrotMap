@@ -51,8 +51,4 @@
 -(void)setImage:(UIImage *)image{
     self.friendHeader.image=image;
 }
-
--(void)setFriendHeader:(UIImageView *)friendHeader{
-    self.friendHeader=friendHeader;
-}
 @end
