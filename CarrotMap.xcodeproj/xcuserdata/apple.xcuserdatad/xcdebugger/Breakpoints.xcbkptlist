@@ -156,7 +156,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "743"
          endingLineNumber = "743"
-         landmarkName = "-didGetUserInfoMapView"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -169,7 +169,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "760"
          endingLineNumber = "760"
-         landmarkName = "-didGetIdMappingMapView"
+         landmarkName = "-didGetUserInfoMapView"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -182,7 +182,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "771"
          endingLineNumber = "771"
-         landmarkName = "-didGetGeneralPrivateCarrotsMapView"
+         landmarkName = "-didGetIdMappingMapView"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -195,7 +195,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "785"
          endingLineNumber = "785"
-         landmarkName = "-didGetGeneralPublicCarrotsMapView"
+         landmarkName = "-didGetGeneralPrivateCarrotsMapView"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
