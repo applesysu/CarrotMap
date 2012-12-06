@@ -86,7 +86,6 @@
     NSLog(@"view did appear function called");
     [super viewDidAppear:animated];
     [self becomeFirstResponder];
-    
 }
 
 - (void)viewDidLoad
@@ -297,7 +296,7 @@
         NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
         
         //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
-        if (distanceMeters<800) {
+        if (distanceMeters<30) {
             pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"摇动手机拔萝卜吧！";
         }
         else {
@@ -316,7 +315,7 @@
         JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralprivateCarrots objectAtIndex:i];
         CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
         double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
-        if (distanceMeters < 800){
+        if (distanceMeters < 30){
             self.nearbyCarrot = tmpCarrot;
         }
     }
@@ -325,7 +324,7 @@
         JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralpublicCarrots objectAtIndex:i];
         CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
         double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
-        if (distanceMeters < 800){
+        if (distanceMeters < 30){
             self.nearbyCarrot = tmpCarrot;
         }
     }
@@ -891,6 +890,29 @@
 -(BOOL)canBecomeFirstResponder
 {
     return YES;
+}
+
+#pragma mark - 更新机制
+- (void)renewData
+{
+//    2. annotation（在didGetGeneral用JP单例初始化）
+//    3. annotationView （mapView的一个delegate，见到annotation后调用）
+//    4. (property)generalPublicCarrot（储存carrot）
+//    (property)generalPrivateCarrot（解决方法：全部改成JP单例）
+//    (property)carrotOnMap（储存pin）（init:在didGetGeneralPublic后；用:在CLLocation Delegate里面）
+
+//1. 重新加载cell
+    [self.leftCornerTableView reloadData];
+
+//2. 重新加载annotation
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPrivateCarrotMapView) name:@"didGetDetailPrivateCarrots" object:nil];
+    [[JPDataManager sharedInstance] refreshGeneralPrivateCarrotsWithUid:self.userID];
+}
+
+- (void)didRefreshGeneralPrivateCarrots
+{
+    
 }
 
 @end
