@@ -86,6 +86,9 @@
     NSLog(@"view did appear function called");
     [super viewDidAppear:animated];
     [self becomeFirstResponder];
+    
+    //进入更新机制
+    //[self renewData];
 }
 
 - (void)viewDidLoad
@@ -634,13 +637,12 @@
 {
     int result = 0;
     if ([tableView isEqual:self.leftCornerTableView]){
-//        NSLog(@"Numbers of row in section %u", ([self.generalPublicCarrots count] + [self.generalPrivateCarrots count]));
-//        return ([self.generalPublicCarrots count] + [self.generalPrivateCarrots count]);
+
         if (section == 0){
-            return [self.generalPrivateCarrots count];
+            return [[[JPDataManager sharedInstance] GeneralprivateCarrots] count];
         }
         else if (section == 1){
-            return [self.generalPublicCarrots count];
+            return [[[JPDataManager sharedInstance ]GeneralpublicCarrots] count];
         }
     }
     return result;
@@ -665,7 +667,7 @@
             //第二个section:公有的萝卜
             
             if (indexPath.section == 0){
-                JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
+                JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralprivateCarrots] objectAtIndex:indexPath.row];
                 /*cell.title.text = @"From";
                 cell.title.text = [cell.title.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]];*/
                 if ([tmp.senderID isEqualToString:self.userID]) {
@@ -677,7 +679,7 @@
                 }
             }
             else {
-                JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
+                JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralpublicCarrots] objectAtIndex:indexPath.row];
                 /*cell.title.text = @"From:";
                 cell.title.text = [cell.title.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[tmp.senderID intValue]]]];*/
                 
@@ -732,12 +734,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0){
-        JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:indexPath.row];
+        JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralprivateCarrots] objectAtIndex:indexPath.row];
         CLLocationCoordinate2D tmpLocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         [self.myMapView setCenterCoordinate:tmpLocation animated:YES];
     }
     else {
-        JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:indexPath.row];
+        JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralpublicCarrots] objectAtIndex:indexPath.row];
         CLLocationCoordinate2D tmpLocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         [self.myMapView setCenterCoordinate:tmpLocation animated:YES];
     }
@@ -799,16 +801,14 @@
     
     //拉到数据以后重新reload一下 TableView(包括它的Cells)
     [self.leftCornerTableView reloadData];
-//    [self.myMapView addAnnotations:self.generalPublicCarrots];
-//    [self.myMapView addAnnotations:self.generalPrivateCarrots];
  
     
     
     //把所有的公有萝卜转化成Annotation然后加到mapView里面
     self.carrotOnMap = [[NSMutableArray alloc] init];
     int i;
-    for (i = 0; i < [self.generalPublicCarrots count]; i++){
-        JPCarrot *tmp = [self.generalPublicCarrots objectAtIndex:i];
+    for (i = 0; i < [[[JPDataManager sharedInstance] GeneralpublicCarrots] count]; i++){
+        JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralpublicCarrots] objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.senderID subtitle:tmp.message];
         
@@ -816,8 +816,8 @@
         [self.myMapView addAnnotation:tmpAnno];
     }
     //把所有的私有萝卜转化成Annotation然后加到mapView里面
-    for (i = 0; i < [self.generalPrivateCarrots count]; i++){
-        JPCarrot *tmp = [self.generalPrivateCarrots objectAtIndex:i];
+    for (i = 0; i < [[[JPDataManager sharedInstance] GeneralprivateCarrots] count]; i++){
+        JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralprivateCarrots] objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.senderID subtitle:tmp.message];
         
@@ -885,6 +885,9 @@
     detailViewController.view.backgroundColor = [UIColor greenColor];
     [detailViewController.view setFrame:CGRectMake(50, 50, 150, 150)];
     [self presentPopupViewController:detailViewController animationType:MJPopupViewAnimationSlideBottomBottom];
+    
+    //最后进入更新机制
+    [self renewData];
 }
 
 -(BOOL)canBecomeFirstResponder
@@ -893,26 +896,32 @@
 }
 
 #pragma mark - 更新机制
+//两种种情况下需要更新机制
+//发了萝卜以后（viewDidAppear）
+//拔了私有萝卜以后
 - (void)renewData
 {
 //    2. annotation（在didGetGeneral用JP单例初始化）
 //    3. annotationView （mapView的一个delegate，见到annotation后调用）
-//    4. (property)generalPublicCarrot（储存carrot）
-//    (property)generalPrivateCarrot（解决方法：全部改成JP单例）
 //    (property)carrotOnMap（储存pin）（init:在didGetGeneralPublic后；用:在CLLocation Delegate里面）
+ 
+    
+    //  已经解决的问题
+    //    4. (property)generalPublicCarrots（储存carrot）
+    //    (property)generalPrivateCarrot（解决方法：全部改成JP单例）
 
 //1. 重新加载cell
     [self.leftCornerTableView reloadData];
 
 //2. 重新加载annotation
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPrivateCarrotMapView) name:@"didGetDetailPrivateCarrots" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRefreshGeneralPrivateCarrots) name:@"didGetGeneralPrivateCarrots" object:nil];
     [[JPDataManager sharedInstance] refreshGeneralPrivateCarrotsWithUid:self.userID];
 }
 
 - (void)didRefreshGeneralPrivateCarrots
 {
-    
+    NSLog(@"didRefreshGeneralPrivateCarrots");
 }
 
 @end

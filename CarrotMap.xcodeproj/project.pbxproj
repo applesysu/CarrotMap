@@ -29,6 +29,7 @@
 		18BFA4DD16522DDA00D2317C /* infoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BFA4DC16522DDA00D2317C /* infoBackground.png */; };
 		18D272AC165DC5D600335A58 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D272AB165DC5D600335A58 /* MJPopupBackgroundView.m */; };
 		18D272AF165DC63300335A58 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D272AE165DC63300335A58 /* UIViewController+MJPopupViewController.m */; };
+		18D7833216704B830086C8DA /* 1callout.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7833116704B820086C8DA /* 1callout.png */; };
 		5F0C2B801658EC04007D7982 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0C2B7F1658EC04007D7982 /* Icon.png */; };
 		5F0C2B821658ECED007D7982 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0C2B811658ECED007D7982 /* Default.png */; };
 		5F5D2E0F16649F55005D5C1B /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5D2DFC16649F55005D5C1B /* MKAnnotationView+WebCache.m */; };
@@ -211,6 +212,7 @@
 		18D272AB165DC5D600335A58 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJPopupBackgroundView.m; path = CarrotMap/ViewControllers/MJPopupBackgroundView.m; sourceTree = SOURCE_ROOT; };
 		18D272AD165DC63300335A58 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MJPopupViewController.h"; path = "CarrotMap/ViewControllers/UIViewController+MJPopupViewController.h"; sourceTree = SOURCE_ROOT; };
 		18D272AE165DC63300335A58 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MJPopupViewController.m"; path = "CarrotMap/ViewControllers/UIViewController+MJPopupViewController.m"; sourceTree = SOURCE_ROOT; };
+		18D7833116704B820086C8DA /* 1callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1callout.png; sourceTree = "<group>"; };
 		5F0C2B7F1658EC04007D7982 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		5F0C2B811658ECED007D7982 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		5F5D2DFB16649F55005D5C1B /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				18870DB1165BA5DE0007BC72 /* 1carr.png */,
 				18870DB2165BA5DE0007BC72 /* 1info.png */,
 				18870DB3165BA5DE0007BC72 /* 1locate.png */,
+				18D7833116704B820086C8DA /* 1callout.png */,
 			);
 			name = MapView;
 			sourceTree = "<group>";
@@ -1177,6 +1180,7 @@
 				5F9CCAA7165D0327002F244D /* littlecarrot.png in Resources */,
 				5F9CCAAA165D0327002F244D /* lefttop.png in Resources */,
 				5F9CCAAB165D0327002F244D /* search.png in Resources */,
+				18D7833216704B830086C8DA /* 1callout.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

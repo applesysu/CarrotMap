@@ -19,7 +19,7 @@
 {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.calloutImageView = [[SYSUMyCalloutImageView alloc] initWithImage:[UIImage imageNamed:@"notepad.png"]];
+        self.calloutImageView = [[SYSUMyCalloutImageView alloc] initWithImage:[UIImage imageNamed:@"1callout.png"]];
         self.calloutImageView.messageLabel.text = annotation.title;
     }
     return self;

@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "376413804.571361"
+         timestampString = "376455316.44396"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "742"
-         endingLineNumber = "742"
+         startingLineNumber = "744"
+         endingLineNumber = "744"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "376413804.571361"
+         timestampString = "376455316.44396"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "759"
-         endingLineNumber = "759"
+         startingLineNumber = "761"
+         endingLineNumber = "761"
          landmarkName = "-didGetUserInfoMapView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "376413804.571361"
+         timestampString = "376455316.44396"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "770"
-         endingLineNumber = "770"
+         startingLineNumber = "772"
+         endingLineNumber = "772"
          landmarkName = "-didGetIdMappingMapView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "CarrotMap/ViewControllers/ACMapViewController.m"
-         timestampString = "376413804.571361"
+         timestampString = "376455316.44396"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "784"
-         endingLineNumber = "784"
+         startingLineNumber = "786"
+         endingLineNumber = "786"
          landmarkName = "-didGetGeneralPrivateCarrotsMapView"
          landmarkType = "5">
       </FileBreakpoint>
