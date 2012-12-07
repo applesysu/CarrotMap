@@ -296,7 +296,7 @@
         CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
         double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
         
-        NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
+     //   NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
         
         //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
         if (distanceMeters<30) {

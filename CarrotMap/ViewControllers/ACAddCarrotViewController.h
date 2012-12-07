@@ -51,6 +51,7 @@
 @property (strong, nonatomic) UIToolbar *topNavigation;
 @property (strong, nonatomic) UIBarButtonItem *leftBackBar;
 @property (strong, nonatomic) UIBarButtonItem *rightSenderBar;
+@property (strong, nonatomic) UIView *viewAddForKeyBaord;
 
 -(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude withUserInfo:(NSDictionary *)userInformation;
 @end

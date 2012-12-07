@@ -31,6 +31,7 @@
 @synthesize friendItemsUserForSearch;
 @synthesize recentScollViewBackground;
 
+
 - (id)initWithStyle:(UITableViewStyle)style withFriends:(NSArray *)argFriends
 {
     self = [super init];
@@ -140,6 +141,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSingleFriendImage:) name:@"didDownloadAnAvatar" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getALLFriendImages:) name:@"didDownloadAllAvatars" object:nil];
     [[JPDataManager sharedInstance] getFriendsList];
+
+    
     int counter=-1;
     for (int i=0;i<friendList.count;i++) {
         if (i%3==0)
@@ -439,4 +442,6 @@
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 }
+
+
 @end

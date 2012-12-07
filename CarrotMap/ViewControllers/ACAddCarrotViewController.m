@@ -32,6 +32,7 @@
 @synthesize topNavigation;
 @synthesize leftBackBar;
 @synthesize rightSenderBar;
+@synthesize viewAddForKeyBaord;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -163,6 +164,7 @@
     [self.theWholeBackground addSubview:self.selectField];
     [self.theWholeBackground addSubview:self.buttonToFriend];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addButtonForKeyBoard) name:UIKeyboardWillShowNotification object:nil];
     
 }
 
@@ -181,6 +183,7 @@
     self.theWholeBackground=nil;
     self.rightSenderBar=nil;
     self.leftBackBar=nil;
+    self.viewAddForKeyBaord=nil;
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -205,6 +208,10 @@
     self.selectField.text=names;
     NSLog(@"%d",receviers.count);
     
+}
+-(void)viewWillDisappear:(BOOL)animated{
+     [[NSNotificationCenter defaultCenter]  removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didGetFriendsList" object:nil];
 }
 
 //
@@ -395,8 +402,29 @@
 
 }
 
--(void)viewWillDisappear:(BOOL)animated{
 
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didGetFriendsList" object:nil];
+
+
+#pragma mark- UIKeyBoard Notificaiton
+-(void)addButtonForKeyBoard{
+    
+    UIWindow *temWindow;
+    UIView *keyboard;
+    
+    for (int c=0; c<[[[UIApplication sharedApplication] windows] count]; c++) {
+        temWindow=[[[UIApplication sharedApplication] windows] objectAtIndex:c];
+        for (int i=0; i<[temWindow.subviews count]; i++) {
+            keyboard=[temWindow.subviews objectAtIndex:i];
+          //  NSLog(@"%@",[keyboard description]);
+            if ([[keyboard description] hasPrefix:@"<UIKeyboard"]==YES) {
+                NSLog(@"+++++++++++++++Sure get it!");
+                viewAddForKeyBaord=[[UIView alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
+                viewAddForKeyBaord.backgroundColor=[UIColor blueColor];
+                [keyboard addSubview:viewAddForKeyBaord];
+                return;
+            }
+        }
+        
+    }
 }
 @end
