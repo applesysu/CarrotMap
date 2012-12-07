@@ -379,6 +379,7 @@
           //  NSLog(@"God Demn you!");
             [UIView commitAnimations];
             }
+            numOfScoll=1;
         }
        
         if (targetContentOffset->y==0) {
@@ -386,6 +387,7 @@
             self.theWholeFriendListBackground.frame=CGRectMake(0, 0, 320, 480);
             self.friendLineListView.frame=CGRectMake(0, 180, 320, 250);
             [UIView commitAnimations];
+            numOfScoll=0;
         }
     }
 }
