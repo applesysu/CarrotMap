@@ -325,6 +325,9 @@
         CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
         double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
         if (distanceMeters < 700){
+            if (self.nearbyCarrot != nil){
+                return;
+            }
             self.nearbyCarrot = tmpCarrot;
         }
     }
@@ -334,6 +337,9 @@
         CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
         double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
         if (distanceMeters < 700){
+            if (self.nearbyCarrot != nil){
+                return;
+            }
             self.nearbyCarrot = tmpCarrot;
         }
     }
