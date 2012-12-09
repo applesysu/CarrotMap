@@ -138,9 +138,9 @@
 
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSingleFriendImage:) name:@"didDownloadAnAvatar" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getALLFriendImages:) name:@"didDownloadAllAvatars" object:nil];
-    [[JPDataManager sharedInstance] getFriendsList];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getSingleFriendImage:) name:@"didDownloadAnAvatar" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getALLFriendImages:) name:@"didDownloadAllAvatars" object:nil];
+    //[[JPDataManager sharedInstance] getFriendsList];
 
     
     int counter=-1;
@@ -211,8 +211,8 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didDownloadAnAvatar" object:nil];
-    [[NSNotificationCenter defaultCenter]  removeObserver:self name:@"didDownloadAllAvatars" object:nil];
+  //  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didDownloadAnAvatar" object:nil];
+    //[[NSNotificationCenter defaultCenter]  removeObserver:self name:@"didDownloadAllAvatars" object:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -375,7 +375,7 @@
        // NSLog(@"** %f ** %f **",velocity.x,velocity.y);
        // NSLog(@"## %f ## %f ##",targetContentOffset->x,targetContentOffset->y );
         if (numOfScoll==0) {
-            if ((targetContentOffset->y)>100) {
+            if ((targetContentOffset->y)>10) {
             [UIView beginAnimations:@"scoll" context:nil];
             self.theWholeFriendListBackground.frame=CGRectMake(0, -90, 320, 570);
             self.friendLineListView.frame=CGRectMake(0, 180, 320, 340);

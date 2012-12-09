@@ -164,7 +164,7 @@
     [self.theWholeBackground addSubview:self.selectField];
     [self.theWholeBackground addSubview:self.buttonToFriend];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addButtonForKeyBoard) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addButtonForKeyBoard) name:UIKeyboardDidShowNotification object:nil];
     
 }
 
@@ -196,6 +196,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addButtonForKeyBoard) name:UIKeyboardDidShowNotification object:nil];
     NSMutableString *names=[NSMutableString stringWithCapacity:receviers.count*5];
     NSLog(@"%@",receviers);
     for (NSDictionary *single in receviers) {
@@ -210,7 +211,7 @@
     
 }
 -(void)viewWillDisappear:(BOOL)animated{
-     [[NSNotificationCenter defaultCenter]  removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]  removeObserver:self name:UIKeyboardDidShowNotification object:nil];
      [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didGetFriendsList" object:nil];
 }
 
@@ -409,7 +410,7 @@
 -(void)addButtonForKeyBoard{
     
     UIWindow *temWindow;
-    UIView *keyboard_father;
+  //  UIView *keyboard_father;
     UIView *keyboard;
     
    //  NSLog(@"共有这么多的window: %d",[[[UIApplication sharedApplication] windows] count]);
@@ -422,17 +423,35 @@
            // for (int j=0; j<[keyboard_father.subviews count]; j++) {
                 
              //   keyboard=[keyboard_father.subviews objectAtIndex:j];
-           //       NSLog(@"%@",[keyboard description]);
-            if ([[keyboard description] hasPrefix:@"<<UIKeyboard"]==YES) {
-                NSLog(@"+++++++++++++++Sure get it!");
-                viewAddForKeyBaord=[[UIView alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
-                viewAddForKeyBaord.backgroundColor=[UIColor blueColor];
+               //   NSLog(@"%@",[keyboard description]);
+            if ([[keyboard description] hasPrefix:@"<UIPeri"]==YES) {
+               // NSLog(@"这个keyboard的子view---%d",[keyboard.subviews count]);
+             //   NSLog(@"+++++++++++++++Sure get it!");
+                viewAddForKeyBaord=[[UIToolbar alloc] initWithFrame:CGRectMake(0, -44, 320, 44)];
+                //viewAddForKeyBaord.backgroundColor=[UIColor blueColor];
+                viewAddForKeyBaord.barStyle=UIBarStyleBlackTranslucent;
+                
+                
+                UIBarButtonItem* prevButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"声音" style:UIBarButtonItemStyleBordered target:self action:nil];
+                
+                UIBarButtonItem* nextButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"照片" style:UIBarButtonItemStyleBordered target:self action:nil];
+                
+                UIBarButtonItem* hiddenButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"隐藏键盘" style:UIBarButtonItemStyleBordered target:self action:@selector(hiddenKeyBoard)];
+                
+                UIBarButtonItem* spaceButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+                viewAddForKeyBaord.items=[NSArray arrayWithObjects:prevButtonItem,nextButtonItem,spaceButtonItem,hiddenButtonItem ,nil];
                 [keyboard addSubview:viewAddForKeyBaord];
-                return;
+    
+               return;
             }
            // }
         }
         
     }
+}
+
+-(void)hiddenKeyBoard{
+    [self.selectField resignFirstResponder];
+    [self.testRestrict resignFirstResponder];
 }
 @end
