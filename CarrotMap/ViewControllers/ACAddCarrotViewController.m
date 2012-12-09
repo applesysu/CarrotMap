@@ -409,20 +409,28 @@
 -(void)addButtonForKeyBoard{
     
     UIWindow *temWindow;
+    UIView *keyboard_father;
     UIView *keyboard;
     
+   //  NSLog(@"共有这么多的window: %d",[[[UIApplication sharedApplication] windows] count]);
     for (int c=0; c<[[[UIApplication sharedApplication] windows] count]; c++) {
+       
         temWindow=[[[UIApplication sharedApplication] windows] objectAtIndex:c];
         for (int i=0; i<[temWindow.subviews count]; i++) {
             keyboard=[temWindow.subviews objectAtIndex:i];
-          //  NSLog(@"%@",[keyboard description]);
-            if ([[keyboard description] hasPrefix:@"<UIKeyboard"]==YES) {
+        
+           // for (int j=0; j<[keyboard_father.subviews count]; j++) {
+                
+             //   keyboard=[keyboard_father.subviews objectAtIndex:j];
+           //       NSLog(@"%@",[keyboard description]);
+            if ([[keyboard description] hasPrefix:@"<<UIKeyboard"]==YES) {
                 NSLog(@"+++++++++++++++Sure get it!");
                 viewAddForKeyBaord=[[UIView alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
                 viewAddForKeyBaord.backgroundColor=[UIColor blueColor];
                 [keyboard addSubview:viewAddForKeyBaord];
                 return;
             }
+           // }
         }
         
     }

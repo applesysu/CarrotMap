@@ -280,6 +280,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    
+}
+
 #pragma mark - CLLocation Delegate 
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
