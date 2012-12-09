@@ -300,10 +300,10 @@
         CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
         double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
         
-     //   NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
+        NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
         
         //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
-        if (distanceMeters<30) {
+        if (distanceMeters<700) {
             pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"摇动手机拔萝卜吧！";
         }
         else {
@@ -322,7 +322,7 @@
         JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralprivateCarrots objectAtIndex:i];
         CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
         double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
-        if (distanceMeters < 30){
+        if (distanceMeters < 700){
             self.nearbyCarrot = tmpCarrot;
         }
     }
@@ -331,7 +331,7 @@
         JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralpublicCarrots objectAtIndex:i];
         CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
         double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
-        if (distanceMeters < 30){
+        if (distanceMeters < 700){
             self.nearbyCarrot = tmpCarrot;
         }
     }
