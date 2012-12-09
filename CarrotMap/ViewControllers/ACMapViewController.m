@@ -296,6 +296,8 @@
     for (i = 0; i < [carrotOnMap count]; i++){
         
         SYSUMyAnnotation *pin = [carrotOnMap objectAtIndex:i];
+        
+        //用来计算距离
         CLLocationCoordinate2D locationOfPinCoordinate = [pin coordinate];
         CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
         double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
