@@ -54,14 +54,11 @@
 
 @synthesize userType;
 
-//navController
-@synthesize navController;
-
 //id-Mapping Dictionary
 @synthesize idMappingDictionary;
 
 //nearbyCarrot
-@synthesize nearbyCarrot;
+//@synthesize nearbyCarrot;
 
 - (id)initWithUserType:(NSString *)userLoginType
 {
@@ -287,62 +284,61 @@
 #pragma mark - CLLocation Delegate 
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    //协议方法－－CClocation  一旦实施定位开启后，这个函数会在极短的时间内反复调用（即使你没有挪窝，这时两个位置参数的值一样）
-//   NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+////   NSLog(@"Latitude=%f, Longtitude=%f  ------",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+////    
+////    NSLog(@"Latitude=%f, Longtitude=%f   $$$$$$",oldLocation.coordinate.latitude,oldLocation.coordinate.longitude);
+// //   NSLog(@"Location Delegate called");
+//    int i;
+//    for (i = 0; i < [carrotOnMap count]; i++){
+//        
+//        SYSUMyAnnotation *pin = [carrotOnMap objectAtIndex:i];
+//        
+//        //用来计算距离
+//        CLLocationCoordinate2D locationOfPinCoordinate = [pin coordinate];
+//        CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
+//        double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
+//        
+//        NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
+//        
+//        //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
+//        if (distanceMeters<700) {
+//            pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"摇动手机拔萝卜吧！";
+//        }
+//        else {
+//            pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"太远了！先靠近这根萝卜吧！";
+//        }
+//    }
 //    
-//    NSLog(@"Latitude=%f, Longtitude=%f   $$$$$$",oldLocation.coordinate.latitude,oldLocation.coordinate.longitude);
- //   NSLog(@"Location Delegate called");
-    int i;
-    for (i = 0; i < [carrotOnMap count]; i++){
-        
-        SYSUMyAnnotation *pin = [carrotOnMap objectAtIndex:i];
-        
-        //用来计算距离
-        CLLocationCoordinate2D locationOfPinCoordinate = [pin coordinate];
-        CLLocation *locationOfPin = [[CLLocation alloc] initWithLatitude:locationOfPinCoordinate.latitude longitude:locationOfPinCoordinate.longitude];
-        double distanceMeters = [newLocation distanceFromLocation:locationOfPin];
-        
-        NSLog(@"Test for the distanceMeters: %lf from %@", distanceMeters, pin.title);
-        
-        //如果距离太远，设置callout里面的信息为“距离太远啦哥！！走进再拔啊哥！！”
-        if (distanceMeters<700) {
-            pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"摇动手机拔萝卜吧！";
-        }
-        else {
-            pin.calloutViewOfPin.calloutImageView.messageLabelSecond.text = @"太远了！先靠近这根萝卜吧！";
-        }
-    }
-    
-    
-    //以下部分是设置nearbyCarrot
-    //Private的萝卜优先
-    if (self.nearbyCarrot != nil){
-        return;
-    }
-
-    for (i = 0; i < [[JPDataManager sharedInstance].GeneralprivateCarrots count]; i++){
-        JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralprivateCarrots objectAtIndex:i];
-        CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
-        double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
-        if (distanceMeters < 700){
-            if (self.nearbyCarrot != nil){
-                return;
-            }
-            self.nearbyCarrot = tmpCarrot;
-        }
-    }
-    
-    for (i = 0; i < [[JPDataManager sharedInstance].GeneralpublicCarrots count]; i++){
-        JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralpublicCarrots objectAtIndex:i];
-        CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
-        double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
-        if (distanceMeters < 700){
-            if (self.nearbyCarrot != nil){
-                return;
-            }
-            self.nearbyCarrot = tmpCarrot;
-        }
-    }
+//    
+//    //以下部分是设置nearbyCarrot
+//    //Private的萝卜优先
+//    if (self.nearbyCarrot != nil){
+//        return;
+//    }
+//
+//    for (i = 0; i < [[JPDataManager sharedInstance].GeneralprivateCarrots count]; i++){
+//        JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralprivateCarrots objectAtIndex:i];
+//        CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
+//        double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
+//        if (distanceMeters < 700){
+//            if (self.nearbyCarrot != nil){
+//                return;
+//            }
+//            self.nearbyCarrot = tmpCarrot;
+//        }
+//    }
+//    
+//    for (i = 0; i < [[JPDataManager sharedInstance].GeneralpublicCarrots count]; i++){
+//        JPCarrot *tmpCarrot = [[JPDataManager sharedInstance].GeneralpublicCarrots objectAtIndex:i];
+//        CLLocation *tmpCarrotLocation = [[CLLocation alloc] initWithLatitude:tmpCarrot.latitude longitude:tmpCarrot.longitude];
+//        double distanceMeters = [newLocation distanceFromLocation:tmpCarrotLocation];
+//        if (distanceMeters < 700){
+//            if (self.nearbyCarrot != nil){
+//                return;
+//            }
+//            self.nearbyCarrot = tmpCarrot;
+//        }
+//    }
 }
 
 #pragma mark - MKMapView Delegate
@@ -412,6 +408,9 @@
     NSString *pinReusableIdentifier=[SYSUMyAnnotation reusableIdentifierForPinColor:senderAnnotation.pinColor];
     SYSUMyAnnoCalloutView *annota=(SYSUMyAnnoCalloutView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinReusableIdentifier];
     annota.calloutImageView.messageLabel.text = @"来自:";
+    
+    //添加一个按钮
+    //[annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
     
     if ([senderAnnotation.title isEqualToString:self.userID]){
         NSLog(@"%@", [self.userInfo objectForKey:@"name"]);
@@ -851,25 +850,30 @@
 
 -(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-    NSLog(@"shake motion detected");
-    static BOOL didShake = 0;
-    if (event.type==UIEventSubtypeMotionShake && !didShake && self.nearbyCarrot != nil) {
-        
-        NSLog(@"the nearbyCarrot to be pulled out %@", self.nearbyCarrot);
-        NSLog(@"the carrotID of the nearbyCarrot %@", self.nearbyCarrot.carrotID);
-        
-        didShake = 1;
-        //去拉萝卜detail的数据，当然主要是message，对它是公有还是私有作判断
-        if (self.nearbyCarrot.isPublic == 1){
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPublicCarrotMapView) name:@"didGetDetailPublicCarrots" object:nil];
-            [[JPDataManager sharedInstance] getDetailPublicCarrotWithGeneralCarrot:self.nearbyCarrot];
-        }
-        else {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPrivateCarrotMapView) name:@"didGetDetailPrivateCarrots" object:nil];
-            [[JPDataManager sharedInstance] getDetailPrivateCarrotWithGeneralCarrot:self.nearbyCarrot];
-        }
-    }
+//    NSLog(@"shake motion detected");
+//    static BOOL didShake = 0;
+//    if (event.type==UIEventSubtypeMotionShake && !didShake && self.nearbyCarrot != nil) {
+//        
+//        NSLog(@"the nearbyCarrot to be pulled out %@", self.nearbyCarrot);
+//        NSLog(@"the carrotID of the nearbyCarrot %@", self.nearbyCarrot.carrotID);
+//        
+//        didShake = 1;
+//        //去拉萝卜detail的数据，当然主要是message，对它是公有还是私有作判断
+//        if (self.nearbyCarrot.isPublic == 1){
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPublicCarrotMapView) name:@"didGetDetailPublicCarrots" object:nil];
+//            [[JPDataManager sharedInstance] getDetailPublicCarrotWithGeneralCarrot:self.nearbyCarrot];
+//        }
+//        else {
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetDetailPrivateCarrotMapView) name:@"didGetDetailPrivateCarrots" object:nil];
+//            [[JPDataManager sharedInstance] getDetailPrivateCarrotWithGeneralCarrot:self.nearbyCarrot];
+//        }
+//    }
 }
+
+//- (void)clickForDetail
+//{
+//    NSLog(@"button Pressed Detected!!!!!");
+//}
 
 - (void)didGetDetailPublicCarrotMapView
 {

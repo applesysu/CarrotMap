@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, strong) UILabel *messageLabelSecond;
 @property (nonatomic, strong) UILabel *messageLabelThird;
+@property (nonatomic, strong) UIButton *detailButton;
 
 - (id)initWithFrame:(CGRect)frame;
 

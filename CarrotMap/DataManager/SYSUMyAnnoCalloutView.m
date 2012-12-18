@@ -25,15 +25,6 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     //demo需要定制
@@ -55,7 +46,6 @@
         //Remove your custom view...
         [self.calloutImageView removeFromSuperview];
     }
-    
 }
 
 - (void)animateCalloutAppearance {

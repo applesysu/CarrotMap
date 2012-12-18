@@ -66,14 +66,11 @@
 @property (nonatomic, strong) NSString *userType;
 
 
-//添加一个navigationController;
-@property (nonatomic, strong) UINavigationController *navController;
-
 //添加一个ID-Mapping列表来储存所有的用户信息
 @property (nonatomic, strong) NSDictionary *idMappingDictionary;
 
 //添加一个nearbyCarrot储存一个可以拔的萝卜
-@property (nonatomic, strong) JPCarrot *nearbyCarrot;
+//@property (nonatomic, strong) JPCarrot *nearbyCarrot;
 
 
 - (id)initWithUserType:(NSString *)userLoginType;

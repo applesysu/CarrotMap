@@ -13,6 +13,7 @@
 @synthesize messageLabel;
 @synthesize messageLabelSecond;
 @synthesize messageLabelThird;
+@synthesize detailButton;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -46,6 +47,19 @@
         self.messageLabelThird.backgroundColor = [UIColor clearColor];
         self.messageLabelSecond.lineBreakMode = UILineBreakModeWordWrap;
         [self addSubview:self.messageLabelThird];
+        
+        //初始化detailButton
+        CGRect buttonRect;
+        buttonRect.origin.x = boundsForLabel.origin.x;
+        buttonRect.origin.y = boundsForLabel.origin.y + 40;
+        buttonRect.size.width = boundsForLabel.size.width;
+        buttonRect.size.height = boundsForLabel.size.height;
+        //self.detailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [self.detailButton setFrame:buttonRect];
+        [self.detailButton setTitle:@"Click for detail" forState:UIControlStateNormal];
+        [self addSubview:self.detailButton];
+        NSLog(@"ADD SUBVIEW");
+        //[self.detailButton addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -79,17 +93,26 @@
         self.messageLabelThird = [[UILabel alloc] initWithFrame:boundsForLabel];
         self.messageLabelThird.backgroundColor = [UIColor clearColor];
         [self addSubview:self.messageLabelThird];
+        
+        //初始化detailButton
+        CGRect buttonRect;
+        buttonRect.origin.x = 20;
+        buttonRect.origin.y = 80;
+        buttonRect.size.width = boundsForLabel.size.width-50;
+        buttonRect.size.height = 30;
+        self.detailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [self.detailButton setFrame:buttonRect];
+        [self.detailButton setTitle:@"Click for detail" forState:UIControlStateNormal];
+        self.detailButton.userInteractionEnabled = YES;
+        [self.detailButton addTarget:self.superview action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.detailButton];
     }
     return self;
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
+- (void)clickForDetail
+{
+    NSLog(@"clickForDetail");
+}
 
 @end
