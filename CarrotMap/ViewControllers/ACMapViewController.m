@@ -410,7 +410,7 @@
     annota.calloutImageView.messageLabel.text = @"来自:";
     
     //添加一个按钮
-    //[annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
+    [annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
     
     if ([senderAnnotation.title isEqualToString:self.userID]){
         NSLog(@"%@", [self.userInfo objectForKey:@"name"]);
@@ -428,6 +428,7 @@
         //第一件事情：initWithAnnotation
         annota=[[SYSUMyAnnoCalloutView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
         annota.calloutImageView.messageLabel.text = @"来自:";
+        [annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
         if ([senderAnnotation.title isEqualToString:self.userID]){
             annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.userInfo objectForKey:@"name"]];
         }
@@ -870,10 +871,10 @@
 //    }
 }
 
-//- (void)clickForDetail
-//{
-//    NSLog(@"button Pressed Detected!!!!!");
-//}
+- (void)clickForDetail
+{
+    NSLog(@"button Pressed Detected!");
+}
 
 - (void)didGetDetailPublicCarrotMapView
 {
