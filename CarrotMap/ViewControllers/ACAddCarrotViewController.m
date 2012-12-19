@@ -67,7 +67,7 @@
     self.topNavigation.frame=CGRectMake(0, 0, 320, 44);
     leftBackBar=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(backToMapView)];
     rightSenderBar=[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendCarrotMap)];
-    UIBarButtonItem *publicBar=[[UIBarButtonItem alloc] initWithTitle:@"Public" style:UIBarButtonItemStyleBordered target:self action:@selector(SendPublicCarrot)];
+    UIBarButtonItem *publicBar=[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(SendPublicCarrot)];
      UIBarButtonItem* spaceButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     NSArray *itemArray=[[NSArray alloc] initWithObjects:leftBackBar,spaceButtonItem,publicBar, nil];
     [self.topNavigation  setItems:itemArray animated:YES];
