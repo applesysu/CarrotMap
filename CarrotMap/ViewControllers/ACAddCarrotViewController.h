@@ -52,6 +52,8 @@
 @property (strong, nonatomic) UIBarButtonItem *leftBackBar;
 @property (strong, nonatomic) UIBarButtonItem *rightSenderBar;
 @property (strong, nonatomic) UIToolbar *viewAddForKeyBaord;
+@property (strong, nonatomic) UIImageView *smileImage;
+@property (strong, nonatomic) UIImageView *sadImage;
 
 -(id)initWithLatitude:(float)alatitude withLongtitude:(float)alongtitude withUserInfo:(NSDictionary *)userInformation;
 @end

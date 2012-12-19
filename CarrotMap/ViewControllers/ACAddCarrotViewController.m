@@ -33,6 +33,8 @@
 @synthesize leftBackBar;
 @synthesize rightSenderBar;
 @synthesize viewAddForKeyBaord;
+@synthesize smileImage;
+@synthesize sadImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,7 +68,8 @@
     leftBackBar=[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(backToMapView)];
     rightSenderBar=[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendCarrotMap)];
     UIBarButtonItem *publicBar=[[UIBarButtonItem alloc] initWithTitle:@"Public" style:UIBarButtonItemStyleBordered target:self action:@selector(SendPublicCarrot)];
-    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftBackBar,rightSenderBar,publicBar, nil];
+     UIBarButtonItem* spaceButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    NSArray *itemArray=[[NSArray alloc] initWithObjects:leftBackBar,spaceButtonItem,publicBar, nil];
     [self.topNavigation  setItems:itemArray animated:YES];
     
     
@@ -330,11 +333,39 @@
 
 -(void)ToFriendList:(UIButton *)paramSender{
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFriendList) name:@"didGetFriendsList" object:nil];
-    [[JPDataManager sharedInstance] getFriendsList];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getFriendList) name:@"didGetFriendsList" object:nil];
+//    [[JPDataManager sharedInstance] getFriendsList];
 
+//    self.buttonToFriend=[[UIButton alloc] initWithFrame:CGRectMake(248,62, 30, 30)];
+//    [self.buttonToFriend addTarget:self action:@selector(ToFriendList:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.buttonToFriend setBackgroundImage:[UIImage imageNamed:@"addfriend.png"] forState:UIControlStateNormal];
+    
+    smileImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smile.png"]];
+    smileImage.frame=CGRectMake(248, 100, 30, 30);
+    smileImage.userInteractionEnabled=YES;
+    smileImage.tag=10;
+  
+    
+    sadImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sad.png"]];
+    sadImage.frame=CGRectMake(248, 140, 30, 30);
+    sadImage.userInteractionEnabled=YES;
+    sadImage.tag=11;
+                                   
+    [self.theWholeBackground addSubview:smileImage];
+    [self.theWholeBackground addSubview:sadImage];
+    
+    UITapGestureRecognizer *tapExpression_1=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SelectExpression:)];
+    UITapGestureRecognizer *tapExpression_2=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SelectExpression:)];
+    tapExpression_1.numberOfTapsRequired=1;
+    tapExpression_1.numberOfTouchesRequired=1;
+    tapExpression_2.numberOfTapsRequired=1;
+    tapExpression_2.numberOfTouchesRequired=1;
+    
+    
+    [self.smileImage addGestureRecognizer:tapExpression_1];
+    [self.sadImage addGestureRecognizer:tapExpression_2];
 }
-
+    
 -(void)senderCarrot:(UIButton *)paramSender{
     NSLog(@"%@",receviers);
     
@@ -453,5 +484,21 @@
 -(void)hiddenKeyBoard{
     [self.selectField resignFirstResponder];
     [self.testRestrict resignFirstResponder];
+}
+
+#pragma mark- Guesture
+
+-(void)SelectExpression:(UITapGestureRecognizer *)paramSender{
+    if (paramSender.state==UIGestureRecognizerStateEnded) {
+        if([paramSender.view isEqual:self.smileImage]){
+            [self.buttonToFriend setBackgroundImage:[UIImage imageNamed:@"smile.png"] forState:UIControlStateNormal];
+        }else{
+            [self.buttonToFriend setBackgroundImage:[UIImage imageNamed:@"sad.png"] forState:UIControlStateNormal];
+        }
+    }
+    [self.smileImage removeFromSuperview];
+    [self.sadImage removeFromSuperview];
+    
+    
 }
 @end
