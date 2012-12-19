@@ -9,6 +9,7 @@
 #import "SYSUMyAnnotation.h"
 #import "SYSUMyAnnoCalloutView.h"
 #import "SYSUMyAnnoCalloutView.h"
+#import "JPCarrot.h"
 
 @implementation SYSUMyAnnotation
 
@@ -17,10 +18,12 @@
 @synthesize coordinate;
 @synthesize pinColor;
 @synthesize calloutViewOfPin;
+@synthesize carrot;
 
 - (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {
     coordinate = newCoordinate;
+    
 }
 
 - (void)setWithCoordinate:(CLLocationCoordinate2D)paramcoordinate title:(NSString *)paramtitle subtitle:(NSString *)paramsubtitle
@@ -30,7 +33,7 @@
     title=paramtitle;
     subtitle=paramsubtitle;
     pinColor=MKPinAnnotationColorGreen;
-    
+        
 }
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D)paramcoordinate title:(NSString *)paramtitle subtitle:(NSString *)paramsubtitle
@@ -43,6 +46,7 @@
         subtitle=paramsubtitle;
         pinColor=MKPinAnnotationColorGreen;
         
+        self.carrot = [[JPCarrot alloc] init];
     }
     return  self;
 }

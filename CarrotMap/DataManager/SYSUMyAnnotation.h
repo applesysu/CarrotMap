@@ -15,6 +15,7 @@
 #define REUSABLE_PIN_PURPLE @"Purple"
 
 @class SYSUMyAnnoCalloutView;
+@class JPCarrot;
 
 @interface SYSUMyAnnotation : NSObject<MKAnnotation>
 
@@ -22,6 +23,7 @@
 @property (nonatomic, copy)NSString * subtitle;
 @property (nonatomic, unsafe_unretained)MKPinAnnotationColor pinColor;
 @property (nonatomic, strong) SYSUMyAnnoCalloutView *calloutViewOfPin;
+@property (nonatomic, strong) JPCarrot* carrot;
 
 
 //增加一个CalloutView，使得通过大头针能访问它自己的CalloutView

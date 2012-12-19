@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18042B3016820DB900627B98 /* calm.png in Resources */ = {isa = PBXBuildFile; fileRef = 18042B2A16820DB900627B98 /* calm.png */; };
+		18042B3116820DB900627B98 /* cry.png in Resources */ = {isa = PBXBuildFile; fileRef = 18042B2B16820DB900627B98 /* cry.png */; };
+		18042B3216820DB900627B98 /* jiong.png in Resources */ = {isa = PBXBuildFile; fileRef = 18042B2C16820DB900627B98 /* jiong.png */; };
+		18042B3316820DB900627B98 /* love.png in Resources */ = {isa = PBXBuildFile; fileRef = 18042B2D16820DB900627B98 /* love.png */; };
+		18042B3416820DB900627B98 /* sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 18042B2E16820DB900627B98 /* sad.png */; };
+		18042B3516820DB900627B98 /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 18042B2F16820DB900627B98 /* smile.png */; };
 		187BFCFA164E1BD0007AC7BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187BFCF9164E1BD0007AC7BA /* MapKit.framework */; };
 		187BFD02164E1C04007AC7BA /* SYSUMyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */; };
 		187BFD05164E1C78007AC7BA /* SYSUMyCalloutImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */; };
@@ -25,6 +31,7 @@
 		1887161B16528AF400822642 /* red_plus_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1887161416528AF400822642 /* red_plus_up.png */; };
 		1887161C16528AF400822642 /* red_x_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 1887161516528AF400822642 /* red_x_down.png */; };
 		1887161D16528AF400822642 /* red_x_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1887161616528AF400822642 /* red_x_up.png */; };
+		188DAC9C1680B66A0051B926 /* MyUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 188DAC9B1680B66A0051B926 /* MyUIButton.m */; };
 		18BFA4DA16522DAB00D2317C /* infoUpper.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BFA4D916522DAB00D2317C /* infoUpper.png */; };
 		18BFA4DD16522DDA00D2317C /* infoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BFA4DC16522DDA00D2317C /* infoBackground.png */; };
 		18D272AC165DC5D600335A58 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D272AB165DC5D600335A58 /* MJPopupBackgroundView.m */; };
@@ -183,6 +190,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18042B2A16820DB900627B98 /* calm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calm.png; sourceTree = "<group>"; };
+		18042B2B16820DB900627B98 /* cry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cry.png; sourceTree = "<group>"; };
+		18042B2C16820DB900627B98 /* jiong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jiong.png; sourceTree = "<group>"; };
+		18042B2D16820DB900627B98 /* love.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = love.png; sourceTree = "<group>"; };
+		18042B2E16820DB900627B98 /* sad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sad.png; sourceTree = "<group>"; };
+		18042B2F16820DB900627B98 /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		187BFCF9164E1BD0007AC7BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		187BFD00164E1C04007AC7BA /* SYSUMyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSUMyAnnotation.h; sourceTree = "<group>"; };
 		187BFD01164E1C04007AC7BA /* SYSUMyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSUMyAnnotation.m; sourceTree = "<group>"; };
@@ -206,6 +219,8 @@
 		1887161416528AF400822642 /* red_plus_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_plus_up.png; sourceTree = "<group>"; };
 		1887161516528AF400822642 /* red_x_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_x_down.png; sourceTree = "<group>"; };
 		1887161616528AF400822642 /* red_x_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_x_up.png; sourceTree = "<group>"; };
+		188DAC9A1680B66A0051B926 /* MyUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyUIButton.h; path = CarrotMap/ViewControllers/MyUIButton.h; sourceTree = SOURCE_ROOT; };
+		188DAC9B1680B66A0051B926 /* MyUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyUIButton.m; path = CarrotMap/ViewControllers/MyUIButton.m; sourceTree = SOURCE_ROOT; };
 		18BFA4D916522DAB00D2317C /* infoUpper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoUpper.png; sourceTree = "<group>"; };
 		18BFA4DC16522DDA00D2317C /* infoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoBackground.png; sourceTree = "<group>"; };
 		18D272AA165DC5D600335A58 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJPopupBackgroundView.h; path = CarrotMap/ViewControllers/MJPopupBackgroundView.h; sourceTree = SOURCE_ROOT; };
@@ -506,6 +521,12 @@
 				18870DB2165BA5DE0007BC72 /* 1info.png */,
 				18870DB3165BA5DE0007BC72 /* 1locate.png */,
 				18D7833116704B820086C8DA /* 1callout.png */,
+				18042B2A16820DB900627B98 /* calm.png */,
+				18042B2B16820DB900627B98 /* cry.png */,
+				18042B2C16820DB900627B98 /* jiong.png */,
+				18042B2D16820DB900627B98 /* love.png */,
+				18042B2E16820DB900627B98 /* sad.png */,
+				18042B2F16820DB900627B98 /* smile.png */,
 			);
 			name = MapView;
 			sourceTree = "<group>";
@@ -606,6 +627,8 @@
 				187BFD04164E1C78007AC7BA /* SYSUMyCalloutImageView.m */,
 				187BFD0A164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.h */,
 				187BFD0B164E1CE0007AC7BA /* SYSUMyAnnoCalloutView.m */,
+				188DAC9A1680B66A0051B926 /* MyUIButton.h */,
+				188DAC9B1680B66A0051B926 /* MyUIButton.m */,
 				187BFD0E164E1D32007AC7BA /* SYSUCarrotCell.h */,
 				187BFD0F164E1D32007AC7BA /* SYSUCarrotCell.m */,
 			);
@@ -1181,6 +1204,12 @@
 				5F9CCAAA165D0327002F244D /* lefttop.png in Resources */,
 				5F9CCAAB165D0327002F244D /* search.png in Resources */,
 				18D7833216704B830086C8DA /* 1callout.png in Resources */,
+				18042B3016820DB900627B98 /* calm.png in Resources */,
+				18042B3116820DB900627B98 /* cry.png in Resources */,
+				18042B3216820DB900627B98 /* jiong.png in Resources */,
+				18042B3316820DB900627B98 /* love.png in Resources */,
+				18042B3416820DB900627B98 /* sad.png in Resources */,
+				18042B3516820DB900627B98 /* smile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1303,6 +1332,7 @@
 				5F5D2E1416649F55005D5C1B /* SDWebImagePrefetcher.m in Sources */,
 				5F5D2E1516649F55005D5C1B /* UIButton+WebCache.m in Sources */,
 				5F5D2E1616649F55005D5C1B /* UIImageView+WebCache.m in Sources */,
+				188DAC9C1680B66A0051B926 /* MyUIButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1403,7 +1433,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarrotMap/CarrotMap-Prefix.pch";
 				INFOPLIST_FILE = "CarrotMap/CarrotMap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1420,7 +1450,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarrotMap/CarrotMap-Prefix.pch";
 				INFOPLIST_FILE = "CarrotMap/CarrotMap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

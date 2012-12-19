@@ -17,6 +17,8 @@
 #import "ACMyViewViewController.h"
 #import "ACCarrotDetialViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "MyUIButton.h"
+
 @interface ACMapViewController ()
 
 @end
@@ -58,7 +60,7 @@
 @synthesize idMappingDictionary;
 
 //nearbyCarrot
-//@synthesize nearbyCarrot;
+@synthesize nearbyCarrot;
 
 - (id)initWithUserType:(NSString *)userLoginType
 {
@@ -410,7 +412,8 @@
     annota.calloutImageView.messageLabel.text = @"来自:";
     
     //添加一个按钮
-    [annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
+    //[annota.calloutImageView.detailButton setCarrot:senderAnnotation.carrot];
+    //[annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail:) forControlEvents:UIControlEventTouchUpInside];
     
     if ([senderAnnotation.title isEqualToString:self.userID]){
         NSLog(@"%@", [self.userInfo objectForKey:@"name"]);
@@ -420,7 +423,7 @@
         NSLog(@"%d", [senderAnnotation.title intValue]);
         annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[senderAnnotation.title intValue]]]];
     }
-    annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:@"的一根萝卜"];
+    annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:@"的一条信息"];
     senderAnnotation.calloutViewOfPin = annota;
     
      //初次定义MKAnnotationView
@@ -428,14 +431,18 @@
         //第一件事情：initWithAnnotation
         annota=[[SYSUMyAnnoCalloutView alloc] initWithAnnotation:senderAnnotation reuseIdentifier:pinReusableIdentifier];
         annota.calloutImageView.messageLabel.text = @"来自:";
-        [annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
+        
+        //添加一个按钮
+        //[annota.calloutImageView.detailButton setCarrot:senderAnnotation.carrot];
+        //[annota.calloutImageView.detailButton addTarget:self action:@selector(clickForDetail:) forControlEvents:UIControlEventTouchUpInside];
+        
         if ([senderAnnotation.title isEqualToString:self.userID]){
             annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.userInfo objectForKey:@"name"]];
         }
         else {
             annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:[self.idMappingDictionary objectForKey:[NSNumber numberWithInt:[senderAnnotation.title intValue]]]];
         }
-        annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:@"的一根萝卜"];
+        annota.calloutImageView.messageLabel.text = [annota.calloutImageView.messageLabel.text stringByAppendingString:@"的一条信息"];
         senderAnnotation.calloutViewOfPin = annota;
         [annota setCanShowCallout:NO];
     }
@@ -443,7 +450,7 @@
      
      
     result=annota;
-    UIImage *pinImage=[UIImage imageNamed:@"1carr.png"];
+    UIImage *pinImage=[UIImage imageNamed:@"smile.png"];
     if (pinImage!=nil) {
         annota.image=pinImage;
     } 
@@ -823,7 +830,7 @@
         JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralpublicCarrots] objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.senderID subtitle:tmp.message];
-        
+        tmpAnno.carrot = tmp;
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -832,7 +839,7 @@
         JPCarrot *tmp = [[[JPDataManager sharedInstance] GeneralprivateCarrots] objectAtIndex:i];
         CLLocationCoordinate2D tmplocation = CLLocationCoordinate2DMake(tmp.latitude, tmp.longitude);
         SYSUMyAnnotation *tmpAnno = [[SYSUMyAnnotation alloc] initWithCoordinate:tmplocation title:tmp.senderID subtitle:tmp.message];
-        
+        tmpAnno.carrot = tmp;
         [self.carrotOnMap addObject:tmpAnno];
         [self.myMapView addAnnotation:tmpAnno];
     }
@@ -871,10 +878,11 @@
 //    }
 }
 
-- (void)clickForDetail
-{
-    NSLog(@"button Pressed Detected!");
-}
+//- (void)clickForDetail:(id)sender
+//{
+//    MyUIButton *button = (MyUIButton*)sender;
+////    NSLog(@"%@", button.carrot);
+//}
 
 - (void)didGetDetailPublicCarrotMapView
 {

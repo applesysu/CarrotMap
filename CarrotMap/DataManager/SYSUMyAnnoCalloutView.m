@@ -9,6 +9,10 @@
 #import "SYSUMyAnnoCalloutView.h"
 #import "SYSUMyAnnotation.h"
 #import "SYSUMyCalloutImageView.h"
+#import "ACCarrotDetialViewController.h"
+#import "JPDataManager.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "MyUIButton.h"
 
 @implementation SYSUMyAnnoCalloutView
 
@@ -19,10 +23,15 @@
 {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        
+        self.correspondingAnnotation = [[SYSUMyAnnotation alloc] init];
+        self.correspondingAnnotation = annotation;
+        
         self.calloutImageView = [[SYSUMyCalloutImageView alloc] initWithImage:[UIImage imageNamed:@"1callout.png"]];
         self.calloutImageView.messageLabel.text = annotation.title;
     }
-    return self;
+    return self;//解释就是这里的return 没有成功
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -31,8 +40,6 @@
         [self.calloutImageView setFrame:CGRectMake(-75, -100, 230, 130)];
         
         [self animateCalloutAppearance];
-        //[self.calloutImageView becomeFirstResponder];
-        //[self.calloutImageView.detailButton addTarget:self.calloutImageView action:@selector(clickForDetail) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.calloutImageView];
         [self setCanShowCallout:NO];
     }
@@ -62,5 +69,6 @@
         }];
     }];
 }
+
 
 @end

@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class MyUIButton;
+
 @interface SYSUMyCalloutImageView : UIImageView
 
 @property (nonatomic, strong) UILabel *messageLabel;
-@property (nonatomic, strong) UILabel *messageLabelSecond;
-@property (nonatomic, strong) UILabel *messageLabelThird;
-@property (nonatomic, strong) UIButton *detailButton;
+@property (nonatomic, strong) MyUIButton *detailButton;
 
 - (id)initWithFrame:(CGRect)frame;
 
